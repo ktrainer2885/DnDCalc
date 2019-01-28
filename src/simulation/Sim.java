@@ -27,6 +27,23 @@ public class Sim {
         }
         return false;
     }
+
+    public boolean checkHit(Creature attacker, Creature defender){
+        if (attacker.attack() >= defender.getAc()){
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+
+    public void hit(Creature attacker, Creature defender) {
+        defender.recieveDamage(attacker.attackDamage());
+    }
+
+
 }
 // todo 1: combat between individuals
+
+
 // todo 2: combat between groups
