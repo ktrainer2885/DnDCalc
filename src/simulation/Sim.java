@@ -53,7 +53,7 @@ public class Sim {
         }
     }
 
-    public void singleCombat(Creature attacker, Creatue defender) {
+    public void singleCombat(Creature attacker, Creature defender) {
         if( checkHit(attacker,defender)){
             hit(attacker,defender);
         }
