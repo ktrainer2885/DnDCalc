@@ -10,7 +10,7 @@ public class Goblin extends Creature {
     private int attackProf;
 
 
-    Goblin(){
+    public Goblin(){
         this.hp = ThreadLocalRandom.current().nextInt(1,7)+ ThreadLocalRandom.current().nextInt(1,7);
         this.ac = 15; //leather armor shield
         this.attackProf = 4;

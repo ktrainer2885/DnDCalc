@@ -4,7 +4,7 @@ import common.Creature;
 
 public class Fighter extends Creature {
 
-    Fighter(){
+    public Fighter(){
         this.hp = 10; // starting HP
         this.prof = 2; // Starting Bonus Profeciency
         this.weap = "1d8"; //Longsword damage
