@@ -2,6 +2,7 @@ public class Main {
 
     public static void main(String[] args) {
 
-        System.out.println("Hello World!");
+        Sim sim = new Sim(1,1);
+        sim.combat;
     }
 }
