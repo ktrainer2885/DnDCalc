@@ -6,13 +6,13 @@ import static common.Commands.roll20;
 
 public class Creature {
 
-    protected int hp;
-    protected int prof;
-    protected String weap;
-    protected String[] diceNum;
-    protected int ac;
-    protected int init;
-    protected boolean alive;
+    protected int hp;               // Health Points
+    protected int prof;             // Proficiency
+    protected String weap;          // Weapon (Ex: 1d6)
+    protected String[] diceNum;     // Number of dice
+    protected int ac;               // Armor Class
+    protected int init;             // Initiative
+    protected boolean alive;        // Alive Status
 
     public boolean isAlive() {
         return alive;
@@ -66,13 +66,24 @@ public class Creature {
         return roll20() + prof;
     }
 
-    public int attackDamage(){
-
+    public int attackDamage(){        
         int damage = 0;
-
-        for(int i = 0; i < Integer.parseInt(diceNum[0]); i++){
-            damage = damage + ThreadLocalRandom.current().nextInt(1, Integer.parseInt(diceNum[1]));
-        }
+        int roll = 0;
+        boolean isCritical = false;
+        
+        // Roll 20
+        roll = roll20();
+        
+        // If Roll is 20, Critical Hit
+        if (roll == 20)
+            isCritical = true;
+        
+        // Refractor
+        damage += generateDamage(diceNum);
+        
+        // If Critical Hit, double damage
+        if (isCritical)
+            damage += generateDamage(diceNum);
 
         return damage;
     }
@@ -87,6 +98,16 @@ public class Creature {
 
     protected void setDamageDice(){
         diceNum = weap.split("d");
-
+    }
+    
+    // Helper Function Used to Generate Damage
+    int generateDamage(String[] diceNum) {
+        
+        int damage = 0;
+        
+        for (int i = 0; i < Integer.parseInt(diceNum[0]); i++)
+            damage += ThreadLocalRandom.current().nextInt(1, Integer.parseInt(diceNum[1]));
+        
+        return damage;
     }
 }

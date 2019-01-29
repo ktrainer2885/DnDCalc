@@ -24,24 +24,27 @@ public class Sim {
         this.encounterSize = encounterSize;
         this.winNum = 0;
     }
-
+    
+    // Populating Encounter Group
     private void newEncounter( int encounterSize){
         for (int i = 0; i < encounterSize; i++) {
             encounter[i] = new Goblin();
         }
     }
-
+    
+    // Populating Party Group
     private void newParty(int partySize){
         for (int i = 0; i < partySize; i++) {
             party[i] = new Fighter();
         }
     }
 
-
+    // Checking If Individual from Group is Alive
     public boolean checkAlive(Creature individual ){
         return individual.isAlive();
     }
-
+    
+    // Checking If Group is Alive
     public boolean checkGroupAlive(Creature[] group) {
         for (Creature g : group) {
             if (g.isAlive()) {
@@ -50,16 +53,16 @@ public class Sim {
         }
         return false;
     }
-
+    
+    // Determine if attack is stronger than reciever's armor class
     public boolean checkHit(Creature attacker, Creature defender){
         if (attacker.attack() >= defender.getAc()){
             return true;
         }
-        else {
-            return false;
-        }
+        return false;
     }
-
+    
+    // Generate Hit
     public void hit(Creature attacker, Creature defender) {
         defender.recieveDamage(attacker.attackDamage());
     }
@@ -77,6 +80,7 @@ public class Sim {
     }
 
     public void singleCombat(Creature attacker, Creature defender) {
+        // If attack is stronger than armor class, generate hit
         if( checkHit(attacker,defender)){
             hit(attacker,defender);
         }
@@ -139,7 +143,7 @@ public class Sim {
 
        calcWinRate(winNum, simIterations);
 
-        System.out.println("Win Rate: " + winRate +"%");
+        System.out.println("Win Rate: " + String.format("%.2f", winRate) +"%");
 
     }
 }
