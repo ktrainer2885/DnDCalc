@@ -12,6 +12,7 @@ public class Creature {
     protected String[] diceNum;     // Number of dice
     protected int ac;               // Armor Class
     protected int init;             // Initiative
+    protected int dext;             // Dexterity
     protected boolean alive;        // Alive Status
 
     public boolean isAlive() {
@@ -28,6 +29,14 @@ public class Creature {
 
     public void setInit(int init) {
         this.init = init;
+    }
+    
+    public int getDext() {
+        return dext;
+    }
+    
+    public void setDext(int dext) {
+        this.dext = dext;
     }
 
     public int getHp() {
@@ -60,6 +69,11 @@ public class Creature {
 
     public void setAc(int ac) {
         this.ac = ac;
+    }
+    
+    // Identical Monsters = Different Initiatives
+    public void generateInitiative() {
+        setInit(roll20()+getDext());
     }
 
     public int attack(){

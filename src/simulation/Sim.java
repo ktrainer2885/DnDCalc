@@ -27,15 +27,19 @@ public class Sim {
     
     // Populating Encounter Group
     private void newEncounter( int encounterSize){
+        //System.out.println("Goblin Initiatives");
         for (int i = 0; i < encounterSize; i++) {
             encounter[i] = new Goblin();
+            //System.out.println(encounter[i].getInit());
         }
     }
     
     // Populating Party Group
     private void newParty(int partySize){
+        //System.out.println("Party Initiatives");
         for (int i = 0; i < partySize; i++) {
             party[i] = new Fighter();
+            //System.out.println(party[i].getInit());
         }
     }
 
@@ -71,7 +75,7 @@ public class Sim {
 
         // do inititive
         // todo implement initiive
-
+        
         while (checkGroupAlive(party) && checkGroupAlive(encounter)) {
 
             // do a round
