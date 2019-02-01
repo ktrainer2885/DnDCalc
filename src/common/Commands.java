@@ -1,5 +1,8 @@
 package common;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Commands {
@@ -32,6 +35,26 @@ public class Commands {
 
          return hp;
      }
+
+     static public int genAttribute() {
+         ArrayList<Integer> diceRolls = new ArrayList<Integer>();
+         int attr = 0;
+
+
+         for (int i = 0; i < 4; i++){
+             diceRolls.add(ThreadLocalRandom.current().nextInt(1,7));
+         }
+
+         Collections.sort(diceRolls);
+         Collections.reverse(diceRolls);
+
+         for (int i = 0; i < 3; i++ ) {
+             attr = attr + diceRolls.get(i);
+         }
+
+         return attr;
+     }
+
 
 
 }

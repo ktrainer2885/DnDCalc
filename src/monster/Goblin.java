@@ -34,5 +34,8 @@ public class Goblin extends Creature {
         return roll20() + attackProf;
     }
 
-
+    @Override
+    public int attackDamage() {
+        return super.attackDamage();
+    }
 }
