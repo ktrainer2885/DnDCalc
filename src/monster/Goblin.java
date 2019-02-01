@@ -15,7 +15,7 @@ public class Goblin extends Creature {
         this.ac = 15; //leather armor shield
         this.attackProf = 4;
         this.weap = "1d6";
-        this.dext = 3;  // dexterity guess
+        this.dex = 3;  // dexterity guess
         setDamageDice();
         generateInitiative();
         this.alive = true;

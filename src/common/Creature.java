@@ -12,8 +12,89 @@ public class Creature {
     protected String[] diceNum;     // Number of dice
     protected int ac;               // Armor Class
     protected int init;             // Initiative
-    protected int dext;             // Dexterity
+    protected int level;            // Class level
+
+
     protected boolean alive;        // Alive Status
+
+    protected int str;              // Strength
+    protected int dex;             // Dexterity
+    protected int con;              // Constitution
+    protected int intel;            // intelligence
+    protected int wis;              // wisdom
+    protected int cha;              // charisma
+
+    public int getStr() {
+        return str;
+    }
+
+    public int getStrMod() {
+        return  (str - 10) / 2;
+    }
+
+    public void setStr(int str) {
+        this.str = str;
+    }
+
+    public int getDex() {
+        return dex;
+    }
+
+    public int getDexMod() {
+        return  (dex - 10) / 2;
+    }
+
+    public void setDex(int dex) {
+        this.dex = dex;
+    }
+
+    public int getCon() {
+        return con;
+    }
+
+    public int getConMod() {
+        return  (con - 10) / 2;
+    }
+
+    public void setCon(int con) {
+        this.con = con;
+    }
+
+    public int getIntel() {
+        return intel;
+    }
+
+    public int getIntelMod() {
+        return  (intel - 10) / 2;
+    }
+
+    public void setIntel(int intel) {
+        this.intel = intel;
+    }
+
+    public int getWis() {
+        return wis;
+    }
+
+    public int getWisMod() {
+        return  (wis - 10) / 2;
+    }
+
+    public void setWis(int wis) {
+        this.wis = wis;
+    }
+
+    public int getCha() {
+        return cha;
+    }
+
+    public int getChaMod() {
+        return  (cha - 10) / 2;
+    }
+
+    public void setCha(int cha) {
+        this.cha = cha;
+    }
 
     public boolean isAlive() {
         return alive;
@@ -31,20 +112,13 @@ public class Creature {
         this.init = init;
     }
     
-    public int getDext() {
-        return dext;
-    }
-    
-    public void setDext(int dext) {
-        this.dext = dext;
-    }
 
     public int getHp() {
         return hp;
     }
 
     public void setHp(int hp) {
-        this.hp = hp;
+        this.hp = hp + getConMod();
     }
 
     public int getProf() {
@@ -73,7 +147,7 @@ public class Creature {
     
     // Identical Monsters = Different Initiatives
     public void generateInitiative() {
-        setInit(roll20()+getDext());
+        setInit(roll20()+ getDexMod());
     }
 
     public int attack(){
