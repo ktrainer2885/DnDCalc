@@ -1,7 +1,7 @@
+// Prototype to show Schweller
+
 import simulation.Sim;
-
 import java.util.Scanner;
-
 public class Main {
 
     public static void main(String[] args) {
