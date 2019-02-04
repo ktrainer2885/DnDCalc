@@ -5,6 +5,7 @@ import monster.Goblin;
 import player.Fighter;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Sim {
 
@@ -84,6 +85,11 @@ public class Sim {
         for (Creature e : encounter) {
             e.generateInitiative();
         }
+
+        initSort.addAll(party);
+        initSort.addAll(encounter);
+        Collections.sort(initSort);
+        Collections.reverse(initSort);
 
 
         // do inititive

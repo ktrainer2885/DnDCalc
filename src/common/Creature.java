@@ -1,10 +1,11 @@
 package common;
 
+import java.util.Comparator;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static common.Commands.roll20;
 
-public class Creature {
+public class Creature implements Comparable<Creature> {
 
     protected int hp;               // Health Points
     protected int prof;             // Proficiency
@@ -24,6 +25,22 @@ public class Creature {
     protected int intel;            // intelligence
     protected int wis;              // wisdom
     protected int cha;              // charisma
+
+
+
+    // used to compare initiative between creatures.
+    @Override
+    public int compareTo(Creature o2){
+        if(this.getInit() < o2.getInit()){
+            return -1;
+        }
+        if(this.getInit() == o2.getInit()){
+            return 0;
+        }
+        else {              //(o1.getInit() > o2.getInit()){
+            return 1;
+        }
+    }
 
     public int getStr() {
         return str;
