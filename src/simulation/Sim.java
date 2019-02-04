@@ -8,8 +8,8 @@ import java.util.ArrayList;
 
 public class Sim {
 
-    private Creature[] party;
-    private Creature[] encounter;
+    private ArrayList<Creature> party;
+    private ArrayList<Creature> encounter;
     private ArrayList<Creature> initSort;
 
     private int partySize;
@@ -19,9 +19,9 @@ public class Sim {
     private double winRate;
 
     public Sim(int partySize, int encounterSize, int simIterations){
-
-        this.party = new Creature[partySize];
-        this.encounter = new Creature[encounterSize];
+        this.party = new ArrayList<>();
+        this.encounter = new ArrayList<>();
+        this.initSort = new ArrayList<>();
         this.simIterations = simIterations;
         this.partySize = partySize;
         this.encounterSize = encounterSize;
@@ -30,9 +30,10 @@ public class Sim {
     
     // Populating Encounter Group
     private void newEncounter( int encounterSize){
+
         //System.out.println("Goblin Initiatives");
         for (int i = 0; i < encounterSize; i++) {
-            encounter[i] = new Goblin();
+            encounter.add(new Goblin());
             //System.out.println(encounter[i].getInit());
         }
     }
@@ -41,7 +42,7 @@ public class Sim {
     private void newParty(int partySize){
         //System.out.println("Party Initiatives");
         for (int i = 0; i < partySize; i++) {
-            party[i] = new Fighter();
+            party.add(new Fighter());
             //System.out.println(party[i].getInit());
         }
     }
@@ -52,7 +53,7 @@ public class Sim {
     }
     
     // Checking If Group is Alive
-    public boolean checkGroupAlive(Creature[] group) {
+    public boolean checkGroupAlive(ArrayList<Creature> group) {
         for (Creature g : group) {
             if (g.isAlive()) {
                 return g.isAlive();
@@ -102,13 +103,33 @@ public class Sim {
         }
     }
 
+   public  void combat(ArrayList<Creature> attacker, ArrayList<Creature> defender){
+
+       for (Creature a : attacker) {
+           if (!a.isAlive()) {
+               break;
+           }
+
+           for (Creature d : defender) {
+               if (d.isAlive()) {
+                   singleCombat(a,d);
+                   break;
+               }
+           }
+       }
+
+   }
+
     public void round() {
         // encounter attacks party
         // check t see if party is alive(single)
         // attack if alive
         // continue down the list until nomore encouter attacks
 
-        for (int i = 0; i < encounter.length; i++) {
+        combat(encounter,party);
+
+
+ /*       for (int i = 0; i < encounter.length; i++) {
             if(!encounter[i].isAlive()){
                 break;
             }
@@ -119,7 +140,7 @@ public class Sim {
                     break;
                 }
             }
-        }
+        }*/
 
 
         // party attacks encounter
@@ -127,7 +148,9 @@ public class Sim {
         // attack if alive
         //contine down list untl no more party attacks
 
-        for (int i = 0; i < party.length; i++) {
+        combat(party,encounter);
+
+        /*for (int i = 0; i < party.length; i++) {
             for (int j = 0; j < encounter.length; j++) {
                 if(!party[i].isAlive()){
                     break;
@@ -137,7 +160,7 @@ public class Sim {
                     break;
                 }
             }
-        }
+        }*/
     }
 
     private void calcWinRate(int wins, int simIterations){
@@ -155,6 +178,9 @@ public class Sim {
             if(checkGroupAlive(party)){
                 winNum++;
             }
+
+            encounter.clear();
+            party.clear();
         }
 
        calcWinRate(winNum, simIterations);
