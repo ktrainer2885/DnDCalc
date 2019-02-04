@@ -24,16 +24,18 @@ public class Commands {
 
      }
 
-     static public int rollHP(int high, int diceNum, int constant) {
-         int hp =0;
+     static public int rollHP(int diceNum, int diceType) {
+         int hp = 0;
 
          for (int i = 0; i < diceNum; i++) {
-             hp = ThreadLocalRandom.current().nextInt(1, high);
+             hp += ThreadLocalRandom.current().nextInt(1, diceType + 1);
          }
 
-         hp = hp + constant;
-
          return hp;
+     }
+
+     static public int rollHP(int diceNum, int diceType, int constant) {
+         return  rollHP(diceNum, diceType) + constant;
      }
 
      static public int genAttribute() {

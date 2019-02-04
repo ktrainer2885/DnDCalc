@@ -10,9 +10,10 @@ public class Creature {
     protected int prof;             // Proficiency
     protected String weap;          // Weapon (Ex: 1d6)
     protected String[] diceNum;     // Number of dice
+    protected int damConst;         // Damage constant: StrMod, DexMod, Magic etc
     protected int ac;               // Armor Class
     protected int init;             // Initiative
-    protected int level;            // Class level
+
 
 
     protected boolean alive;        // Alive Status
@@ -118,7 +119,7 @@ public class Creature {
     }
 
     public void setHp(int hp) {
-        this.hp = hp + getConMod();
+        this.hp = hp;
     }
 
     public int getProf() {
@@ -154,8 +155,19 @@ public class Creature {
         return roll20() + prof;
     }
 
-    public int attackDamage(){        
-        int damage = 0;
+    public  int attackDamage(int constant) {
+        return attackDamage() + constant;
+    }
+
+    public int attackDamage(){
+
+        int damage;
+        if (damConst != 0) {
+            damage = damConst;
+        }
+        else {
+            damage = 0;
+        }
         int roll = 0;
         boolean isCritical = false;
         
@@ -176,7 +188,7 @@ public class Creature {
         return damage;
     }
 
-    public void recieveDamage(int damage){
+    public void receiveDamage(int damage){
         setHp(getHp()-damage);
 
         if(getHp() <= 0 ) {
@@ -194,8 +206,18 @@ public class Creature {
         int damage = 0;
         
         for (int i = 0; i < Integer.parseInt(diceNum[0]); i++)
-            damage += ThreadLocalRandom.current().nextInt(1, Integer.parseInt(diceNum[1]));
+            damage += ThreadLocalRandom.current().nextInt(1, Integer.parseInt(diceNum[1])+1);
         
         return damage;
+    }
+
+    public void setAttributes(int str, int dex, int con, int intel, int wis, int cha){
+
+        setStr(str);
+        setDex(dex);
+        setCon(con);
+        setIntel(intel);
+        setWis(wis);
+        setCha(cha);
     }
 }

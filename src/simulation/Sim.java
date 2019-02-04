@@ -4,10 +4,13 @@ import common.Creature;
 import monster.Goblin;
 import player.Fighter;
 
+import java.util.ArrayList;
+
 public class Sim {
 
-    private Fighter[] party;
-    private Goblin[] encounter;
+    private Creature[] party;
+    private Creature[] encounter;
+    private ArrayList<Creature> initSort;
 
     private int partySize;
     private int encounterSize;
@@ -17,8 +20,8 @@ public class Sim {
 
     public Sim(int partySize, int encounterSize, int simIterations){
 
-        this.party = new Fighter[partySize];
-        this.encounter = new Goblin[encounterSize];
+        this.party = new Creature[partySize];
+        this.encounter = new Creature[encounterSize];
         this.simIterations = simIterations;
         this.partySize = partySize;
         this.encounterSize = encounterSize;
@@ -68,13 +71,22 @@ public class Sim {
     
     // Generate Hit
     public void hit(Creature attacker, Creature defender) {
-        defender.recieveDamage(attacker.attackDamage());
+        defender.receiveDamage(attacker.attackDamage());
     }
 
     public void combat(){
 
+        for (Creature p: party) {
+            p.generateInitiative();
+        }
+
+        for (Creature e : encounter) {
+            e.generateInitiative();
+        }
+
+
         // do inititive
-        // todo implement initiive
+        // todo implement initiative
         
         while (checkGroupAlive(party) && checkGroupAlive(encounter)) {
 

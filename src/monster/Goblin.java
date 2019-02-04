@@ -4,38 +4,23 @@ import common.Creature;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static common.Commands.roll20;
+import static common.Commands.rollHP;
 
-public class Goblin extends Creature {
+public class Goblin extends Monster {
 
-    private int attackProf;
 
 
     public Goblin(){
-        this.hp = ThreadLocalRandom.current().nextInt(1,7)+ ThreadLocalRandom.current().nextInt(1,7);
+
+        setAttributes(8,14,10,10,8,8 );
+        this.hp = rollHP(2,6);
         this.ac = 15; //leather armor shield
-        this.attackProf = 4;
+        this.prof = 4;
         this.weap = "1d6";
-        this.dex = 3;  // dexterity guess
         setDamageDice();
-        generateInitiative();
         this.alive = true;
+        this.damConst = 2;
+
     }
 
-
-    public int getAttackProf() {
-        return attackProf;
-    }
-
-    public void setAttackProf(int attackProf) {
-        this.attackProf = attackProf;
-    }
-
-    public int attack(){
-        return roll20() + attackProf;
-    }
-
-    @Override
-    public int attackDamage() {
-        return super.attackDamage();
-    }
 }
