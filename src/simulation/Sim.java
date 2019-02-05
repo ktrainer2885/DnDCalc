@@ -43,6 +43,7 @@ public class Sim {
     private void newParty(int partySize){
         //System.out.println("Party Initiatives");
         for (int i = 0; i < partySize; i++) {
+            System.out.println("Fighter " + (i+1));
             party.add(new Fighter());
             //System.out.println(party[i].getInit());
         }

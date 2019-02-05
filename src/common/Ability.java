@@ -1,6 +1,6 @@
 package common;
 
-import common.Commands;
+import static common.Commands.roll10;
 import java.util.Scanner;
 
 public class Ability {
@@ -19,23 +19,22 @@ public class Ability {
         System.out.println("6. Two-Weapon Fighting");
         System.out.print("Choose Fighting Style: ");
         
-        style = in.nextInt();
-        
         while (true) {
+            style = in.nextInt();
             switch(style) {
-                case 1:
+                case 1:             // Archery
                     return 1;
-                case 2:
+                case 2:             // Defense
                     return 2;
-                case 3:
+                case 3:             // Dueling
                     return 3;
-                case 4:
+                case 4:             // Great Weapon Fighting
                     return 4;
-                case 5:
+                case 5:             // Protection
                     return 5;
-                case 6:
+                case 6:             // Two-Weapon Fighting
                     return 6;
-                default:
+                default:            
                     System.out.println("Invalid Choice");
             }
         }
