@@ -20,13 +20,7 @@ public class Ability {
         System.out.print("Choose Fighting Style: ");
         
         while (true) {
-<<<<<<< HEAD
             style = in.nextInt();
-=======
-            
-            style = in.nextInt();
-            
->>>>>>> 718f550a70e84f4812b4187a562669d1d4d97f04
             switch(style) {
                 case 1:             // Archery
                     return 1;
