@@ -1,10 +1,13 @@
 package player;
 
 import common.Creature;
+import static common.Ability.FightingStyle;
 
 import static common.Commands.genAttribute;
 
 public class Fighter extends Player {
+    
+    protected int style;
 
     public Fighter(){
 
@@ -16,7 +19,6 @@ public class Fighter extends Player {
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
-
+        this.style = FightingStyle();
     }
-
 }

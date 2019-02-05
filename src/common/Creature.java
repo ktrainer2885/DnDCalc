@@ -15,8 +15,6 @@ public class Creature implements Comparable<Creature> {
     protected int ac;               // Armor Class
     protected int init;             // Initiative
 
-
-
     protected boolean alive;        // Alive Status
 
     protected int str;              // Strength
