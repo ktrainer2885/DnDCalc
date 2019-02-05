@@ -19,9 +19,10 @@ public class Ability {
         System.out.println("6. Two-Weapon Fighting");
         System.out.print("Choose Fighting Style: ");
         
-        style = in.nextInt();
-        
         while (true) {
+            
+            style = in.nextInt();
+            
             switch(style) {
                 case 1:
                     return 1;
