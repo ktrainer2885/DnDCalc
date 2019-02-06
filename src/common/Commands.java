@@ -7,6 +7,9 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Commands {
     
+    static public int rollX(int x) {
+        return ThreadLocalRandom.current().nextInt(1,(x+1));
+    }
     static public int roll10() {
         return ThreadLocalRandom.current().nextInt(1,11);
     }

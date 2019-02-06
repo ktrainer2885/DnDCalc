@@ -1,6 +1,6 @@
 package common;
 
-import static common.Commands.roll10;
+import static common.Commands.rollX;
 import java.util.Scanner;
 
 public class Ability {
@@ -8,7 +8,7 @@ public class Ability {
     static public int FightingStyle() {
         
         int style = 0;
-        
+        /*
         Scanner in = new Scanner(System.in);
         
         System.out.println("1. Archery");
@@ -18,15 +18,11 @@ public class Ability {
         System.out.println("5. Protection");
         System.out.println("6. Two-Weapon Fighting");
         System.out.print("Choose Fighting Style: ");
+        */
         
         while (true) {
-<<<<<<< HEAD
-            style = in.nextInt();
-=======
-            
-            style = in.nextInt();
-            
->>>>>>> 718f550a70e84f4812b4187a562669d1d4d97f04
+            //style = in.nextInt();
+            style = rollX(6);
             switch(style) {
                 case 1:             // Archery
                     return 1;
