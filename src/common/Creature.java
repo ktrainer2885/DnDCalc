@@ -170,12 +170,14 @@ public class Creature implements Comparable<Creature> {
         return roll20() + prof;
     }
 
-    public  int attackDamage(int constant) {
+    /*public  int attackDamage(int constant) {
         return attackDamage() + constant;
-    }
+    }*/
 
-    public int attackDamage(){
-
+    public int attackDamage(int result){
+        // Explanation for Result:
+        //  1: Critical
+        //  2: Normal
         int damage;
         if (damConst != 0) {
             damage = damConst;
@@ -183,23 +185,16 @@ public class Creature implements Comparable<Creature> {
         else {
             damage = 0;
         }
-        int roll = 0;
-        boolean isCritical = false;
-        
-        // Roll 20
-        roll = roll20();
-        
-        // If Roll is 20, Critical Hit
-        if (roll == 20)
-            isCritical = true;
         
         // Refractor
         damage += generateDamage(diceNum);
         
         // If Critical Hit, double damage
-        if (isCritical)
+        if (result == 1)
             damage += generateDamage(diceNum);
-
+        
+        // Else Normal Hit, no additional damage
+        
         return damage;
     }
 

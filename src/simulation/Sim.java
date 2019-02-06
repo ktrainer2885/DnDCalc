@@ -63,17 +63,27 @@ public class Sim {
         return false;
     }
     
-    // Determine if attack is stronger than reciever's armor class
-    public boolean checkHit(Creature attacker, Creature defender){
-        if (attacker.attack() >= defender.getAc()){
-            return true;
+    // Determine if attack is stronger than reciever's armor class or if critical hit is achieved
+    public int checkHit(Creature attacker, Creature defender){
+        // Roll the Attack
+        int attackRoll = attacker.attack();
+        // Check if Critical
+        if ((attackRoll - attacker.getProf()) == 20)
+            return 1;
+        // Check if Attack Roll is Stronger than Defender's Armor Class
+        else if (attackRoll >= defender.getAc()){
+            return 2;
         }
-        return false;
+        // Either no Critical Hit or Attack Roll is Weaker than Defender's Armor Class
+        return 0;
     }
     
-    // Generate Hit
-    public void hit(Creature attacker, Creature defender) {
-        defender.receiveDamage(attacker.attackDamage());
+    // Generate Critical Hit
+    public void hit(Creature attacker, Creature defender, int result) {
+        // Explanation for Result:
+        //  1: Critical
+        //  2: Normal
+        defender.receiveDamage(attacker.attackDamage(result));
     }
 
     public void combat(){
@@ -103,10 +113,12 @@ public class Sim {
     }
 
     public void singleCombat(Creature attacker, Creature defender) {
-        // If attack is stronger than armor class, generate hit
-        if( checkHit(attacker,defender)){
-            hit(attacker,defender);
-        }
+        // Explanation for Result:
+        //  1: Critical
+        //  2: Normal
+        int result = checkHit(attacker,defender);
+        
+        hit(attacker,defender,result);
     }
 
    public  void combat(ArrayList<Creature> attacker, ArrayList<Creature> defender){

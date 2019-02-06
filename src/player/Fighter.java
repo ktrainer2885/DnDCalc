@@ -25,10 +25,8 @@ public class Fighter extends Player {
         
     // Modifier for AC if Fighter Style is Defense
     public int defense() {
-        if (this.style == 2) {
-            System.out.println("Defense");
+        if (this.style == 2)
             return 1;
-        }
         else
             return 0;
     }
