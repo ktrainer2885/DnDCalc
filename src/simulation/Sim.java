@@ -47,11 +47,6 @@ public class Sim {
             //System.out.println(party[i].getInit());
         }
     }
-
-    // Checking If Individual from Group is Alive
-    public boolean checkAlive(Creature individual ){
-        return individual.isAlive();
-    }
     
     // Checking If Group is Alive
     public boolean checkGroupAlive(ArrayList<Creature> group) {
@@ -63,30 +58,7 @@ public class Sim {
         return false;
     }
     
-    // Determine if attack is stronger than reciever's armor class or if critical hit is achieved
-    public int checkHit(Creature attacker, Creature defender){
-        // Roll the Attack
-        int attackRoll = attacker.attack();
-        // Check if Critical
-        if ((attackRoll - attacker.getProf()) == 20)
-            return 1;
-        // Check if Attack Roll is Stronger than Defender's Armor Class
-        else if (attackRoll >= defender.getAc()){
-            return 2;
-        }
-        // Either no Critical Hit or Attack Roll is Weaker than Defender's Armor Class
-        return 0;
-    }
-    
-    // Generate Critical Hit
-    public void hit(Creature attacker, Creature defender, int result) {
-        // Explanation for Result:
-        //  1: Critical
-        //  2: Normal
-        defender.receiveDamage(attacker.attackDamage(result));
-    }
-
-    public void combat(){
+    public void setCombat(){
 
         for (Creature p: party) {
             p.generateInitiative();
@@ -112,31 +84,22 @@ public class Sim {
         }
     }
 
-    public void singleCombat(Creature attacker, Creature defender) {
-        // Explanation for Result:
-        //  1: Critical
-        //  2: Normal
-        int result = checkHit(attacker,defender);
-        
-        hit(attacker,defender,result);
-    }
-
-   public  void combat(ArrayList<Creature> attacker, ArrayList<Creature> defender){
+   public void combat(ArrayList<Creature> attacker, ArrayList<Creature> defender){
 
        for (Creature a : attacker) {
            if (!a.isAlive()) {
                break;
-           }
+            }
 
            for (Creature d : defender) {
                if (d.isAlive()) {
-                   singleCombat(a,d);
+                   // Calling the helper function located in the Creature Class
+                   a.singleCombat(a, d);
                    break;
-               }
-           }
-       }
-
-   }
+                }
+            }
+        }
+    }
 
     public void round() {
         // encounter attacks party
@@ -146,53 +109,22 @@ public class Sim {
 
         combat(encounter,party);
 
-
- /*       for (int i = 0; i < encounter.length; i++) {
-            if(!encounter[i].isAlive()){
-                break;
-            }
-
-            for (int j = 0; j < party.length; j++) {
-                if (party[j].isAlive()) {
-                    singleCombat(encounter[i], party[j]);
-                    break;
-                }
-            }
-        }*/
-
-
         // party attacks encounter
         // check to see if encouter is alive
         // attack if alive
         //contine down list untl no more party attacks
 
         combat(party,encounter);
-
-        /*for (int i = 0; i < party.length; i++) {
-            for (int j = 0; j < encounter.length; j++) {
-                if(!party[i].isAlive()){
-                    break;
-                }
-                if (encounter[j].isAlive()) {
-                    singleCombat(party[i], encounter[j]);
-                    break;
-                }
-            }
-        }*/
-    }
-
-    private void calcWinRate(int wins, int simIterations){
-        winRate = ((double)wins/simIterations) * 100;
     }
 
     public void simulation() {
 
         for (int i = 0; i < simIterations; i++) {
-
+            //System.out.println(i);
             newEncounter(encounterSize);
             newParty(partySize);
 
-            combat();
+            setCombat();
             if(checkGroupAlive(party)){
                 winNum++;
             }
@@ -204,8 +136,10 @@ public class Sim {
        calcWinRate(winNum, simIterations);
 
         System.out.println("Win Rate: " + String.format("%.2f", winRate) +"%");
-
     }
+    
+    private void calcWinRate(int wins, int simIterations)
+        { winRate = ((double)wins/simIterations) * 100; }
 }
 
 

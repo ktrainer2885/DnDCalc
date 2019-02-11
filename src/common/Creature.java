@@ -23,6 +23,8 @@ public class Creature implements Comparable<Creature> {
     protected int intel;            // intelligence
     protected int wis;              // wisdom
     protected int cha;              // charisma
+    
+    protected int roll=0;             // saves roll for ciritical hit check
 
 
 
@@ -167,24 +169,40 @@ public class Creature implements Comparable<Creature> {
     }
 
     public int attack(){
-        return roll20() + prof;
+        // Roll 20 and save
+        int roll = roll20();
+        if (roll == 20)
+            return 999;
+        else
+            return roll20() + prof /* + Any modifiers*/;
     }
-
-    /*public  int attackDamage(int constant) {
-        return attackDamage() + constant;
-    }*/
+    
+    
+    // Helper function used to handle combat between two creatures
+    public void singleCombat(Creature attacker, Creature defender) {
+        int attackRoll = attack();
+        int rollResult = 0;
+        
+        // Natural 20
+        if (attackRoll == 999)
+            rollResult = 1;
+        // Non-Natural 20
+        else if (attackRoll >= defender.getAc() && attackRoll < 999)
+            rollResult = 2;
+        // Roll not strong enough roll result stays 0
+        if (rollResult > 0)
+            defender.receiveDamage(attacker.attackDamage(rollResult));
+    }
 
     public int attackDamage(int result){
         // Explanation for Result:
         //  1: Critical
         //  2: Normal
-        int damage;
-        if (damConst != 0) {
+        int damage;                
+        if (damConst != 0)
             damage = damConst;
-        }
-        else {
+        else
             damage = 0;
-        }
         
         // Refractor
         damage += generateDamage(diceNum);
@@ -192,7 +210,6 @@ public class Creature implements Comparable<Creature> {
         // If Critical Hit, double damage
         if (result == 1)
             damage += generateDamage(diceNum);
-        
         // Else Normal Hit, no additional damage
         
         return damage;
@@ -201,9 +218,8 @@ public class Creature implements Comparable<Creature> {
     public void receiveDamage(int damage){
         setHp(getHp()-damage);
 
-        if(getHp() <= 0 ) {
+        if(getHp() <= 0 )
             setAlive(false);
-        }
     }
 
     protected void setDamageDice(){
