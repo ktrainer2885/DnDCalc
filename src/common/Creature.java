@@ -179,7 +179,7 @@ public class Creature implements Comparable<Creature> {
     
     
     // Helper function used to handle combat between two creatures
-    public void singleCombat(Creature attacker, Creature defender) {
+    public void singleCombat(Creature defender) {
         int attackRoll = attack();
         int rollResult = 0;
         
@@ -191,7 +191,7 @@ public class Creature implements Comparable<Creature> {
             rollResult = 2;
         // Roll not strong enough roll result stays 0
         if (rollResult > 0)
-            defender.receiveDamage(attacker.attackDamage(rollResult));
+            defender.receiveDamage(this.attackDamage(rollResult));
     }
 
     public int attackDamage(int result){

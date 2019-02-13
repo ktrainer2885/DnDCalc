@@ -100,7 +100,7 @@ public class Sim {
         // do inititive
         // todo implement initiative
         
-        while (checkGroupAlive(party) && checkGroupAlive(encounter)) {
+        while (checkGroupAlive(initSort)) {
 
             // do a round
             round();
@@ -117,7 +117,7 @@ public class Sim {
            for (Creature d : defender) {
                if (d.isAlive()) {
                    // Calling the helper function located in the Creature Class
-                   a.singleCombat(a, d);
+                   a.singleCombat(d);
                    break;
                 }
             }
@@ -147,7 +147,7 @@ public class Sim {
                         continue;
                     }
                     if (d instanceof Monster){
-                        singleCombat(a,d);
+                        a.singleCombat(d);
                         break;
                     }
                 }
@@ -160,7 +160,7 @@ public class Sim {
                         continue;
                     }
                     if (d instanceof Player){
-                        singleCombat(a,d);
+                        a.singleCombat(d);
                         break;
                     }
                 }
@@ -243,9 +243,11 @@ public class Sim {
 
             setCombat();
             whoWon();
+
+
 /*            if(checkGroupAlive(party)){
                 winNum++;
-            }
+            } */
 
             encounter.clear();
             party.clear();
@@ -257,8 +259,6 @@ public class Sim {
         System.out.println("Win Rate: " + String.format("%.2f", winRate) +"%");
     }
 
-    private void calcWinRate(int wins, int simIterations)
-        { winRate = ((double)wins/simIterations) * 100; }
 }
 
 
