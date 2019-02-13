@@ -11,9 +11,7 @@ import java.util.Collections;
 
 public class Sim {
 
-    private ArrayList<Creature> party;
-    private ArrayList<Creature> encounter;
-    private ArrayList<Creature> initSort;
+    private ArrayList<Creature> combatArrayList;
 
     private int partySize;
     private int encounterSize;
@@ -22,9 +20,7 @@ public class Sim {
     private double winRate;
 
     public Sim(int partySize, int encounterSize, int simIterations){
-        this.party = new ArrayList<>();
-        this.encounter = new ArrayList<>();
-        this.initSort = new ArrayList<>();
+        this.combatArrayList = new ArrayList<>();
         this.simIterations = simIterations;
         this.partySize = partySize;
         this.encounterSize = encounterSize;
@@ -36,7 +32,7 @@ public class Sim {
 
         //System.out.println("Goblin Initiatives");
         for (int i = 0; i < encounterSize; i++) {
-            encounter.add(new Goblin());
+            combatArrayList.add(new Goblin());
             //System.out.println(encounter[i].getInit());
         }
     }
@@ -45,7 +41,7 @@ public class Sim {
     private void newParty(int partySize){
         //System.out.println("Party Initiatives");
         for (int i = 0; i < partySize; i++) {
-            party.add(new Fighter());
+            combatArrayList.add(new Fighter());
             //System.out.println(party[i].getInit());
         }
     }
@@ -101,29 +97,18 @@ public class Sim {
 
     public void combat(){
 
-        for (Creature p: party) {
-            p.generateInitiative();
+        for (Creature c: combatArrayList) {
+            c.generateInitiative();
         }
 
-        for (Creature e : encounter) {
-            e.generateInitiative();
-        }
-
-        Collections.sort(party);
-        Collections.reverse(party);
-        Collections.sort(encounter);
-        Collections.reverse(encounter);
-
-       initSort.addAll(party);
-        initSort.addAll(encounter);
-        Collections.sort(initSort);
-        Collections.reverse(initSort);
+        Collections.sort(combatArrayList);
+        Collections.reverse(combatArrayList);
 
 
         // do inititive
         // todo implement initiative
         
-        while (checkGroupAlive(initSort)) {
+        while (checkGroupAlive(combatArrayList)) {
 
             // do a round
             round();
@@ -163,7 +148,7 @@ public class Sim {
 
         // if a initi is higher than d init, then a goes ffirst. If there is no d, then next a goes.
 
-        for ( Creature a: initSort) {
+        for ( Creature a: combatArrayList) {
 
             if(!a.isAlive()){
                 continue;
@@ -172,7 +157,7 @@ public class Sim {
             if(a instanceof Player){
                 // attacks monsters
 
-                for ( Creature d: initSort) {
+                for ( Creature d: combatArrayList) {
                     if(!d.isAlive()){
                         continue;
                     }
@@ -185,7 +170,7 @@ public class Sim {
 
             if(a instanceof Monster){
                 // attacks players
-                for ( Creature d: initSort) {
+                for ( Creature d: combatArrayList) {
                     if(!d.isAlive()){
                         continue;
                     }
@@ -246,7 +231,7 @@ public class Sim {
         boolean players = false;
         boolean monsters = false;
 
-        for (Creature g : initSort) {
+        for (Creature g : combatArrayList) {
             if (g instanceof Player) {
                 if(g.isAlive()){
                     players = true;
@@ -277,9 +262,7 @@ public class Sim {
                 winNum++;
             }*/
 
-            encounter.clear();
-            party.clear();
-            initSort.clear();
+            combatArrayList.clear();
         }
 
        calcWinRate(winNum, simIterations);
