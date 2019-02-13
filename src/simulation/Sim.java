@@ -2,7 +2,9 @@ package simulation;
 
 import common.Creature;
 import monster.Goblin;
+import monster.Monster;
 import player.Fighter;
+import player.Player;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -54,14 +56,35 @@ public class Sim {
     }
     
     // Checking If Group is Alive
+
     public boolean checkGroupAlive(ArrayList<Creature> group) {
+
+        boolean players = false;
+        boolean monsters = false;
+
+        for (Creature g : group) {
+            if (g instanceof Player) {
+                if(g.isAlive()){
+                    players = true;
+                }
+            }
+            if (g instanceof Monster) {
+                if(g.isAlive()){
+                    monsters = true;
+                }
+            }
+        }
+        return players && monsters;
+    }
+
+   /* public boolean checkGroupAlive(ArrayList<Creature> group) {
         for (Creature g : group) {
             if (g.isAlive()) {
                 return g.isAlive();
             }
         }
         return false;
-    }
+    }*/
     
     // Determine if attack is stronger than reciever's armor class
     public boolean checkHit(Creature attacker, Creature defender){
@@ -86,7 +109,12 @@ public class Sim {
             e.generateInitiative();
         }
 
-        initSort.addAll(party);
+        Collections.sort(party);
+        Collections.reverse(party);
+        Collections.sort(encounter);
+        Collections.reverse(encounter);
+
+       initSort.addAll(party);
         initSort.addAll(encounter);
         Collections.sort(initSort);
         Collections.reverse(initSort);
@@ -95,7 +123,7 @@ public class Sim {
         // do inititive
         // todo implement initiative
         
-        while (checkGroupAlive(party) && checkGroupAlive(encounter)) {
+        while (checkGroupAlive(initSort)) {
 
             // do a round
             round();
@@ -132,7 +160,48 @@ public class Sim {
         // attack if alive
         // continue down the list until nomore encouter attacks
 
-        combat(encounter,party);
+
+        // if a initi is higher than d init, then a goes ffirst. If there is no d, then next a goes.
+
+        for ( Creature a: initSort) {
+
+            if(!a.isAlive()){
+                continue;
+            }
+
+            if(a instanceof Player){
+                // attacks monsters
+
+                for ( Creature d: initSort) {
+                    if(!d.isAlive()){
+                        continue;
+                    }
+                    if (d instanceof Monster){
+                        singleCombat(a,d);
+                        break;
+                    }
+                }
+            }
+
+            if(a instanceof Monster){
+                // attacks players
+                for ( Creature d: initSort) {
+                    if(!d.isAlive()){
+                        continue;
+                    }
+                    if (d instanceof Player){
+                        singleCombat(a,d);
+                        break;
+                    }
+                }
+            }
+
+        }
+
+
+
+
+      //  combat(encounter,party);
 
 
  /*       for (int i = 0; i < encounter.length; i++) {
@@ -154,7 +223,7 @@ public class Sim {
         // attack if alive
         //contine down list untl no more party attacks
 
-        combat(party,encounter);
+        //combat(party,encounter);
 
         /*for (int i = 0; i < party.length; i++) {
             for (int j = 0; j < encounter.length; j++) {
@@ -173,6 +242,28 @@ public class Sim {
         winRate = ((double)wins/simIterations) * 100;
     }
 
+    private void whoWon(){
+        boolean players = false;
+        boolean monsters = false;
+
+        for (Creature g : initSort) {
+            if (g instanceof Player) {
+                if(g.isAlive()){
+                    players = true;
+                }
+            }
+            if (g instanceof Monster) {
+                if(g.isAlive()){
+                    monsters = true;
+                }
+            }
+        }
+
+        if (players){
+            winNum++;
+        }
+    }
+
     public void simulation() {
 
         for (int i = 0; i < simIterations; i++) {
@@ -181,12 +272,14 @@ public class Sim {
             newParty(partySize);
 
             combat();
-            if(checkGroupAlive(party)){
+            whoWon();
+/*            if(checkGroupAlive(party)){
                 winNum++;
-            }
+            }*/
 
             encounter.clear();
             party.clear();
+            initSort.clear();
         }
 
        calcWinRate(winNum, simIterations);
