@@ -1,6 +1,5 @@
 package common;
 
-import java.util.Comparator;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static common.Commands.roll20;
@@ -129,7 +128,6 @@ public class Creature implements Comparable<Creature> {
     public void setInit(int init) {
         this.init = init;
     }
-    
 
     public int getHp() {
         return hp;
@@ -163,19 +161,18 @@ public class Creature implements Comparable<Creature> {
         this.ac = ac;
     }
     
-    // Identical Monsters = Different Initiatives
+    // Generating Initiative. Add a random roll to the dexMod
     public void generateInitiative() {
         setInit(roll20()+ getDexMod());
     }
 
+    // Roll and add prof
+    // todo add the constants. Str or Dex
     public int attack(){
         return roll20() + prof;
     }
 
-    public  int attackDamage(int constant) {
-        return attackDamage() + constant;
-    }
-
+    // Constant damage is dependent on strmod or dexmod
     public int attackDamage(){
 
         int damage;
@@ -205,6 +202,7 @@ public class Creature implements Comparable<Creature> {
         return damage;
     }
 
+    // Changes HP from damage and sets death
     public void receiveDamage(int damage){
         setHp(getHp()-damage);
 

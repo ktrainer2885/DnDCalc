@@ -51,8 +51,7 @@ public class Sim {
         return individual.isAlive();
     }
     
-    // Checking If Group is Alive
-
+    // Checking If a creature from both groups is Alive. Returns true if both alive. Used for combat loop
     public boolean checkGroupAlive(ArrayList<Creature> group) {
 
         boolean players = false;
@@ -95,6 +94,8 @@ public class Sim {
         defender.receiveDamage(attacker.attackDamage());
     }
 
+
+    //
     public void combat(){
 
         for (Creature c: combatArrayList) {
@@ -122,30 +123,8 @@ public class Sim {
         }
     }
 
-   public  void combat(ArrayList<Creature> attacker, ArrayList<Creature> defender){
-
-       for (Creature a : attacker) {
-           if (!a.isAlive()) {
-               break;
-           }
-
-           for (Creature d : defender) {
-               if (d.isAlive()) {
-                   singleCombat(a,d);
-                   break;
-               }
-           }
-       }
-
-   }
-
+    // Each round of combat. Each creature that is alive attacks first enemy in combatArrayList
     public void round() {
-        // encounter attacks party
-        // check t see if party is alive(single)
-        // attack if alive
-        // continue down the list until nomore encouter attacks
-
-
         // if a initi is higher than d init, then a goes ffirst. If there is no d, then next a goes.
 
         for ( Creature a: combatArrayList) {
@@ -154,6 +133,7 @@ public class Sim {
                 continue;
             }
 
+            //Checks if a player is attacking
             if(a instanceof Player){
                 // attacks monsters
 
@@ -168,6 +148,7 @@ public class Sim {
                 }
             }
 
+            //Checks if a monster is attacking
             if(a instanceof Monster){
                 // attacks players
                 for ( Creature d: combatArrayList) {
@@ -180,53 +161,15 @@ public class Sim {
                     }
                 }
             }
-
         }
-
-
-
-
-      //  combat(encounter,party);
-
-
- /*       for (int i = 0; i < encounter.length; i++) {
-            if(!encounter[i].isAlive()){
-                break;
-            }
-
-            for (int j = 0; j < party.length; j++) {
-                if (party[j].isAlive()) {
-                    singleCombat(encounter[i], party[j]);
-                    break;
-                }
-            }
-        }*/
-
-
-        // party attacks encounter
-        // check to see if encouter is alive
-        // attack if alive
-        //contine down list untl no more party attacks
-
-        //combat(party,encounter);
-
-        /*for (int i = 0; i < party.length; i++) {
-            for (int j = 0; j < encounter.length; j++) {
-                if(!party[i].isAlive()){
-                    break;
-                }
-                if (encounter[j].isAlive()) {
-                    singleCombat(party[i], encounter[j]);
-                    break;
-                }
-            }
-        }*/
     }
 
+    // Calculates percentage win rate
     private void calcWinRate(int wins, int simIterations){
         winRate = ((double)wins/simIterations) * 100;
     }
 
+    // Checks who won the combat by looking for alive creatures. If only players alive, they get a win.
     private void whoWon(){
         boolean players = false;
         boolean monsters = false;
@@ -244,11 +187,12 @@ public class Sim {
             }
         }
 
-        if (players){
+        if (players && !monsters){
             winNum++;
         }
     }
 
+    // Starts the all the simulations. runs until simIteratinos is done.
     public void simulation() {
 
         for (int i = 0; i < simIterations; i++) {
@@ -258,9 +202,6 @@ public class Sim {
 
             combat();
             whoWon();
-/*            if(checkGroupAlive(party)){
-                winNum++;
-            }*/
 
             combatArrayList.clear();
         }
@@ -271,9 +212,3 @@ public class Sim {
 
     }
 }
-
-
-// todo 1: combat between individuals
-
-
-// todo 2: combat between groups
