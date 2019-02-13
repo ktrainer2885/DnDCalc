@@ -1,14 +1,8 @@
 package monster;
 
-import common.Creature;
-import java.util.concurrent.ThreadLocalRandom;
-
-import static common.Commands.roll20;
 import static common.Commands.rollHP;
 
 public class Goblin extends Monster {
-
-
 
     public Goblin(){
 

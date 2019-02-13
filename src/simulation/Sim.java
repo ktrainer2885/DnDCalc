@@ -3,6 +3,7 @@ package simulation;
 import common.Creature;
 import monster.Goblin;
 import monster.Monster;
+import monster.Orc;
 import player.Fighter;
 import player.Player;
 
@@ -14,26 +15,31 @@ public class Sim {
     private ArrayList<Creature> combatArrayList;
 
     private int partySize;
-    private int encounterSize;
+    private int goblinSize;
+    private int orcSize;
     private int simIterations;
     private int winNum;
     private double winRate;
 
-    public Sim(int partySize, int encounterSize, int simIterations){
+    public Sim(int partySize, int goblinSize, int orcSize, int simIterations){
         this.combatArrayList = new ArrayList<>();
         this.simIterations = simIterations;
         this.partySize = partySize;
-        this.encounterSize = encounterSize;
+        this.goblinSize = goblinSize;
+        this.orcSize = orcSize;
         this.winNum = 0;
     }
     
     // Populating Encounter Group
-    private void newEncounter( int encounterSize){
+    private void newEncounter( int goblinSize, int orcSize){
 
         //System.out.println("Goblin Initiatives");
-        for (int i = 0; i < encounterSize; i++) {
+        for (int i = 0; i < goblinSize; i++) {
             combatArrayList.add(new Goblin());
             //System.out.println(encounter[i].getInit());
+        }
+        for (int i = 0; i < orcSize; i++) {
+            combatArrayList.add(new Orc());
         }
     }
     
@@ -197,7 +203,7 @@ public class Sim {
 
         for (int i = 0; i < simIterations; i++) {
 
-            newEncounter(encounterSize);
+            newEncounter(goblinSize, orcSize);
             newParty(partySize);
 
             combat();
