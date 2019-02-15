@@ -13,7 +13,7 @@ public class Creature implements Comparable<Creature> {
     protected int damConst;         // Damage constant: StrMod, DexMod, Magic etc
     protected int ac;               // Armor Class
     protected int init;             // Initiative
-
+    protected String _class;
 
 
     protected boolean alive;        // Alive Status
@@ -57,25 +57,17 @@ public class Creature implements Comparable<Creature> {
         return dex;
     }
 
-    public int getDexMod() {
-        return  (dex - 10) / 2;
-    }
+    public int getDexMod() { return  (dex - 10) / 2; }
 
-    public void setDex(int dex) {
-        this.dex = dex;
-    }
+    public void setDex(int dex) {this.dex = dex; }
 
     public int getCon() {
         return con;
     }
 
-    public int getConMod() {
-        return  (con - 10) / 2;
-    }
+    public int getConMod() {return  (con - 10) / 2; }
 
-    public void setCon(int con) {
-        this.con = con;
-    }
+    public void setCon(int con) {this.con = con; }
 
     public int getIntel() {
         return intel;
@@ -117,41 +109,31 @@ public class Creature implements Comparable<Creature> {
         return alive;
     }
 
-    private void setAlive(boolean alive) {
-        this.alive = alive;
-    }
+    private void setAlive(boolean alive) { this.alive = alive; }
 
     public int getInit() {
         return init;
     }
 
-    public void setInit(int init) {
-        this.init = init;
-    }
+    public void setInit(int init) { this.init = init; }
 
     public int getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
+    public void setHp(int hp) { this.hp = hp; }
 
     public int getProf() {
         return prof;
     }
 
-    public void setProf(int prof) {
-        this.prof = prof;
-    }
+    public void setProf(int prof) { this.prof = prof; }
 
     public String getWeap() {
         return weap;
     }
 
-    public void setWeap(String weap) {
-        this.weap = weap;
-    }
+    public void setWeap(String weap) { this.weap = weap; }
 
     public int getAc() {
         return ac;
@@ -160,6 +142,12 @@ public class Creature implements Comparable<Creature> {
     public void setAc(int ac) {
         this.ac = ac;
     }
+
+    public String get_Class() { return _class; }
+
+    public void setClass(String _class){ this._class = _class; }
+
+
     
     // Generating Initiative. Add a random roll to the dexMod
     public void generateInitiative() {
@@ -217,12 +205,12 @@ public class Creature implements Comparable<Creature> {
     
     // Helper Function Used to Generate Damage
     int generateDamage(String[] diceNum) {
-        
+
         int damage = 0;
-        
+
         for (int i = 0; i < Integer.parseInt(diceNum[0]); i++)
             damage += ThreadLocalRandom.current().nextInt(1, Integer.parseInt(diceNum[1])+1);
-        
+
         return damage;
     }
 

@@ -6,7 +6,8 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int partySize;
+        int fighterSize;
+        int clericSize;
         int goblinSize;
         int orcSize;
         int simIterations;
@@ -14,8 +15,11 @@ public class Main {
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
 
-        System.out.print("Please type in the party size: ");
-        partySize = reader.nextInt();
+        System.out.print("Choose your Party!");
+        System.out.print("Please type in the fighter size: ");
+        fighterSize = reader.nextInt();
+        System.out.print("Please type in the cleric size: ");
+        clericSize = reader.nextInt();
         System.out.print("Please type in the goblin size: ");
         goblinSize = reader.nextInt();
         System.out.print("Please type in the Orc size: ");
@@ -23,7 +27,7 @@ public class Main {
         System.out.print("Please type in the number of simulations: ");
         simIterations = reader.nextInt();
 
-        Sim sim = new Sim(partySize, goblinSize , orcSize, simIterations);
+        Sim sim = new Sim(fighterSize, clericSize, goblinSize , orcSize, simIterations);
         sim.simulation();
     }
 }

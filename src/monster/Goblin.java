@@ -14,6 +14,7 @@ public class Goblin extends Monster {
         setDamageDice();
         this.alive = true;
         this.damConst = 2;
+        this._class = "Fighter";
 
     }
 

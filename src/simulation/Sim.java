@@ -4,6 +4,7 @@ import common.Creature;
 import monster.Goblin;
 import monster.Monster;
 import monster.Orc;
+import player.Cleric;
 import player.Fighter;
 import player.Player;
 
@@ -14,17 +15,19 @@ public class Sim {
 
     private ArrayList<Creature> combatArrayList;
 
-    private int partySize;
+    private int fighterSize;
+    private int clericSize;
     private int goblinSize;
     private int orcSize;
     private int simIterations;
     private int winNum;
     private double winRate;
 
-    public Sim(int partySize, int goblinSize, int orcSize, int simIterations){
+    public Sim(int fighterSize, int clericSize, int goblinSize, int orcSize, int simIterations){
         this.combatArrayList = new ArrayList<>();
         this.simIterations = simIterations;
-        this.partySize = partySize;
+        this.fighterSize = fighterSize;
+        this.clericSize = clericSize;
         this.goblinSize = goblinSize;
         this.orcSize = orcSize;
         this.winNum = 0;
@@ -44,11 +47,23 @@ public class Sim {
     }
     
     // Populating Party Group
-    private void newParty(int partySize){
+    /*private void newParty(int partySize){
         //System.out.println("Party Initiatives");
         for (int i = 0; i < partySize; i++) {
             combatArrayList.add(new Fighter());
             //System.out.println(party[i].getInit());
+        }
+    }*/
+
+    // Populating Party Group
+    private void newParty(int fighterSize, int clericSize){
+        //System.out.println("Party Initiatives");
+        for (int i = 0; i < fighterSize; i++) {
+            combatArrayList.add(new Fighter());
+            //System.out.println(party[i].getInit());
+        }
+        for (int i = 0; i < clericSize; i++){
+            combatArrayList.add(new Cleric());
         }
     }
 
@@ -87,7 +102,7 @@ public class Sim {
         return false;
     }*/
     
-    // Determine if attack is stronger than reciever's armor class
+    // Determine if attack is stronger than receiver's armor class
     public boolean checkHit(Creature attacker, Creature defender){
         if (attacker.attack() >= defender.getAc()){
             return true;
@@ -112,7 +127,7 @@ public class Sim {
         Collections.reverse(combatArrayList);
 
 
-        // do inititive
+        // do initiative
         // todo implement initiative
         
         while (checkGroupAlive(combatArrayList)) {
