@@ -16,6 +16,5 @@ public class Cleric extends Player {
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
-        this._class = "Cleric";
     }
 }

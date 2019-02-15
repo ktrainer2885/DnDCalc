@@ -14,6 +14,5 @@ public class Orc extends Monster {
         setDamageDice();
         this.alive = true;
         this.damConst = 3;
-        this._class = "Fighter";
     }
 }

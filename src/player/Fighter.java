@@ -16,7 +16,6 @@ public class Fighter extends Player {
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
-        this._class = "Fighter";
 
     }
 

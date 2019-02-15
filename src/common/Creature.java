@@ -13,7 +13,6 @@ public class Creature implements Comparable<Creature> {
     protected int damConst;         // Damage constant: StrMod, DexMod, Magic etc
     protected int ac;               // Armor Class
     protected int init;             // Initiative
-    protected String _class;
 
 
     protected boolean alive;        // Alive Status
@@ -142,12 +141,6 @@ public class Creature implements Comparable<Creature> {
     public void setAc(int ac) {
         this.ac = ac;
     }
-
-    public String get_Class() { return _class; }
-
-    public void setClass(String _class){ this._class = _class; }
-
-
     
     // Generating Initiative. Add a random roll to the dexMod
     public void generateInitiative() {
