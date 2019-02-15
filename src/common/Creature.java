@@ -14,8 +14,6 @@ public class Creature implements Comparable<Creature> {
     protected int ac;               // Armor Class
     protected int init;             // Initiative
 
-
-
     protected boolean alive;        // Alive Status
 
     protected int str;              // Strength
@@ -24,6 +22,8 @@ public class Creature implements Comparable<Creature> {
     protected int intel;            // intelligence
     protected int wis;              // wisdom
     protected int cha;              // charisma
+
+    protected int roll=0;             // saves roll for ciritical hit check
 
 
 
@@ -128,6 +128,7 @@ public class Creature implements Comparable<Creature> {
     public void setInit(int init) {
         this.init = init;
     }
+    
 
     public int getHp() {
         return hp;
@@ -168,13 +169,27 @@ public class Creature implements Comparable<Creature> {
 
     // Roll and add prof
     // todo add the constants. Str or Dex
-    public int attack(){
-        return roll20() + prof;
+    public int attack() {
+        // Roll 20 and save
+        this.roll = roll20();
+        return roll + prof /* + Any modifiers*/;
     }
 
-    // Constant damage is dependent on strmod or dexmod
-    public int attackDamage(){
+    // Helper function used to handle combat between two creatures
+    public void singleCombat(Creature defender) {
+        int attackRoll = attack();
 
+        // Natural 20
+        if (this.roll == 20) {
+            defender.receiveDamage(this.attackDamage());
+        }
+        // Non-Natural 20
+        else if (attackRoll >= defender.getAc()) {
+            defender.receiveDamage(this.attackDamage());
+        }
+    }
+
+    public int attackDamage(){
         int damage;
         if (damConst != 0) {
             damage = damConst;
@@ -182,22 +197,14 @@ public class Creature implements Comparable<Creature> {
         else {
             damage = 0;
         }
-        int roll = 0;
-        boolean isCritical = false;
-        
-        // Roll 20
-        roll = roll20();
-        
-        // If Roll is 20, Critical Hit
-        if (roll == 20)
-            isCritical = true;
-        
-        // Refractor
+
         damage += generateDamage(diceNum);
         
         // If Critical Hit, double damage
-        if (isCritical)
+        if (this.roll == 20) {
             damage += generateDamage(diceNum);
+        }
+        // Else Normal Hit, no additional damage
 
         return damage;
     }
@@ -220,9 +227,9 @@ public class Creature implements Comparable<Creature> {
         
         int damage = 0;
         
-        for (int i = 0; i < Integer.parseInt(diceNum[0]); i++)
-            damage += ThreadLocalRandom.current().nextInt(1, Integer.parseInt(diceNum[1])+1);
-        
+        for (int i = 0; i < Integer.parseInt(diceNum[0]); i++) {
+            damage += ThreadLocalRandom.current().nextInt(1, Integer.parseInt(diceNum[1]) + 1);
+        }
         return damage;
     }
 

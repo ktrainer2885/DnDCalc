@@ -6,9 +6,28 @@ import java.util.Collections;
 import java.util.concurrent.ThreadLocalRandom;
 
 public class Commands {
-
+    
+    static public int rollX(int x) {
+        return ThreadLocalRandom.current().nextInt(1,(x+1));
+    }
+    static public int roll10() {
+        return ThreadLocalRandom.current().nextInt(1,11);
+    }
      static public int roll20(){
          return ThreadLocalRandom.current().nextInt(1,21);
+     }
+     
+     static public int disadvantage() {
+         int [] rolls = new int[2];
+         
+         for (int x : rolls)
+             rolls[x] = roll20();
+         
+         if (rolls[0] > rolls[1])
+             return rolls[0];
+         else
+             return rolls[1];
+         
      }
 
      static public int advantage() {
