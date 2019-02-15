@@ -193,6 +193,7 @@ public class Sim {
         for (int i = 0; i < simIterations; i++) {
 
             newEncounter(goblinSize, orcSize);
+            newParty(partySize);
             //System.out.println(i);
 
             setCombat();
