@@ -66,11 +66,6 @@ public class Sim {
             combatArrayList.add(new Cleric());
         }
     }
-
-    // Checking If Individual from Group is Alive
-    public boolean checkAlive(Creature individual ){
-        return individual.isAlive();
-    }
     
     // Checking If a creature from both groups is Alive. Returns true if both alive. Used for combat loop
     public boolean checkGroupAlive(ArrayList<Creature> group) {
@@ -102,22 +97,7 @@ public class Sim {
         return false;
     }*/
     
-    // Determine if attack is stronger than receiver's armor class
-    public boolean checkHit(Creature attacker, Creature defender){
-        if (attacker.attack() >= defender.getAc()){
-            return true;
-        }
-        return false;
-    }
-    
-    // Generate Hit
-    public void hit(Creature attacker, Creature defender) {
-        defender.receiveDamage(attacker.attackDamage());
-    }
-
-
-    //
-    public void combat(){
+    public void setCombat(){
 
         for (Creature c: combatArrayList) {
             c.generateInitiative();
@@ -137,14 +117,23 @@ public class Sim {
         }
     }
 
-    public void singleCombat(Creature attacker, Creature defender) {
-        // If attack is stronger than armor class, generate hit
-        if( checkHit(attacker,defender)){
-            hit(attacker,defender);
+   public void combat(ArrayList<Creature> attacker, ArrayList<Creature> defender){
+
+       for (Creature a : attacker) {
+           if (!a.isAlive()) {
+               break;
+            }
+
+           for (Creature d : defender) {
+               if (d.isAlive()) {
+                   // Calling the helper function located in the Creature Class
+                   a.singleCombat(d);
+                   break;
+                }
+            }
         }
     }
 
-    // Each round of combat. Each creature that is alive attacks first enemy in combatArrayList
     public void round() {
         // if a initi is higher than d init, then a goes ffirst. If there is no d, then next a goes.
 
@@ -163,7 +152,7 @@ public class Sim {
                         continue;
                     }
                     if (d instanceof Monster){
-                        singleCombat(a,d);
+                        a.singleCombat(d);
                         break;
                     }
                 }
@@ -177,7 +166,7 @@ public class Sim {
                         continue;
                     }
                     if (d instanceof Player){
-                        singleCombat(a,d);
+                        a.singleCombat(d);
                         break;
                     }
                 }
@@ -220,8 +209,9 @@ public class Sim {
 
             newEncounter(goblinSize, orcSize);
             newParty(partySize);
+            //System.out.println(i);
 
-            combat();
+            setCombat();
             whoWon();
 
             combatArrayList.clear();
