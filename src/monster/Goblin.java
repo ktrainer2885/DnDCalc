@@ -1,5 +1,9 @@
 package monster;
 
+import common.Creature;
+
+import java.util.ArrayList;
+
 import static common.Commands.rollHP;
 
 public class Goblin extends Monster {
@@ -17,4 +21,8 @@ public class Goblin extends Monster {
 
     }
 
+    @Override
+    public void chooseAction(ArrayList<Creature> combatList) {
+
+    }
 }

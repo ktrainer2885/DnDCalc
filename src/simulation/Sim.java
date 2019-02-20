@@ -132,7 +132,7 @@ public class Sim {
             if(a instanceof Player){
                 // attacks monsters
 
-                for ( Creature d: combatArrayList) {
+/*                for ( Creature d: combatArrayList) {
                     if(!d.isAlive()){
                         continue;
                     }
@@ -140,7 +140,10 @@ public class Sim {
                         a.singleCombat(d);
                         break;
                     }
-                }
+                }*/
+
+                a.chooseAction(combatArrayList);
+
             }
 
             //Checks if a monster is attacking

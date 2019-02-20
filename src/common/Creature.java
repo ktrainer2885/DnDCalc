@@ -1,10 +1,11 @@
 package common;
 
+import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
 import static common.Commands.roll20;
 
-public class Creature implements Comparable<Creature> {
+public abstract class Creature implements Comparable<Creature> {
 
     protected int hp;               // Health Points
     protected int prof;             // Proficiency
@@ -242,4 +243,5 @@ public class Creature implements Comparable<Creature> {
         setWis(wis);
         setCha(cha);
     }
+    public abstract void chooseAction(ArrayList<Creature> combatList);
 }

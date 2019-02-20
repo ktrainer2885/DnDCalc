@@ -1,5 +1,9 @@
 package monster;
 
+import common.Creature;
+
+import java.util.ArrayList;
+
 import static common.Commands.rollHP;
 
 public class Orc extends Monster {
@@ -14,5 +18,10 @@ public class Orc extends Monster {
         setDamageDice();
         this.alive = true;
         this.damConst = 3;
+    }
+
+    @Override
+    public void chooseAction(ArrayList<Creature> combatList) {
+
     }
 }
