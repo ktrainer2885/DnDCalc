@@ -8,6 +8,7 @@ import static common.Commands.roll20;
 public abstract class Creature implements Comparable<Creature> {
 
     protected int hp;               // Health Points
+    protected int maxHp;            // Max HP
     protected int prof;             // Proficiency
     protected String weap;          // Weapon (Ex: 1d6)
     protected String[] diceNum;     // Number of dice
@@ -139,6 +140,18 @@ public abstract class Creature implements Comparable<Creature> {
         this.hp = hp;
     }
 
+    public int getMaxHp() {
+        return maxHp;
+    }
+
+    public void setMaxHp(int maxHp) {
+        this.maxHp = maxHp;
+    }
+
+    public int hpPercent(){
+        return (hp/maxHp) * 100;
+    }
+
     public int getProf() {
         return prof;
     }
@@ -216,7 +229,18 @@ public abstract class Creature implements Comparable<Creature> {
 
         if(getHp() <= 0 ) {
             setAlive(false);
+            setHp(0);
         }
+    }
+
+    // CHanges HP from healing and sets to alive
+    public void recieveHealing(int heal) {
+        setHp(getHp() + heal);
+        // if healed to more than maxHp set hp to MaxHp
+        if (getMaxHp() < getHp()){
+            setHp(getMaxHp());
+        }
+        setAlive(true);
     }
 
     protected void setDamageDice(){

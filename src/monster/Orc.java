@@ -12,6 +12,7 @@ public class Orc extends Monster {
 
         setAttributes(16,12,16,7,11,10 );
         this.hp = rollHP(2,8, 6);
+        this.maxHp = hp;
         this.ac = 13; //Hide Armor
         this.prof = 5;
         this.weap = "1d12";

@@ -1,5 +1,6 @@
 package common;
 
+import static common.Commands.rollHP;
 import static common.Commands.rollX;
 
 public class Ability {
@@ -27,9 +28,8 @@ public class Ability {
         }
     }
     
-    public int SecondWind() {
-        
-        return 0;
+    static public int secondWind(int diceType, int level) {
+        return rollHP(1, diceType) + level;
     }
     
 }

@@ -6,23 +6,28 @@ import monster.Monster;
 import java.util.ArrayList;
 
 import static common.Ability.FightingStyle;
+import static common.Ability.secondWind;
 import static common.Commands.genAttribute;
 
 public class Fighter extends Player {
     
     protected int style;
+    protected int secondWindUses;
 
     public Fighter() {
 
         this.style = FightingStyle();
         genAttributes();
         this.hp = 10 + getConMod(); // starting HP
+        this.maxHp = hp;
         this.prof = 2; // Starting Bonus Profeciency
         this.weap = "1d8"; //Longsword damage
         this.ac = 18 + defense(); // chainmail and shield
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
+        this.secondWindUses = 1;
+        this.level = 1;
         
     }
         
@@ -41,6 +46,11 @@ public class Fighter extends Player {
 
     @Override
     public void chooseAction(ArrayList<Creature> combatList) {
+
+        // 2nd wind is a bonus action can still attack. Only does it if less than 50% life left
+        if( 50 > hpPercent() && secondWindUses > 0){
+            recieveHealing(secondWind(10,level));
+        }
 
         Monster lowest = null;
         // attack
