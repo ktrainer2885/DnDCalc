@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 import static common.Ability.FightingStyle;
 import static common.Ability.secondWind;
-import static common.Commands.genAttribute;
+import static common.Commands.*;
 
 public class Fighter extends Player {
     
@@ -52,25 +52,8 @@ public class Fighter extends Player {
             recieveHealing(secondWind(10,level));
         }
 
-        Monster lowest = null;
         // attack
-
-        // For loop searches for Monster with lowest HP to attack.
-        for (Creature c: combatList) {
-            if (c instanceof Monster) {
-                if(!c.isAlive()){       // checking to see if dead
-                    continue;
-                }
-                if (lowest == null){    // sets initial low
-                    lowest = (Monster)c;
-                }
-                else{
-                    if (lowest.getHp() >= c.getHp()){
-                        lowest = (Monster)c;        // sets new lowest
-                    }
-                }
-            }
-        }
+        Monster lowest = lowestMonHP(combatList);
 
         // If there is no monster, just return, else attack
         if (lowest == null) {

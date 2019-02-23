@@ -1,5 +1,9 @@
 package common;
 
+import monster.Monster;
+import org.jetbrains.annotations.NotNull;
+import player.Player;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -76,6 +80,52 @@ public class Commands {
          return attr;
      }
 
+     static public Monster lowestMonHP(@NotNull ArrayList<Creature> combatList){
+
+         Monster lowest = null;
+         // attack
+
+         // For loop searches for Monster with lowest HP to attack.
+         for (Creature c: combatList) {
+             if (c instanceof Monster) {
+                 if(!c.isAlive()){       // checking to see if dead
+                     continue;
+                 }
+                 if (lowest == null){    // sets initial low
+                     lowest = (Monster)c;
+                 }
+                 else{
+                     if (lowest.getHp() >= c.getHp()){
+                         lowest = (Monster)c;        // sets new lowest
+                     }
+                 }
+             }
+         }
+        return lowest;
+     }
 
 
+    static public Player lowestPlayHP(@NotNull ArrayList<Creature> combatList){
+
+        Player lowest = null;
+        // attack
+
+        // For loop searches for Monster with lowest HP to attack.
+        for (Creature c: combatList) {
+            if (c instanceof Player) {
+                if(!c.isAlive()){       // checking to see if dead
+                    continue;
+                }
+                if (lowest == null){    // sets initial low
+                    lowest = (Player) c;
+                }
+                else{
+                    if (lowest.getHp() >= c.getHp()){
+                        lowest = (Player) c;        // sets new lowest
+                    }
+                }
+            }
+        }
+        return lowest;
+    }
 }
