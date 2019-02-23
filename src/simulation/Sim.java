@@ -6,6 +6,7 @@ import monster.Monster;
 import monster.Orc;
 import player.Fighter;
 import player.Player;
+import player.Rogue;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -15,16 +16,20 @@ public class Sim {
     private ArrayList<Creature> combatArrayList;
 
     private int partySize;
+    private int fighterSize;
+    private int rogueSize;
     private int goblinSize;
     private int orcSize;
     private int simIterations;
     private int winNum;
     private double winRate;
 
-    public Sim(int partySize, int goblinSize, int orcSize, int simIterations){
+    public Sim(int fighterSize, int rogueSize, int goblinSize, int orcSize, int simIterations){
         this.combatArrayList = new ArrayList<>();
         this.simIterations = simIterations;
-        this.partySize = partySize;
+        this.partySize = fighterSize+rogueSize;
+        this.fighterSize = fighterSize;
+        this.rogueSize = rogueSize;
         this.goblinSize = goblinSize;
         this.orcSize = orcSize;
         this.winNum = 0;
@@ -46,8 +51,17 @@ public class Sim {
     // Populating Party Group
     private void newParty(int partySize){
         //System.out.println("Party Initiatives");
+        int fighterSize = this.fighterSize;
+        int rogueSize = this.rogueSize;
         for (int i = 0; i < partySize; i++) {
-            combatArrayList.add(new Fighter());
+            if (fighterSize > 0) {
+                fighterSize--;
+                combatArrayList.add(new Fighter());
+            }
+            else if (rogueSize > 0) {
+                rogueSize--;
+                combatArrayList.add(new Rogue());
+            }
             //System.out.println(party[i].getInit());
         }
     }
