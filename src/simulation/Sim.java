@@ -62,7 +62,6 @@ public class Sim {
                 rogueSize--;
                 combatArrayList.add(new Rogue());
             }
-            //System.out.println(party[i].getInit());
         }
     }
     
