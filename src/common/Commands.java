@@ -30,8 +30,6 @@ public class Commands {
          
      }
 
-     static public int rollX(int x) { return ThreadLocalRandom.current().nextInt(1,(x+1)); }
-
      static public int advantage() {
          int roll1 = roll20();
          int roll2 = roll20();

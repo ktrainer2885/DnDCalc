@@ -10,8 +10,8 @@ public class Cleric extends Player {
 
         genAttributes();
         this.hp = 8 + getConMod(); // starting HP
-        this.prof = 2; // Starting Bonus Profeciency
-        this.weap = "1d6";  // Mace Damage
+        this.prof = 2; // Starting Bonus Proficiency
+        this.weap = "1d6";  // Mace bludgeoning
         this.ac = 18;  // Scale mail and shield
         setDamageDice();
         this.alive = true;

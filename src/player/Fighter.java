@@ -14,9 +14,9 @@ public class Fighter extends Player {
         this.style = FightingStyle();
         genAttributes();
         this.hp = 10 + getConMod(); // starting HP
-        this.prof = 2; // Starting Bonus Profeciency
+        this.prof = 2; // Starting Bonus Proficiency
         this.weap = "1d8"; //Longsword damage
-        this.ac = 18 + defense(); // chainmail and shield
+        this.ac = 18 + defense(); // chain mail and shield
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
