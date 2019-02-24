@@ -48,7 +48,7 @@ public class Fighter extends Player {
     public void chooseAction(ArrayList<Creature> combatList) {
 
         // 2nd wind is a bonus action can still attack. Only does it if less than 50% life left
-        if( 50 > hpPercent() && secondWindUses > 0){
+        if( 50 > hpPercent() && secondWindUses > 0) {
             recieveHealing(secondWind(10,level));
         }
 

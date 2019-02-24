@@ -66,7 +66,7 @@ public class Commands {
          int attr = 0;
 
 
-         for (int i = 0; i < 4; i++){
+         for (int i = 0; i < 4; i++) {
              diceRolls.add(ThreadLocalRandom.current().nextInt(1,7));
          }
 
@@ -88,13 +88,13 @@ public class Commands {
          // For loop searches for Monster with lowest HP to attack.
          for (Creature c: combatList) {
              if (c instanceof Monster) {
-                 if(!c.isAlive()){       // checking to see if dead
+                 if(!c.isAlive()) {       // checking to see if dead
                      continue;
                  }
-                 if (lowest == null){    // sets initial low
+                 if (lowest == null) {    // sets initial low
                      lowest = (Monster)c;
                  }
-                 else{
+                 else {
                      if (lowest.getHp() >= c.getHp()){
                          lowest = (Monster)c;        // sets new lowest
                      }
@@ -116,11 +116,11 @@ public class Commands {
                 if(!c.isAlive()){       // checking to see if dead
                     continue;
                 }
-                if (lowest == null){    // sets initial low
+                if (lowest == null) {    // sets initial low
                     lowest = (Player) c;
                 }
-                else{
-                    if (lowest.getHp() >= c.getHp()){
+                else {
+                    if (lowest.getHp() >= c.getHp()) {
                         lowest = (Player) c;        // sets new lowest
                     }
                 }

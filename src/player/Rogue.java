@@ -33,8 +33,6 @@ public class Rogue extends Player {
 
     @Override
     public void chooseAction(ArrayList<Creature> combatList) {
-
-
         // attack
         Monster lowest = lowestMonHP(combatList);
 
@@ -43,7 +41,29 @@ public class Rogue extends Player {
             return;
         }
         else {
+            if (allyAlive(combatList)) {
+                // Sneak Attack
+                sneakAttackDamage();
+            }
             singleCombat(lowest);
         }
+    }
+
+    // Used to check if any ally is alive to assist rogue in sneak attack
+    // Does not count the rogue it self
+    public boolean allyAlive(ArrayList<Creature> combatList) {
+        int allyCount = 0;
+        // Check if Ally is Alive
+        // Later should return false if no melee players
+        for (Creature i : combatList) {
+            if (allyCount > 1) {
+                return true;
+            }
+            if (i instanceof Player) {
+                allyCount++;
+            }
+        }
+        // No Ally is Alive
+        return false;
     }
 }

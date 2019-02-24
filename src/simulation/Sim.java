@@ -73,12 +73,12 @@ public class Sim {
 
         for (Creature g : group) {
             if (g instanceof Player) {
-                if(g.isAlive()){
+                if(g.isAlive()) {
                     players = true;
                 }
             }
             if (g instanceof Monster) {
-                if(g.isAlive()){
+                if(g.isAlive()) {
                     monsters = true;
                 }
             }
@@ -95,7 +95,7 @@ public class Sim {
         return false;
     }*/
     
-    public void setCombat(){
+    public void setCombat() {
 
         for (Creature c: combatArrayList) {
             c.generateInitiative();
@@ -115,7 +115,7 @@ public class Sim {
         }
     }
 
-   public void combat(ArrayList<Creature> attacker, ArrayList<Creature> defender){
+   public void combat(ArrayList<Creature> attacker, ArrayList<Creature> defender) {
 
        for (Creature a : attacker) {
            if (!a.isAlive()) {
@@ -137,12 +137,12 @@ public class Sim {
 
         for ( Creature a: combatArrayList) {
 
-            if(!a.isAlive()){
+            if(!a.isAlive()) {
                 continue;
             }
 
             //Checks if a player is attacking
-            if(a instanceof Player){
+            if(a instanceof Player) {
                 // attacks monsters
 
 /*                for ( Creature d: combatArrayList) {
@@ -160,13 +160,13 @@ public class Sim {
             }
 
             //Checks if a monster is attacking
-            if(a instanceof Monster){
+            if(a instanceof Monster) {
                 // attacks players
                 for ( Creature d: combatArrayList) {
-                    if(!d.isAlive()){
+                    if(!d.isAlive()) {
                         continue;
                     }
-                    if (d instanceof Player){
+                    if (d instanceof Player) {
                         a.singleCombat(d);
                         break;
                     }
@@ -176,29 +176,29 @@ public class Sim {
     }
 
     // Calculates percentage win rate
-    private void calcWinRate(int wins, int simIterations){
+    private void calcWinRate(int wins, int simIterations) {
         winRate = ((double)wins/simIterations) * 100;
     }
 
     // Checks who won the combat by looking for alive creatures. If only players alive, they get a win.
-    private void whoWon(){
+    private void whoWon() {
         boolean players = false;
         boolean monsters = false;
 
         for (Creature g : combatArrayList) {
             if (g instanceof Player) {
-                if(g.isAlive()){
+                if(g.isAlive()) {
                     players = true;
                 }
             }
             if (g instanceof Monster) {
-                if(g.isAlive()){
+                if(g.isAlive()) {
                     monsters = true;
                 }
             }
         }
 
-        if (players && !monsters){
+        if (players && !monsters) {
             winNum++;
         }
     }

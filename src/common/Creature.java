@@ -2,6 +2,7 @@ package common;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
+import player.Rogue;
 
 import static common.Commands.roll20;
 
@@ -26,16 +27,17 @@ public abstract class Creature implements Comparable<Creature> {
     protected int cha;              // charisma
 
     protected int roll=0;             // saves roll for ciritical hit check
+    protected boolean sneakAttack=false;
 
 
 
     // used to compare initiative between creatures.
     @Override
-    public int compareTo(Creature o2){
-        if(this.getInit() < o2.getInit()){
+    public int compareTo(Creature o2) {
+        if(this.getInit() < o2.getInit()) {
             return -1;
         }
-        if(this.getInit() == o2.getInit()){
+        if(this.getInit() == o2.getInit()) {
             return 0;
         }
         else {              //(o1.getInit() > o2.getInit()){
@@ -189,6 +191,12 @@ public abstract class Creature implements Comparable<Creature> {
         return roll + prof /* + Any modifiers*/;
     }
 
+    // Helper function used to handle sneak attack
+    public void sneakAttackDamage() {
+        System.out.println("Sneak Attack!");
+        this.sneakAttack = true;
+    }
+
     // Helper function used to handle combat between two creatures
     public void singleCombat(Creature defender) {
         int attackRoll = attack();
@@ -203,7 +211,7 @@ public abstract class Creature implements Comparable<Creature> {
         }
     }
 
-    public int attackDamage(){
+    public int attackDamage() {
         int damage;
         if (damConst != 0) {
             damage = damConst;
@@ -218,13 +226,18 @@ public abstract class Creature implements Comparable<Creature> {
         if (this.roll == 20) {
             damage += generateDamage(diceNum);
         }
+        // If Sneak Attack, roll extra die
+        if (this.sneakAttack) {
+            damage += generateDamage(diceNum);
+            this.sneakAttack = false;
+        }
         // Else Normal Hit, no additional damage
 
         return damage;
     }
 
     // Changes HP from damage and sets death
-    public void receiveDamage(int damage){
+    public void receiveDamage(int damage) {
         setHp(getHp()-damage);
 
         if(getHp() <= 0 ) {
