@@ -2,9 +2,9 @@ package common;
 
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
-import player.Rogue;
 
 import static common.Commands.roll20;
+import static common.Commands.rollX;
 
 public abstract class Creature implements Comparable<Creature> {
 
@@ -208,9 +208,9 @@ public abstract class Creature implements Comparable<Creature> {
         if (this.roll == 20) {
             damage += generateDamage(diceNum);
         }
-        // If Sneak Attack, roll extra die
+        // If Sneak Attack, roll extra die d6
         if (this.sneakAttack) {
-            damage += generateDamage(diceNum);
+            damage += rollX(6);
             this.sneakAttack = false;
         }
         // Else Normal Hit, no additional damage

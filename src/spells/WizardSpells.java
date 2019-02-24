@@ -1,4 +1,4 @@
-package Spells;
+package spells;
 
 import static common.Commands.rollX;
 

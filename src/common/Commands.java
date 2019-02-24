@@ -61,6 +61,10 @@ public class Commands {
          return  rollHP(diceNum, diceType) + constant;
      }
 
+    static public int hpPercent(Creature creature){
+        return (creature.getHp()/creature.getMaxHp()) * 100;
+    }
+
      static public int genAttribute() {
          ArrayList<Integer> diceRolls = new ArrayList<Integer>();
          int attr = 0;

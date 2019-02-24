@@ -68,7 +68,7 @@ public class Sim {
             //System.out.println(party[i].getInit());
         }
         for (int i = 0; i < rogueSize; i++){
-            combatArrayList.add(new Cleric());
+            combatArrayList.add(new Rogue());
         }
         for (int i = 0; i < clericSize; i++){
             combatArrayList.add(new Cleric());
@@ -219,7 +219,7 @@ public class Sim {
         for (int i = 0; i < simIterations; i++) {
 
             newEncounter(goblinSize, orcSize);
-            newParty(partySize);
+            newParty(fighterSize,rogueSize,clericSize);
             //System.out.println(i);
 
             setCombat();

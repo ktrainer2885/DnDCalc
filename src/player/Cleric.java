@@ -1,10 +1,18 @@
 package player;
 
+import common.Commands;
 import common.Creature;
+import monster.Monster;
+import spells.ClericSpells;
 
-import static common.Commands.genAttribute;
+import java.util.ArrayList;
+
+import static common.Commands.*;
+import static spells.ClericSpells.*;
 
 public class Cleric extends Player {
+
+    int levelOneSpell;
 
     public Cleric(){
 
@@ -16,5 +24,28 @@ public class Cleric extends Player {
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
+        this.levelOneSpell = 2;
+
+    }
+
+    @Override
+    public void genPriorityAttributes() {
+
+    }
+
+    @Override
+    public void chooseAction(ArrayList<Creature> combatList) {
+
+        Player playLowest = lowestPlayHP(combatList);
+        Monster monLowest = lowestMonHP(combatList);
+
+        if( 50 > Commands.hpPercent(playLowest) && levelOneSpell > 0) {
+            playLowest.recieveHealing(cureWounds(getWisMod()));
+            levelOneSpell--;
+        }
+        else {
+            singleCombat(monLowest);
+        }
+
     }
 }

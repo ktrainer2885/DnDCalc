@@ -20,7 +20,7 @@ public class Rogue extends Player {
         this.hp = 5 + getConMod();     // Starting Hp
         this.prof = 2;                 // Starting Prof
         this.weap = "1d8";             // Rapiers Finesse Type
-        this.ac = 11;                  // Light Armor: Leather
+        this.ac = 11 + getDexMod();    // Light Armor: Leather and dex mod
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
