@@ -22,13 +22,13 @@ public class Fighter extends Player {
         this.maxHp = hp;
         this.prof = 2; // Starting Bonus Profeciency
         this.weap = "1d8"; //Longsword damage
-        this.ac = 18 + defense(); // chainmail and shield
+        this.ac = 18 + defense(); // chain mail and shield
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
         this.secondWindUses = 1;
         this.level = 1;
-        
+
     }
         
     // Modifier for AC if Fighter Style is Defense

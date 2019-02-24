@@ -4,6 +4,7 @@ import common.Creature;
 import monster.Goblin;
 import monster.Monster;
 import monster.Orc;
+import player.Cleric;
 import player.Fighter;
 import player.Player;
 import player.Rogue;
@@ -18,18 +19,20 @@ public class Sim {
     private int partySize;
     private int fighterSize;
     private int rogueSize;
+    private int clericSize;
     private int goblinSize;
     private int orcSize;
     private int simIterations;
     private int winNum;
     private double winRate;
 
-    public Sim(int fighterSize, int rogueSize, int goblinSize, int orcSize, int simIterations){
+    public Sim(int fighterSize, int rogueSize, int clericSize, int goblinSize, int orcSize, int simIterations){
         this.combatArrayList = new ArrayList<>();
         this.simIterations = simIterations;
-        this.partySize = fighterSize+rogueSize;
+        this.partySize = fighterSize + rogueSize + clericSize;
         this.fighterSize = fighterSize;
         this.rogueSize = rogueSize;
+        this.clericSize = clericSize;
         this.goblinSize = goblinSize;
         this.orcSize = orcSize;
         this.winNum = 0;
@@ -49,19 +52,26 @@ public class Sim {
     }
     
     // Populating Party Group
-    private void newParty(int partySize){
+    /*private void newParty(int partySize){
         //System.out.println("Party Initiatives");
-        int fighterSize = this.fighterSize;
-        int rogueSize = this.rogueSize;
         for (int i = 0; i < partySize; i++) {
-            if (fighterSize > 0) {
-                fighterSize--;
-                combatArrayList.add(new Fighter());
-            }
-            else if (rogueSize > 0) {
-                rogueSize--;
-                combatArrayList.add(new Rogue());
-            }
+            combatArrayList.add(new Fighter());
+            //System.out.println(party[i].getInit());
+        }
+    }*/
+
+    // Populating Party Group
+    private void newParty(int fighterSize, int rogueSize, int clericSize){
+        //System.out.println("Party Initiatives");
+        for (int i = 0; i < fighterSize; i++) {
+            combatArrayList.add(new Fighter());
+            //System.out.println(party[i].getInit());
+        }
+        for (int i = 0; i < rogueSize; i++){
+            combatArrayList.add(new Cleric());
+        }
+        for (int i = 0; i < clericSize; i++){
+            combatArrayList.add(new Cleric());
         }
     }
     
@@ -105,7 +115,7 @@ public class Sim {
         Collections.reverse(combatArrayList);
 
 
-        // do inititive
+        // do initiative
         // todo implement initiative
         
         while (checkGroupAlive(combatArrayList)) {

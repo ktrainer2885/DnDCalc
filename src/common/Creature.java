@@ -17,6 +17,7 @@ public abstract class Creature implements Comparable<Creature> {
     protected int ac;               // Armor Class
     protected int init;             // Initiative
 
+
     protected boolean alive;        // Alive Status
 
     protected int str;              // Strength
@@ -61,25 +62,17 @@ public abstract class Creature implements Comparable<Creature> {
         return dex;
     }
 
-    public int getDexMod() {
-        return  (dex - 10) / 2;
-    }
+    public int getDexMod() { return  (dex - 10) / 2; }
 
-    public void setDex(int dex) {
-        this.dex = dex;
-    }
+    public void setDex(int dex) {this.dex = dex; }
 
     public int getCon() {
         return con;
     }
 
-    public int getConMod() {
-        return  (con - 10) / 2;
-    }
+    public int getConMod() {return  (con - 10) / 2; }
 
-    public void setCon(int con) {
-        this.con = con;
-    }
+    public void setCon(int con) {this.con = con; }
 
     public int getIntel() {
         return intel;
@@ -121,26 +114,19 @@ public abstract class Creature implements Comparable<Creature> {
         return alive;
     }
 
-    private void setAlive(boolean alive) {
-        this.alive = alive;
-    }
+    private void setAlive(boolean alive) { this.alive = alive; }
 
     public int getInit() {
         return init;
     }
 
-    public void setInit(int init) {
-        this.init = init;
-    }
-    
+    public void setInit(int init) { this.init = init; }
 
     public int getHp() {
         return hp;
     }
 
-    public void setHp(int hp) {
-        this.hp = hp;
-    }
+    public void setHp(int hp) { this.hp = hp; }
 
     public int getMaxHp() {
         return maxHp;
@@ -158,17 +144,13 @@ public abstract class Creature implements Comparable<Creature> {
         return prof;
     }
 
-    public void setProf(int prof) {
-        this.prof = prof;
-    }
+    public void setProf(int prof) { this.prof = prof; }
 
     public String getWeap() {
         return weap;
     }
 
-    public void setWeap(String weap) {
-        this.weap = weap;
-    }
+    public void setWeap(String weap) { this.weap = weap; }
 
     public int getAc() {
         return ac;
@@ -262,7 +244,7 @@ public abstract class Creature implements Comparable<Creature> {
     
     // Helper Function Used to Generate Damage
     int generateDamage(String[] diceNum) {
-        
+
         int damage = 0;
         
         for (int i = 0; i < Integer.parseInt(diceNum[0]); i++) {
