@@ -18,6 +18,7 @@ public class Cleric extends Player {
 
         genAttributes();
         this.hp = 8 + getConMod(); // starting HP
+        this.maxHp = hp;
         this.prof = 2; // Starting Bonus Proficiency
         this.weap = "1d6";  // Mace bludgeoning
         this.ac = 18;  // Scale mail and shield
@@ -44,6 +45,9 @@ public class Cleric extends Player {
             levelOneSpell--;
         }
         else {
+            if (monLowest == null) {
+                return;
+            }
             singleCombat(monLowest);
         }
 

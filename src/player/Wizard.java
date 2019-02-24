@@ -2,6 +2,8 @@ package player;
 
 import common.Creature;
 
+import java.util.ArrayList;
+
 import static common.Commands.genAttribute;
 
 public class Wizard extends Player {
@@ -16,5 +18,15 @@ public class Wizard extends Player {
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
+    }
+
+    @Override
+    public void genPriorityAttributes() {
+        
+    }
+
+    @Override
+    public void chooseAction(ArrayList<Creature> combatList) {
+
     }
 }

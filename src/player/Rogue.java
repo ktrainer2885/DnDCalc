@@ -17,7 +17,8 @@ public class Rogue extends Player {
     */
     public Rogue() {
         genAttributes();
-        this.hp = 5 + getConMod();     // Starting Hp
+        this.hp = 6 + getConMod();     // Starting Hp
+        this.maxHp = hp;
         this.prof = 2;                 // Starting Prof
         this.weap = "1d8";             // Rapiers Finesse Type
         this.ac = 11 + getDexMod();    // Light Armor: Leather and dex mod

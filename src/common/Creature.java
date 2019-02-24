@@ -175,7 +175,7 @@ public abstract class Creature implements Comparable<Creature> {
 
     // Helper function used to handle sneak attack
     public void sneakAttackDamage() {
-        System.out.println("Sneak Attack!");
+        //System.out.println("Sneak Attack!");
         this.sneakAttack = true;
     }
 
