@@ -4,10 +4,7 @@ import common.Creature;
 import monster.Goblin;
 import monster.Monster;
 import monster.Orc;
-import player.Cleric;
-import player.Fighter;
-import player.Player;
-import player.Rogue;
+import player.*;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,19 +17,21 @@ public class Sim {
     private int fighterSize;
     private int rogueSize;
     private int clericSize;
+    private int wizardSize;
     private int goblinSize;
     private int orcSize;
     private int simIterations;
     private int winNum;
     private double winRate;
 
-    public Sim(int fighterSize, int rogueSize, int clericSize, int goblinSize, int orcSize, int simIterations){
+    public Sim(int fighterSize, int rogueSize, int clericSize, int wizardSize, int goblinSize, int orcSize, int simIterations){
         this.combatArrayList = new ArrayList<>();
         this.simIterations = simIterations;
         this.partySize = fighterSize + rogueSize + clericSize;
         this.fighterSize = fighterSize;
         this.rogueSize = rogueSize;
         this.clericSize = clericSize;
+        this.wizardSize = wizardSize;
         this.goblinSize = goblinSize;
         this.orcSize = orcSize;
         this.winNum = 0;
@@ -61,7 +60,7 @@ public class Sim {
     }*/
 
     // Populating Party Group
-    private void newParty(int fighterSize, int rogueSize, int clericSize){
+    private void newParty(int fighterSize, int rogueSize, int clericSize, int wizardSize){
         //System.out.println("Party Initiatives");
         for (int i = 0; i < fighterSize; i++) {
             combatArrayList.add(new Fighter());
@@ -72,6 +71,9 @@ public class Sim {
         }
         for (int i = 0; i < clericSize; i++){
             combatArrayList.add(new Cleric());
+        }
+        for (int i = 0; i < wizardSize; i++){
+            combatArrayList.add(new Wizard());
         }
     }
     
@@ -219,7 +221,7 @@ public class Sim {
         for (int i = 0; i < simIterations; i++) {
 
             newEncounter(goblinSize, orcSize);
-            newParty(fighterSize,rogueSize,clericSize);
+            newParty(fighterSize,rogueSize,clericSize,wizardSize);
             //System.out.println(i);
 
             setCombat();

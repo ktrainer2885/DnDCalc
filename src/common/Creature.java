@@ -192,6 +192,19 @@ public abstract class Creature implements Comparable<Creature> {
             defender.receiveDamage(this.attackDamage());
         }
     }
+    // Helper function used with spell. Needs to be reworked
+    public void spellCombat(Creature defender, int spellDamage) {
+        int attackRoll = attack();
+
+        // Natural 20
+        if (this.roll == 20) {
+            defender.receiveDamage(spellDamage + spellDamage);
+        }
+        // Non-Natural 20
+        else if (attackRoll >= defender.getAc()) {
+            defender.receiveDamage(spellDamage);
+        }
+    }
 
     public int attackDamage() {
         int damage;

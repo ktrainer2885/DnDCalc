@@ -10,6 +10,7 @@ public class Main {
         int fighterSize;
         int rogueSize;
         int clericSize;
+        int wizardSize;
         int goblinSize;
         int orcSize;
         int simIterations;
@@ -23,6 +24,8 @@ public class Main {
         rogueSize = reader.nextInt();
         System.out.print("Please type in the cleric size: ");
         clericSize = reader.nextInt();
+        System.out.print("Please type in the wizard size: ");
+        wizardSize = reader.nextInt();
         System.out.print("Please type in the goblin size: ");
         goblinSize = reader.nextInt();
         System.out.print("Please type in the Orc size: ");
@@ -30,7 +33,7 @@ public class Main {
         System.out.print("Please type in the number of simulations: ");
         simIterations = reader.nextInt();
 
-        Sim sim = new Sim(fighterSize, rogueSize, clericSize, goblinSize , orcSize, simIterations);
+        Sim sim = new Sim(fighterSize, rogueSize, clericSize, wizardSize, goblinSize , orcSize, simIterations);
         sim.simulation();
     }
 }

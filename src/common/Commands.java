@@ -11,16 +11,16 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class Commands {
     
-    static public int rollX(int x) {
+     static public int rollX(int x) {
         return ThreadLocalRandom.current().nextInt(1,(x+1));
     }
-    static public int roll10() {
+     static public int roll10() {
         return ThreadLocalRandom.current().nextInt(1,11);
     }
      static public int roll20(){
          return ThreadLocalRandom.current().nextInt(1,21);
      }
-     
+
      static public int disadvantage() {
          int [] rolls = new int[2];
          
@@ -132,4 +132,29 @@ public class Commands {
         }
         return lowest;
     }
+
+    static public Monster highestMonHP(@NotNull ArrayList<Creature> combatList){
+
+        Monster highest = null;
+        // attack
+
+        // For loop searches for Monster with higest HP to attack.
+        for (Creature c: combatList) {
+            if (c instanceof Monster) {
+                if(!c.isAlive()) {       // checking to see if dead
+                    continue;
+                }
+                if (highest == null) {    // sets initial high
+                    highest = (Monster)c;
+                }
+                else {
+                    if (highest.getHp() <= c.getHp()){
+                        highest = (Monster)c;        // sets new highest
+                    }
+                }
+            }
+        }
+        return highest;
+    }
+
 }
