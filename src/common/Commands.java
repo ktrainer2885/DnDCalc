@@ -84,7 +84,7 @@ public class Commands {
          return attr;
      }
 
-     static public Monster lowestMonHP(@NotNull ArrayList<Creature> combatList){
+     static public Monster lowestMonHP(ArrayList<Creature> combatList){
 
          Monster lowest = null;
          // attack
@@ -109,7 +109,7 @@ public class Commands {
      }
 
 
-    static public Player lowestPlayHP(@NotNull ArrayList<Creature> combatList){
+    static public Player lowestPlayHP(ArrayList<Creature> combatList){
 
         Player lowest = null;
         // attack
@@ -133,7 +133,7 @@ public class Commands {
         return lowest;
     }
 
-    static public Monster highestMonHP(@NotNull ArrayList<Creature> combatList){
+    static public Monster highestMonHP( ArrayList<Creature> combatList){
 
         Monster highest = null;
         // attack
