@@ -236,7 +236,7 @@ public class Sim {
 
        calcWinRate(winNum, simIterations);
 
-        System.out.println("Win Rate: " + String.format("%.2f", winRate) +"%");
+        System.out.println("\nWin Rate: " + String.format("%.2f", winRate) +"%");
 
     }
 }

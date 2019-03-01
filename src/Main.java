@@ -19,23 +19,28 @@ public class Main {
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
 
-        System.out.print("Please type in the fighter size: ");
+        System.out.println("Party Selection");
+        System.out.print("Please type in the number of Fighters in your party: ");
         fighterSize = reader.nextInt();
-        System.out.print("Please type in the rogue size: ");
+        System.out.print("Please type in number of Rogues in your party: ");
         rogueSize = reader.nextInt();
-        System.out.print("Please type in the cleric size: ");
+        System.out.print("Please type in number of Clerics in your party: ");
         clericSize = reader.nextInt();
-        System.out.print("Please type in the wizard size: ");
+        System.out.print("Please type in number of Wizards in your party: ");
         wizardSize = reader.nextInt();
-        System.out.print("Please type in the goblin size: ");
-        goblinSize = reader.nextInt();
-        System.out.print("Please type in the Orc size: ");
-        orcSize = reader.nextInt();
-        System.out.print("Please type in the Bugbear size: ");
-        bugbearSize = reader.nextInt();
-        System.out.print("Please type in the number of simulations: ");
-        simIterations = reader.nextInt();
 
+        System.out.println("\nEncounter Selection");
+        System.out.print("Please type in number of Goblins in the encounter: ");
+        goblinSize = reader.nextInt();
+        System.out.print("Please type in number of Orcs in the encounter: ");
+        orcSize = reader.nextInt();
+        System.out.print("Please type in number of Bugbears in the encounter: ");
+        bugbearSize = reader.nextInt();
+        //System.out.print("Please type in the number of simulations: ");
+        //simIterations = reader.nextInt();
+
+        simIterations = 10000;
+        
         Sim sim = new Sim(fighterSize, rogueSize, clericSize, wizardSize, goblinSize , orcSize,
                 bugbearSize, simIterations);
         sim.simulation();
