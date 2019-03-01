@@ -40,12 +40,12 @@ public class Wizard extends Player {
         Monster monLowest = lowestMonHP(combatList);
 
         if (spellLevelOne > 0) {
-            if(monHighest == null){
+            if(monLowest == null){
                 return;
             }
             // Magic Missile auto hits.
             // make new
-            monHighest.receiveDamage(magicMissile(level));
+            monLowest.receiveDamage(magicMissile(level));
             spellLevelOne--;
         }
         else {

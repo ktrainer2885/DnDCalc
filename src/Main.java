@@ -13,6 +13,7 @@ public class Main {
         int wizardSize;
         int goblinSize;
         int orcSize;
+        int bugbearSize;
         int simIterations;
 
 
@@ -30,10 +31,13 @@ public class Main {
         goblinSize = reader.nextInt();
         System.out.print("Please type in the Orc size: ");
         orcSize = reader.nextInt();
+        System.out.print("Please type in the Bugbear size: ");
+        bugbearSize = reader.nextInt();
         System.out.print("Please type in the number of simulations: ");
         simIterations = reader.nextInt();
 
-        Sim sim = new Sim(fighterSize, rogueSize, clericSize, wizardSize, goblinSize , orcSize, simIterations);
+        Sim sim = new Sim(fighterSize, rogueSize, clericSize, wizardSize, goblinSize , orcSize,
+                bugbearSize, simIterations);
         sim.simulation();
     }
 }

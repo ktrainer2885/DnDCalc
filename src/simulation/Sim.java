@@ -1,9 +1,7 @@
 package simulation;
 
 import common.Creature;
-import monster.Goblin;
-import monster.Monster;
-import monster.Orc;
+import monster.*;
 import player.*;
 
 import java.util.ArrayList;
@@ -20,11 +18,13 @@ public class Sim {
     private int wizardSize;
     private int goblinSize;
     private int orcSize;
+    private int bugbearSize;
     private int simIterations;
     private int winNum;
     private double winRate;
 
-    public Sim(int fighterSize, int rogueSize, int clericSize, int wizardSize, int goblinSize, int orcSize, int simIterations){
+    public Sim(int fighterSize, int rogueSize, int clericSize, int wizardSize, int goblinSize, int orcSize,
+               int bugbearSize, int simIterations){
         this.combatArrayList = new ArrayList<>();
         this.simIterations = simIterations;
         this.partySize = fighterSize + rogueSize + clericSize;
@@ -34,11 +34,12 @@ public class Sim {
         this.wizardSize = wizardSize;
         this.goblinSize = goblinSize;
         this.orcSize = orcSize;
+        this.bugbearSize = bugbearSize;
         this.winNum = 0;
     }
     
     // Populating Encounter Group
-    private void newEncounter( int goblinSize, int orcSize){
+    private void newEncounter( int goblinSize, int orcSize, int bugbearSize){
 
         //System.out.println("Goblin Initiatives");
         for (int i = 0; i < goblinSize; i++) {
@@ -47,6 +48,9 @@ public class Sim {
         }
         for (int i = 0; i < orcSize; i++) {
             combatArrayList.add(new Orc());
+        }
+        for (int i = 0; i < bugbearSize; i++) {
+            combatArrayList.add(new Bugbear());
         }
     }
     
@@ -220,7 +224,7 @@ public class Sim {
 
         for (int i = 0; i < simIterations; i++) {
 
-            newEncounter(goblinSize, orcSize);
+            newEncounter(goblinSize, orcSize, bugbearSize);
             newParty(fighterSize,rogueSize,clericSize,wizardSize);
             //System.out.println(i);
 
