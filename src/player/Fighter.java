@@ -4,6 +4,7 @@ import common.Creature;
 import monster.Monster;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static common.Ability.FightingStyle;
 import static common.Ability.secondWind;
@@ -17,7 +18,8 @@ public class Fighter extends Player {
     public Fighter() {
 
         this.style = FightingStyle();
-        genAttributes();
+        //genAttributes();
+        genPriorityAttributes();
         this.hp = 10 + getConMod(); // starting HP
         this.maxHp = hp;
         this.prof = 2; // Starting Bonus Profeciency
@@ -41,6 +43,15 @@ public class Fighter extends Player {
 
     @Override
     public void genPriorityAttributes() {
+
+        ArrayList<Integer> attr = poolAttribute();
+
+        setStr(attr.remove(0));
+        setCon(attr.remove(0));
+        setDex(attr.remove(0));
+        setWis(attr.remove(0));
+        setIntel(attr.remove(0));
+        setCha(attr.remove(0));
 
     }
 

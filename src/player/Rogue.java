@@ -16,7 +16,8 @@ public class Rogue extends Player {
                                 Ranged:         Dexterity Modifier
     */
     public Rogue() {
-        genAttributes();
+       // genAttributes();
+        genPriorityAttributes();
         this.hp = 6 + getConMod();     // Starting Hp
         this.maxHp = hp;
         this.prof = 2;                 // Starting Prof
@@ -29,6 +30,14 @@ public class Rogue extends Player {
 
     @Override
     public void genPriorityAttributes() {
+        ArrayList<Integer> attr = poolAttribute();
+
+        setDex(attr.remove(0));
+        setCon(attr.remove(0));
+        setStr(attr.remove(0));
+        setIntel(attr.remove(0));
+        setWis(attr.remove(0));
+        setCha(attr.remove(0));
 
     }
 

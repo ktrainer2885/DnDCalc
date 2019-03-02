@@ -16,7 +16,8 @@ public class Cleric extends Player {
 
     public Cleric(){
 
-        genAttributes();
+        //genAttributes();
+        genPriorityAttributes();
         this.hp = 8 + getConMod(); // starting HP
         this.maxHp = hp;
         this.prof = 2; // Starting Bonus Proficiency
@@ -31,6 +32,15 @@ public class Cleric extends Player {
 
     @Override
     public void genPriorityAttributes() {
+
+        ArrayList<Integer> attr = poolAttribute();
+
+        setWis(attr.remove(0));
+        setCon(attr.remove(0));
+        setStr(attr.remove(0));
+        setIntel(attr.remove(0));
+        setDex(attr.remove(0));
+        setCha(attr.remove(0));
 
     }
 

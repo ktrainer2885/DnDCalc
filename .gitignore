@@ -58,6 +58,7 @@ local.properties
 *.ipr
 *.ids
 *.orig
+META-INF/
 
 ######################
 # Visual Studio Code

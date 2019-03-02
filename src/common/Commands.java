@@ -82,6 +82,18 @@ public class Commands {
          return attr;
      }
 
+     static public ArrayList<Integer> poolAttribute() {
+         ArrayList<Integer> attr = new ArrayList<>();
+
+         for (int i = 0; i < 6; i++) {
+             attr.add(genAttribute());
+         }
+         Collections.sort(attr);
+         Collections.reverse(attr);
+
+         return attr;
+     }
+
      static public Monster lowestMonHP(ArrayList<Creature> combatList){
 
          Monster lowest = null;

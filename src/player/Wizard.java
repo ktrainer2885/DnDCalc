@@ -15,7 +15,8 @@ public class Wizard extends Player {
 
     public Wizard(){
 
-        genAttributes();
+        //genAttributes();
+        genPriorityAttributes();
         this.hp = 6 + getConMod(); // starting HP
         this.maxHp = hp;
         this.prof = 2; // Starting Bonus Proficiency
@@ -30,7 +31,14 @@ public class Wizard extends Player {
 
     @Override
     public void genPriorityAttributes() {
-        
+        ArrayList<Integer> attr = poolAttribute();
+
+        setIntel(attr.remove(0));
+        setWis(attr.remove(0));
+        setDex(attr.remove(0));
+        setCon(attr.remove(0));
+        setStr(attr.remove(0));
+        setCha(attr.remove(0));
     }
 
     @Override
