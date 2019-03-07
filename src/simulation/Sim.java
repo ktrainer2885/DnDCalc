@@ -12,10 +12,10 @@ public class Sim {
     private ArrayList<Creature> combatArrayList;
 
     private int partySize;
-    private int fighterSize;
-    private int rogueSize;
-    private int clericSize;
-    private int wizardSize;
+    private int[] fighterArray;
+    private int[] rogueArray;
+    private int[] clericArray;
+    private int[] wizardArray;
     private int goblinSize;
     private int orcSize;
     private int bugbearSize;
@@ -23,15 +23,15 @@ public class Sim {
     private int winNum;
     private double winRate;
 
-    public Sim(int fighterSize, int rogueSize, int clericSize, int wizardSize, int goblinSize, int orcSize,
+    public Sim(int[] fighterArray, int[] rogueArray, int[] clericArray, int[] wizardArray, int goblinSize, int orcSize,
                int bugbearSize, int simIterations){
         this.combatArrayList = new ArrayList<>();
         this.simIterations = simIterations;
-        this.partySize = fighterSize + rogueSize + clericSize;
-        this.fighterSize = fighterSize;
-        this.rogueSize = rogueSize;
-        this.clericSize = clericSize;
-        this.wizardSize = wizardSize;
+        this.partySize = fighterArray.length + rogueArray.length + clericArray.length + wizardArray.length;
+        this.fighterArray = fighterArray;
+        this.rogueArray = rogueArray;
+        this.clericArray = clericArray;
+        this.wizardArray = wizardArray;
         this.goblinSize = goblinSize;
         this.orcSize = orcSize;
         this.bugbearSize = bugbearSize;
@@ -53,30 +53,20 @@ public class Sim {
             combatArrayList.add(new Bugbear());
         }
     }
-    
-    // Populating Party Group
-    /*private void newParty(int partySize){
-        //System.out.println("Party Initiatives");
-        for (int i = 0; i < partySize; i++) {
-            combatArrayList.add(new Fighter());
-            //System.out.println(party[i].getInit());
-        }
-    }*/
 
     // Populating Party Group
-    private void newParty(int fighterSize, int rogueSize, int clericSize, int wizardSize){
+    private void newParty(int[] fighterArray, int[] rogueArray, int[] clericArray, int[] wizardArray){
         //System.out.println("Party Initiatives");
-        for (int i = 0; i < fighterSize; i++) {
+        for (int i = 0; i < fighterArray.length; i++) {
             combatArrayList.add(new Fighter());
-            //System.out.println(party[i].getInit());
         }
-        for (int i = 0; i < rogueSize; i++){
+        for (int i = 0; i < rogueArray.length; i++){
             combatArrayList.add(new Rogue());
         }
-        for (int i = 0; i < clericSize; i++){
+        for (int i = 0; i < clericArray.length; i++){
             combatArrayList.add(new Cleric());
         }
-        for (int i = 0; i < wizardSize; i++){
+        for (int i = 0; i < wizardArray.length; i++){
             combatArrayList.add(new Wizard());
         }
     }
@@ -225,7 +215,7 @@ public class Sim {
         for (int i = 0; i < simIterations; i++) {
 
             newEncounter(goblinSize, orcSize, bugbearSize);
-            newParty(fighterSize,rogueSize,clericSize,wizardSize);
+            newParty(fighterArray,rogueArray,clericArray,wizardArray);
             //System.out.println(i);
 
             setCombat();
