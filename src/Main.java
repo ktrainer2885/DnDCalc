@@ -24,49 +24,14 @@ public class Main {
         /* Party Selection Section */
         System.out.println("Party Selection");
 
-        /* Fighter Selection */
-        System.out.print("Please type in the number of Fighters in your party: ");
-        size = reader.nextInt();
-        fighters = new int[size];
+        /* Refactored Class and Character Selection */
+        fighters = selectClass("Fighter");
 
-        /* Fighter Level Selection */
-        for (int x = 0; x< fighters.length; x++) {
-            System.out.print("Fighter "+(x+1)+" Level: ");
-            fighters[x] = reader.nextInt();
-        }
+        rogues = selectClass("Rogue");
 
-        /* Rogue Selection */
-        System.out.print("Please type in number of Rogues in your party: ");
-        size = reader.nextInt();
-        rogues = new int[size];
+        clerics = selectClass("Cleric");
 
-        /* Rogue Level Selection */
-        for (int x = 0; x < rogues.length; x++) {
-            System.out.print("Rogue "+(x+1)+" Level: ");
-            rogues[x] = reader.nextInt();
-        }
-
-        /* Cleric Selection */
-        System.out.print("Please type in number of Clerics in your party: ");
-        size = reader.nextInt();
-        clerics = new int[size];
-
-        /* Cleric Level Selection */
-        for (int x = 0; x < clerics.length; x++) {
-            System.out.print("Cleric "+(x+1)+" Level: ");
-            clerics[x] = reader.nextInt();
-        }
-
-        /* Wizard Selection */
-        System.out.print("Please type in number of Wizards in your party: ");
-        size = reader.nextInt();
-        wizards = new int[size];
-
-        /* Wizard Level Selection */
-        for (int x = 0; x < wizards.length; x++) {
-            System.out.print("Wizard "+(x+1)+" Level: ");
-            wizards[x] = reader.nextInt();
-        }
+        wizards = selectClass("Wizard");
 
         /* Encounter Selection Section */
         System.out.println("\nEncounter Selection");
@@ -76,13 +41,41 @@ public class Main {
         orcSize = reader.nextInt();
         System.out.print("Please type in number of Bugbears in the encounter: ");
         bugbearSize = reader.nextInt();
-        //System.out.print("Please type in the number of simulations: ");
-        //simIterations = reader.nextInt();
+        System.out.print("Please type in the number of simulations: ");
+        simIterations = reader.nextInt();
 
-        simIterations = 10000;
-        
         Sim sim = new Sim(fighters, rogues, clerics, wizards, goblinSize , orcSize,
                 bugbearSize, simIterations);
         sim.simulation();
+    }
+
+    static public int[] selectClass(String c) {
+        int[] classArray;
+        int size;
+        int level;
+
+        Scanner reader = new Scanner(System.in);
+
+        /* Character Selection */
+        System.out.print("Please type in number of "+c+"s in your party: ");
+        size = reader.nextInt();
+        classArray = new int[size];
+
+        /* Character Level Selection */
+        for (int x = 0; x < classArray.length; x++) {
+            do {
+                System.out.print(c + ' ' + (x + 1) + " Level: ");
+                level = reader.nextInt();
+
+                if (level > 0 || level < 21) {
+                    classArray[x] = level;
+                }
+                else {
+                    System.out.println("Invalid Level, Try Again");
+                }
+            } while(level < 1 || level > 20);
+        }
+        // Return array
+        return classArray;
     }
 }

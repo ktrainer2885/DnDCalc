@@ -35,10 +35,12 @@ public class Fighter extends Player {
         
     // Modifier for AC if Fighter Style is Defense
     public int defense() {
-        if (this.style == 2)
+        if (this.style == 2) {
             return 1;
-        else
+        }
+        else {
             return 0;
+        }
     }
 
     @Override

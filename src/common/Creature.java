@@ -20,6 +20,8 @@ public abstract class Creature implements Comparable<Creature> {
 
     protected boolean alive;        // Alive Status
 
+    protected int level;            // Character level
+
     protected int str;              // Strength
     protected int dex;             // Dexterity
     protected int con;              // Constitution
@@ -45,6 +47,10 @@ public abstract class Creature implements Comparable<Creature> {
             return 1;
         }
     }
+
+    public int getLevel() { return level; }
+
+    public void setLevel(int level) { this.level = level; }
 
     public int getStr() {
         return str;
@@ -163,6 +169,42 @@ public abstract class Creature implements Comparable<Creature> {
     // Generating Initiative. Add a random roll to the dexMod
     public void generateInitiative() {
         setInit(roll20()+ getDexMod());
+    }
+
+    /* Leveling Up
+
+        Increased Hit Point Maximum: Current Hit Points + (Half Current Hit Points + 1) OR Roll Hit Die
+        Increased Proficiency: (1-4) 2 (5-8) 3 (9-12) 4 (13-16) 5 (17-20) 6
+
+    */
+    public void levelUp() {
+        int level = this.getLevel();
+        int hp = this.getHp();
+
+        // Hit Points
+        if (level > 1) {
+            // Start From Level 2
+            for (int x = 2; x <= level; x++) {
+                this.setHp(hp + ((hp / 2) + 1));
+            }
+        }
+
+        // Proficiency
+        if (level >= 1 && level <= 4) {
+            this.setProf(2);
+        }
+        if (level >= 5 && level <= 8) {
+            this.setProf(3);
+        }
+        if (level >= 9 && level <= 12) {
+            this.setProf(4);
+        }
+        if (level >= 13 && level <= 16) {
+            this.setProf(5);
+        }
+        if (level >= 17 && level <= 20) {
+            this.setProf(6);
+        }
     }
 
     // Roll and add prof
