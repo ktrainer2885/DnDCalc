@@ -3,8 +3,7 @@ package common;
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
-import static common.Commands.roll20;
-import static common.Commands.rollX;
+import static common.Commands.*;
 
 public abstract class Creature implements Comparable<Creature> {
 
@@ -171,7 +170,7 @@ public abstract class Creature implements Comparable<Creature> {
         setInit(roll20()+ getDexMod());
     }
 
-    /* Leveling Up
+    /* Leveling Up (Move to Player.java Create Abstract for each Character Class)
 
         Increased Hit Point Maximum: Current Hit Points + (Half Current Hit Points + 1) OR Roll Hit Die
         Increased Proficiency: (1-4) 2 (5-8) 3 (9-12) 4 (13-16) 5 (17-20) 6
@@ -185,7 +184,9 @@ public abstract class Creature implements Comparable<Creature> {
         if (level > 1) {
             // Start From Level 2
             for (int x = 2; x <= level; x++) {
-                this.setHp(hp + ((hp / 2) + 1));
+                // Dice type different for other classes
+                this.setHp(hp + rollHP(1,10,this.getConMod()));
+
             }
         }
 

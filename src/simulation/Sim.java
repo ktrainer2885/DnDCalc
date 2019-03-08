@@ -54,6 +54,11 @@ public class Sim {
         }
     }
 
+    /*
+            Separate LevelUp from Creature
+            Player player = new Fighter();
+     */
+
     // Populating Party Group
     private void newParty(int[] fighterArray, int[] rogueArray, int[] clericArray, int[] wizardArray){
         //System.out.println("Party Initiatives");

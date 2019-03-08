@@ -9,6 +9,7 @@ public class Main {
         int size;
         // Array size is the amount of class specific characters within the party
         // Array data contains the level number
+        // Change to Array List
         int[] fighters;
         int[] rogues;
         int[] clerics;
