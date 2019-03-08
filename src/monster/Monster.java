@@ -27,7 +27,7 @@ public class Monster extends Creature {
         this.weap = weapon;
         setDamageDice();
         this.alive = true;
-        this.damConst = 2;
+        this.damConst = damCont;
 
     }
 
