@@ -140,3 +140,10 @@ Desktop.ini
 # ESLint
 ######################
 .eslintcache
+
+######################
+# Exceptions for Project
+######################
+!jackson-annotations-2.9.8.jar
+!jackson-core-2.9.8.jar
+!jackson-databind-2.9.8.jar

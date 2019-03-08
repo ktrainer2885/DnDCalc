@@ -1,4 +1,5 @@
 import simulation.Sim;
+import simulation.JsonTest;
 
 import java.util.Scanner;
 
@@ -6,7 +7,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int size;
+        JsonTest test = new JsonTest();
+
+/*        int size;
         // Array size is the amount of class specific characters within the party
         // Array data contains the level number
         int[] fighters;
@@ -21,10 +24,10 @@ public class Main {
 
         Scanner reader = new Scanner(System.in);  // Reading from System.in
 
-        /* Party Selection Section */
+        *//* Party Selection Section *//*
         System.out.println("Party Selection");
 
-        /* Refactored Class and Character Selection */
+        *//* Refactored Class and Character Selection *//*
         fighters = selectClass("Fighter");
 
         rogues = selectClass("Rogue");
@@ -33,7 +36,7 @@ public class Main {
 
         wizards = selectClass("Wizard");
 
-        /* Encounter Selection Section */
+        *//* Encounter Selection Section *//*
         System.out.println("\nEncounter Selection");
         System.out.print("Please type in number of Goblins in the encounter: ");
         goblinSize = reader.nextInt();
@@ -46,7 +49,7 @@ public class Main {
 
         Sim sim = new Sim(fighters, rogues, clerics, wizards, goblinSize , orcSize,
                 bugbearSize, simIterations);
-        sim.simulation();
+        sim.simulation();*/
     }
 
     static public int[] selectClass(String c) {

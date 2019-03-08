@@ -8,28 +8,28 @@ import static common.Commands.rollX;
 
 public abstract class Creature implements Comparable<Creature> {
 
-    protected int hp;               // Health Points
-    protected int maxHp;            // Max HP
-    protected int prof;             // Proficiency
+    protected Integer hp;               // Health Points
+    protected Integer maxHp;            // Max HP
+    protected Integer prof;             // Proficiency
     protected String weap;          // Weapon (Ex: 1d6)
     protected String[] diceNum;     // Number of dice
-    protected int damConst;         // Damage constant: StrMod, DexMod, Magic etc
-    protected int ac;               // Armor Class
-    protected int init;             // Initiative
+    protected Integer damConst;         // Damage constant: StrMod, DexMod, Magic etc
+    protected Integer ac;               // Armor Class
+    protected Integer init;             // Initiative
 
 
     protected boolean alive;        // Alive Status
 
-    protected int level;            // Character level
+    protected Integer level;            // Character level
 
-    protected int str;              // Strength
-    protected int dex;             // Dexterity
-    protected int con;              // Constitution
-    protected int intel;            // intelligence
-    protected int wis;              // wisdom
-    protected int cha;              // charisma
+    protected Integer str;              // Strength
+    protected Integer dex;             // Dexterity
+    protected Integer con;              // Constitution
+    protected Integer intel;            // intelligence
+    protected Integer wis;              // wisdom
+    protected Integer cha;              // charisma
 
-    protected int roll=0;             // saves roll for ciritical hit check
+    protected Integer roll=0;             // saves roll for ciritical hit check
     protected boolean sneakAttack=false;
 
 
@@ -48,71 +48,71 @@ public abstract class Creature implements Comparable<Creature> {
         }
     }
 
-    public int getLevel() { return level; }
+    public Integer getLevel() { return level; }
 
-    public void setLevel(int level) { this.level = level; }
+    public void setLevel(Integer level) { this.level = level; }
 
-    public int getStr() {
+    public Integer getStr() {
         return str;
     }
 
-    public int getStrMod() {
+    public Integer getStrMod() {
         return  (str - 10) / 2;
     }
 
-    public void setStr(int str) {
+    public void setStr(Integer str) {
         this.str = str;
     }
 
-    public int getDex() {
+    public Integer getDex() {
         return dex;
     }
 
-    public int getDexMod() { return  (dex - 10) / 2; }
+    public Integer getDexMod() { return  (dex - 10) / 2; }
 
-    public void setDex(int dex) {this.dex = dex; }
+    public void setDex(Integer dex) {this.dex = dex; }
 
-    public int getCon() {
+    public Integer getCon() {
         return con;
     }
 
-    public int getConMod() {return  (con - 10) / 2; }
+    public Integer getConMod() {return  (con - 10) / 2; }
 
-    public void setCon(int con) {this.con = con; }
+    public void setCon(Integer con) {this.con = con; }
 
-    public int getIntel() {
+    public Integer getIntel() {
         return intel;
     }
 
-    public int getIntelMod() {
+    public Integer getIntelMod() {
         return  (intel - 10) / 2;
     }
 
-    public void setIntel(int intel) {
+    public void setIntel(Integer intel) {
         this.intel = intel;
     }
 
-    public int getWis() {
+    public Integer getWis() {
         return wis;
     }
 
-    public int getWisMod() {
+    public Integer getWisMod() {
         return  (wis - 10) / 2;
     }
 
-    public void setWis(int wis) {
+    public void setWis(Integer wis) {
         this.wis = wis;
     }
 
-    public int getCha() {
+    public Integer getCha() {
         return cha;
     }
 
-    public int getChaMod() {
+    public Integer getChaMod() {
         return  (cha - 10) / 2;
     }
 
-    public void setCha(int cha) {
+    public void setCha(Integer cha) {
         this.cha = cha;
     }
 
@@ -122,35 +122,35 @@ public abstract class Creature implements Comparable<Creature> {
 
     private void setAlive(boolean alive) { this.alive = alive; }
 
-    public int getInit() {
+    public Integer getInit() {
         return init;
     }
 
-    public void setInit(int init) { this.init = init; }
+    public void setInit(Integer init) { this.init = init; }
 
-    public int getHp() {
+    public Integer getHp() {
         return hp;
     }
 
-    public void setHp(int hp) { this.hp = hp; }
+    public void setHp(Integer hp) { this.hp = hp; }
 
-    public int getMaxHp() {
+    public Integer getMaxHp() {
         return maxHp;
     }
 
-    public void setMaxHp(int maxHp) {
+    public void setMaxHp(Integer maxHp) {
         this.maxHp = maxHp;
     }
 
-    public int hpPercent(){
+    public Integer hpPercent(){
         return (hp/maxHp) * 100;
     }
 
-    public int getProf() {
+    public Integer getProf() {
         return prof;
     }
 
-    public void setProf(int prof) { this.prof = prof; }
+    public void setProf(Integer prof) { this.prof = prof; }
 
     public String getWeap() {
         return weap;
@@ -158,11 +158,11 @@ public abstract class Creature implements Comparable<Creature> {
 
     public void setWeap(String weap) { this.weap = weap; }
 
-    public int getAc() {
+    public Integer getAc() {
         return ac;
     }
 
-    public void setAc(int ac) {
+    public void setAc(Integer ac) {
         this.ac = ac;
     }
     
@@ -178,13 +178,13 @@ public abstract class Creature implements Comparable<Creature> {
 
     */
     public void levelUp() {
-        int level = this.getLevel();
-        int hp = this.getHp();
+        Integer level = this.getLevel();
+        Integer hp = this.getHp();
 
         // Hit Points
         if (level > 1) {
             // Start From Level 2
-            for (int x = 2; x <= level; x++) {
+            for (Integer x = 2; x <= level; x++) {
                 this.setHp(hp + ((hp / 2) + 1));
             }
         }
@@ -209,7 +209,7 @@ public abstract class Creature implements Comparable<Creature> {
 
     // Roll and add prof
     // todo add the constants. Str or Dex
-    public int attack() {
+    public Integer attack() {
         // Roll 20 and save
         this.roll = roll20();
         return roll + prof /* + Any modifiers*/;
@@ -223,7 +223,7 @@ public abstract class Creature implements Comparable<Creature> {
 
     // Helper function used to handle combat between two creatures
     public void singleCombat(Creature defender) {
-        int attackRoll = attack();
+        Integer attackRoll = attack();
 
         // Natural 20
         if (this.roll == 20) {
@@ -235,8 +235,8 @@ public abstract class Creature implements Comparable<Creature> {
         }
     }
     // Helper function used with spell. Needs to be reworked
-    public void spellCombat(Creature defender, int spellDamage) {
-        int attackRoll = attack();
+    public void spellCombat(Creature defender, Integer spellDamage) {
+        Integer attackRoll = attack();
 
         // Natural 20
         if (this.roll == 20) {
@@ -248,8 +248,8 @@ public abstract class Creature implements Comparable<Creature> {
         }
     }
 
-    public int attackDamage() {
-        int damage;
+    public Integer attackDamage() {
+        Integer damage;
         if (damConst != 0) {
             damage = damConst;
         }
@@ -274,7 +274,7 @@ public abstract class Creature implements Comparable<Creature> {
     }
 
     // Changes HP from damage and sets death
-    public void receiveDamage(int damage) {
+    public void receiveDamage(Integer damage) {
         setHp(getHp()-damage);
 
         if(getHp() <= 0 ) {
@@ -284,7 +284,7 @@ public abstract class Creature implements Comparable<Creature> {
     }
 
     // CHanges HP from healing and sets to alive
-    public void recieveHealing(int heal) {
+    public void recieveHealing(Integer heal) {
         setHp(getHp() + heal);
         // if healed to more than maxHp set hp to MaxHp
         if (getMaxHp() < getHp()){
@@ -298,17 +298,17 @@ public abstract class Creature implements Comparable<Creature> {
     }
     
     // Helper Function Used to Generate Damage
-    int generateDamage(String[] diceNum) {
+    Integer generateDamage(String[] diceNum) {
 
-        int damage = 0;
+        Integer damage = 0;
         
-        for (int i = 0; i < Integer.parseInt(diceNum[0]); i++) {
+        for (Integer i = 0; i < Integer.parseInt(diceNum[0]); i++) {
             damage += ThreadLocalRandom.current().nextInt(1, Integer.parseInt(diceNum[1]) + 1);
         }
         return damage;
     }
 
-    public void setAttributes(int str, int dex, int con, int intel, int wis, int cha){
+    public void setAttributes(Integer str, Integer dex, Integer con, Integer intel, Integer wis, Integer cha){
 
         setStr(str);
         setDex(dex);
