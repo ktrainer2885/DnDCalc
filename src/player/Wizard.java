@@ -25,7 +25,6 @@ public class Wizard extends Player {
         setDamageDice();
         this.alive = true;
         this.damConst = getIntelMod();
-        this.level = 1;
         this.spellLevelOne = 2;
     }
 

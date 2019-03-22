@@ -19,5 +19,7 @@ public abstract class Player extends Creature {
         setCha(genAttribute());
     }
 
+    public abstract void levelUp();
+
     public abstract void genPriorityAttributes();
 }

@@ -29,8 +29,6 @@ public class Fighter extends Player {
         this.alive = true;
         this.damConst = getStrMod();
         this.secondWindUses = 1;
-        this.level = 1;
-
     }
         
     // Modifier for AC if Fighter Style is Defense
@@ -40,6 +38,45 @@ public class Fighter extends Player {
         }
         else {
             return 0;
+        }
+    }
+
+    @Override
+    /* Leveling Up (Move to Player.java Create Abstract for each Character Class)
+
+        Increased Hit Point Maximum: Current Hit Points + (Half Current Hit Points + 1) OR Roll Hit Die
+        Increased Proficiency: (1-4) 2 (5-8) 3 (9-12) 4 (13-16) 5 (17-20) 6
+
+    */
+    public void levelUp() {
+        int level = this.getLevel();
+        int hp = this.getHp();
+
+        // Hit Points
+        if (level > 1) {
+            // Start From Level 2
+            for (int x = 2; x <= level; x++) {
+                // Dice type different for other classes
+                this.setHp(hp + rollHP(1,10,this.getConMod()));
+
+            }
+        }
+
+        // Proficiency
+        if (level >= 1 && level <= 4) {
+            this.setProf(2);
+        }
+        if (level >= 5 && level <= 8) {
+            this.setProf(3);
+        }
+        if (level >= 9 && level <= 12) {
+            this.setProf(4);
+        }
+        if (level >= 13 && level <= 16) {
+            this.setProf(5);
+        }
+        if (level >= 17 && level <= 20) {
+            this.setProf(6);
         }
     }
 

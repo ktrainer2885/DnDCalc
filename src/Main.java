@@ -2,6 +2,8 @@ import simulation.Sim;
 
 import java.util.Scanner;
 
+import static common.Commands.selectClass;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -50,33 +52,4 @@ public class Main {
         sim.simulation();
     }
 
-    static public int[] selectClass(String c) {
-        int[] classArray;
-        int size;
-        int level;
-
-        Scanner reader = new Scanner(System.in);
-
-        /* Character Selection */
-        System.out.print("Please type in number of "+c+"s in your party: ");
-        size = reader.nextInt();
-        classArray = new int[size];
-
-        /* Character Level Selection */
-        for (int x = 0; x < classArray.length; x++) {
-            do {
-                System.out.print(c + ' ' + (x + 1) + " Level: ");
-                level = reader.nextInt();
-
-                if (level > 0 || level < 21) {
-                    classArray[x] = level;
-                }
-                else {
-                    System.out.println("Invalid Level, Try Again");
-                }
-            } while(level < 1 || level > 20);
-        }
-        // Return array
-        return classArray;
-    }
 }
