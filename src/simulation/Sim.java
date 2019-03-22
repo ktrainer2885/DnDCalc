@@ -23,8 +23,10 @@ public class Sim {
     private int winNum;
     private double winRate;
 
-    public Sim(int[] fighterArray, int[] rogueArray, int[] clericArray, int[] wizardArray, int goblinSize, int orcSize,
-               int bugbearSize, int simIterations){
+    private ArrayList<Monster> monstersArray;
+
+    public Sim(int[] fighterArray, int[] rogueArray, int[] clericArray, int[] wizardArray,
+               ArrayList<Monster> monstersArray, int simIterations){
         this.combatArrayList = new ArrayList<>();
         this.simIterations = simIterations;
         this.partySize = fighterArray.length + rogueArray.length + clericArray.length + wizardArray.length;
@@ -32,16 +34,24 @@ public class Sim {
         this.rogueArray = rogueArray;
         this.clericArray = clericArray;
         this.wizardArray = wizardArray;
-        this.goblinSize = goblinSize;
-        this.orcSize = orcSize;
-        this.bugbearSize = bugbearSize;
+        //this.goblinSize = goblinSize;
+        //this.orcSize = orcSize;
+       // this.bugbearSize = bugbearSize;
         this.winNum = 0;
+
+        this.monstersArray = monstersArray;
     }
     
     // Populating Encounter Group
-    private void newEncounter( int goblinSize, int orcSize, int bugbearSize){
+    private void newEncounter(){
 
-        //System.out.println("Goblin Initiatives");
+        for (Monster m : monstersArray) {
+
+            m.setHp(m.getMaxHp());
+            combatArrayList.add(m);
+        }
+
+/*        //System.out.println("Goblin Initiatives");
         for (int i = 0; i < goblinSize; i++) {
             combatArrayList.add(new Goblin());
             //System.out.println(encounter[i].getInit());
@@ -51,7 +61,7 @@ public class Sim {
         }
         for (int i = 0; i < bugbearSize; i++) {
             combatArrayList.add(new Bugbear());
-        }
+        }*/
     }
 
     // Populating Party Group
@@ -230,7 +240,8 @@ public class Sim {
 
         for (int i = 0; i < simIterations; i++) {
 
-            newEncounter(goblinSize, orcSize, bugbearSize);
+            newEncounter();
+            //newEncounter(goblinSize, orcSize, bugbearSize);
             newParty(fighterArray,rogueArray,clericArray,wizardArray);
             //System.out.println(i);
 

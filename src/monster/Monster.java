@@ -22,6 +22,7 @@ public class Monster extends Creature {
         this.name = name;
         setAttributes(str,dex,con,intel,wis,cha);
         this.hp = rollHP(hpDiceNum,hpDiceType, hpConstant);
+        this.setMaxHp(this.hp);
         this.ac = ac;
         this.prof = prof;
         this.weap = weapon;
