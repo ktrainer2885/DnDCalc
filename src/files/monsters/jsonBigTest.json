@@ -861,5 +861,530 @@
       "B",
       "SD"
     ]
+  },
+  {
+    "name": "Flying Snake",
+    "size": "T",
+    "type": "beast",
+    "source": "MM",
+    "alignment": [
+      "U"
+    ],
+    "ac": [
+      14
+    ],
+    "hp": {
+      "average": 5,
+      "formula": "2d4"
+    },
+    "speed": {
+      "walk": 30,
+      "fly": 60,
+      "swim": 30
+    },
+    "str": 4,
+    "dex": 18,
+    "con": 11,
+    "int": 2,
+    "wis": 12,
+    "cha": 5,
+    "senses": "blindsight 10 ft.",
+    "passive": 11,
+    "cr": "1/8",
+    "trait": [
+      {
+        "name": "Flyby",
+        "entries": [
+          "The snake doesn't provoke opportunity attacks when it flies out of an enemy's reach."
+        ]
+      }
+    ],
+    "action": [
+      {
+        "name": "Bite",
+        "entries": [
+          "{@atk mw} {@hit 6} to hit, reach 5 ft., one target. {@h}1 piercing damage plus 7 ({@damage 3d4}) poison damage."
+        ]
+      }
+    ],
+    "page": 322,
+    "environment": [
+      "grassland",
+      "forest",
+      "urban",
+      "desert"
+    ],
+    "soundClip": "https://media-waterdeep.cursecdn.com/file-attachments/0/172/flying-snake.mp3",
+    "traitTags": [
+      "Flyby"
+    ],
+    "senseTags": [
+      "B"
+    ]
+  },
+  {
+    "name": "Flying Sword",
+    "group": "Animated Objects",
+    "size": "S",
+    "type": "construct",
+    "source": "MM",
+    "alignment": [
+      "U"
+    ],
+    "ac": [
+      {
+        "ac": 17,
+        "from": [
+          "natural armor"
+        ]
+      }
+    ],
+    "hp": {
+      "average": 17,
+      "formula": "5d6"
+    },
+    "speed": {
+      "walk": 0,
+      "fly": {
+        "number": 50,
+        "condition": "(hover)"
+      },
+      "canHover": true
+    },
+    "str": 12,
+    "dex": 15,
+    "con": 11,
+    "int": 1,
+    "wis": 5,
+    "cha": 1,
+    "save": {
+      "dex": "+4"
+    },
+    "immune": [
+      "poison",
+      "psychic"
+    ],
+    "conditionImmune": [
+      "blinded",
+      "charmed",
+      "deafened",
+      "frightened",
+      "paralyzed",
+      "petrified",
+      "poisoned"
+    ],
+    "senses": "blindsight 60 ft. (blind beyond this radius)",
+    "passive": 7,
+    "cr": "1/4",
+    "trait": [
+      {
+        "name": "Antimagic Susceptibility",
+        "entries": [
+          "The sword is {@condition incapacitated} while in the area of an antimagic field. If targeted by dispel magic, the sword must succeed on a Constitution saving throw against the caster's spell save DC or fall {@condition unconscious} for 1 minute."
+        ]
+      },
+      {
+        "name": "False Appearance",
+        "entries": [
+          "While the sword remains motionless and isn't flying, it is indistinguishable from a normal sword."
+        ]
+      }
+    ],
+    "action": [
+      {
+        "name": "Longsword",
+        "entries": [
+          "{@atk mw} {@hit 3} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d8 + 1}) slashing damage."
+        ]
+      }
+    ],
+    "page": 20,
+    "soundClip": "https://media-waterdeep.cursecdn.com/file-attachments/0/173/flying-sword.mp3",
+    "traitTags": [
+      "Antimagic Susceptibility",
+      "False Appearance"
+    ],
+    "senseTags": [
+      "B"
+    ]
+  },
+  {
+    "name": "Fomorian",
+    "size": "H",
+    "type": "giant",
+    "source": "MM",
+    "alignment": [
+      "C",
+      "E"
+    ],
+    "ac": [
+      {
+        "ac": 14,
+        "from": [
+          "natural armor"
+        ]
+      }
+    ],
+    "hp": {
+      "average": 149,
+      "formula": "13d12 + 65"
+    },
+    "speed": {
+      "walk": 30
+    },
+    "str": 23,
+    "dex": 10,
+    "con": 20,
+    "int": 9,
+    "wis": 14,
+    "cha": 6,
+    "skill": {
+      "perception": "+8",
+      "stealth": "+3"
+    },
+    "senses": "darkvision 120 ft.",
+    "passive": 18,
+    "languages": "Giant, Undercommon",
+    "cr": "8",
+    "action": [
+      {
+        "name": "Multiattack",
+        "entries": [
+          "The fomorian attacks twice with its greatclub or makes one greatclub attack and uses Evil Eye once."
+        ]
+      },
+      {
+        "name": "Greatclub",
+        "entries": [
+          "{@atk mw} {@hit 9} to hit, reach 15 ft., one target. {@h}19 ({@damage 3d8 + 6}) bludgeoning damage."
+        ]
+      },
+      {
+        "name": "Evil Eye",
+        "entries": [
+          "The fomorian magically forces a creature it can see within 60 feet of it to make a DC 14 Charisma saving throw. The creature takes 27 ({@damage 6d8}) psychic damage on a failed save, or half as much damage on a successful one."
+        ]
+      },
+      {
+        "name": "Curse of the Evil Eye (Recharges after a Short or Long Rest)",
+        "entries": [
+          "With a stare, the fomorian uses Evil Eye, but on a failed save, the creature is also cursed with magical deformities. While deformed, the creature has its speed halved and has disadvantage on ability checks, saving throws, and attacks based on Strength or Dexterity.",
+          "The transformed creature can repeat the saving throw whenever it finishes a long rest, ending the effect on a success."
+        ]
+      }
+    ],
+    "page": 136,
+    "environment": [
+      "underdark"
+    ],
+    "soundClip": "https://media-waterdeep.cursecdn.com/file-attachments/0/174/fomorian.mp3",
+    "actionTags": [
+      "Multiattack"
+    ],
+    "languageTags": [
+      "GI",
+      "U"
+    ],
+    "senseTags": [
+      "SD"
+    ]
+  },
+  {
+    "name": "Frost Giant",
+    "size": "H",
+    "type": "giant",
+    "source": "MM",
+    "alignment": [
+      "N",
+      "E"
+    ],
+    "ac": [
+      {
+        "ac": 15,
+        "from": [
+          "patchwork armor"
+        ]
+      }
+    ],
+    "hp": {
+      "average": 138,
+      "formula": "12d12 + 60"
+    },
+    "speed": {
+      "walk": 40
+    },
+    "str": 23,
+    "dex": 9,
+    "con": 21,
+    "int": 9,
+    "wis": 10,
+    "cha": 12,
+    "save": {
+      "con": "+8",
+      "wis": "+3",
+      "cha": "+4"
+    },
+    "skill": {
+      "athletics": "+9",
+      "perception": "+3"
+    },
+    "immune": [
+      "cold"
+    ],
+    "passive": 13,
+    "languages": "Giant",
+    "cr": "8",
+    "action": [
+      {
+        "name": "Multiattack",
+        "entries": [
+          "The giant makes two greataxe attacks."
+        ]
+      },
+      {
+        "name": "Greataxe",
+        "entries": [
+          "{@atk mw} {@hit 9} to hit, reach 10 ft., one target. {@h}25 ({@damage 3d12 + 6}) slashing damage."
+        ]
+      },
+      {
+        "name": "Rock",
+        "entries": [
+          "{@atk rw} {@hit 9} to hit, range 60/240 ft., one target. {@h}28 ({@damage 4d10 + 6}) bludgeoning damage."
+        ]
+      }
+    ],
+    "variant": [
+      {
+        "type": "variant",
+        "name": "New Giant Options",
+        "entries": [
+          "Some adult frost giants are skilled hunters who con­struct and hurl nets weighted down with fragments of metal or bone. This ability is represented by the follow­ing action option.",
+          {
+            "name": "Weighted Net",
+            "type": "entries",
+            "entries": [
+              "{@atk rw} +5 to hit, ranged 20/60 ft., one Small, Medium, or Large creature. {@h}The target is {@condition restrained} until it escapes the net. Any creature can use its action to make a DC 17 Strength check to free itself or another creature in the net, ending the effect on a success. Dealing 15 slashing damage to the net (AC 12) destroys the net and frees the target."
+            ]
+          }
+        ],
+        "variantSource": {
+          "source": "SKT",
+          "page": 246
+        }
+      }
+    ],
+    "page": 155,
+    "environment": [
+      "mountain",
+      "arctic"
+    ],
+    "soundClip": "https://media-waterdeep.cursecdn.com/file-attachments/0/178/frost-giant.mp3",
+    "actionTags": [
+      "Multiattack"
+    ],
+    "languageTags": [
+      "GI"
+    ]
+  },
+  {
+    "name": "Galeb Duhr",
+    "size": "M",
+    "type": "elemental",
+    "source": "MM",
+    "alignment": [
+      "N"
+    ],
+    "ac": [
+      {
+        "ac": 16,
+        "from": [
+          "natural armor"
+        ]
+      }
+    ],
+    "hp": {
+      "average": 85,
+      "formula": "9d8 + 45"
+    },
+    "speed": {
+      "walk": {
+        "number": 15,
+        "condition": " (30 ft. when rolling, 60 ft. rolling downhill)"
+      }
+    },
+    "str": 20,
+    "dex": 14,
+    "con": 20,
+    "int": 11,
+    "wis": 12,
+    "cha": 11,
+    "resist": [
+      {
+        "resist": [
+          "bludgeoning",
+          "piercing",
+          "slashing"
+        ],
+        "note": "from nonmagical attacks"
+      }
+    ],
+    "immune": [
+      "poison"
+    ],
+    "conditionImmune": [
+      "exhaustion",
+      "paralyzed",
+      "poisoned",
+      "petrified"
+    ],
+    "senses": "darkvision 60 ft., tremorsense 60 ft.",
+    "passive": 11,
+    "languages": "Terran",
+    "cr": "6",
+    "trait": [
+      {
+        "name": "False Appearance",
+        "entries": [
+          "While the galeb duhr remains motionless, it is indistinguishable from a normal boulder."
+        ]
+      },
+      {
+        "name": "Rolling Charge",
+        "entries": [
+          "If the galeb duhr rolls at least 20 ft. straight toward a target and then hits it with a slam attack on the same turn, the target takes an extra 7 ({@damage 2d6}) bludgeoning damage. If the target is a creature, it must succeed on a DC 16 Strength saving throw or be knocked {@condition prone}."
+        ]
+      }
+    ],
+    "action": [
+      {
+        "name": "Slam",
+        "entries": [
+          "{@atk mw} {@hit 8} to hit, reach 5 ft., one target. {@h}12 ({@damage 2d6 + 5}) bludgeoning damage."
+        ]
+      },
+      {
+        "name": "Animate Boulders (1/Day)",
+        "entries": [
+          "The galeb duhr magically animates up to two boulders it can see within 60 feet of it. A boulder has statistics like those of a galeb duhr, except it has Intelligence 1 and Charisma 1, it can't be {@condition charmed} or {@condition frightened}, and it lacks this action option. A boulder remains animated as long as the galeb duhr maintains concentration, up to 1 minute (as if concentrating on a spell)."
+        ]
+      }
+    ],
+    "page": 139,
+    "environment": [
+      "mountain",
+      "hill"
+    ],
+    "soundClip": "https://media-waterdeep.cursecdn.com/file-attachments/0/179/galeb-duhr.mp3",
+    "traitTags": [
+      "False Appearance"
+    ],
+    "languageTags": [
+      "T"
+    ],
+    "senseTags": [
+      "D",
+      "T"
+    ]
+  },
+  {
+    "name": "Gargoyle",
+    "size": "M",
+    "type": "elemental",
+    "source": "MM",
+    "alignment": [
+      "C",
+      "E"
+    ],
+    "ac": [
+      {
+        "ac": 15,
+        "from": [
+          "natural armor"
+        ]
+      }
+    ],
+    "hp": {
+      "average": 52,
+      "formula": "7d8 + 21"
+    },
+    "speed": {
+      "walk": 30,
+      "fly": 60
+    },
+    "str": 15,
+    "dex": 11,
+    "con": 16,
+    "int": 6,
+    "wis": 11,
+    "cha": 7,
+    "resist": [
+      {
+        "resist": [
+          "bludgeoning",
+          "piercing",
+          "slashing"
+        ],
+        "note": "from nonmagical attacks that aren't adamantine"
+      }
+    ],
+    "immune": [
+      "poison"
+    ],
+    "conditionImmune": [
+      "exhaustion",
+      "petrified",
+      "poisoned"
+    ],
+    "senses": "darkvision 60 ft.",
+    "passive": 10,
+    "languages": "Terran",
+    "cr": "2",
+    "trait": [
+      {
+        "name": "False Appearance",
+        "entries": [
+          "While the gargoyle remains motionless, it is indistinguishable from an inanimate statue."
+        ]
+      }
+    ],
+    "action": [
+      {
+        "name": "Multiattack",
+        "entries": [
+          "The gargoyle makes two attacks: one with its bite and one with its claws."
+        ]
+      },
+      {
+        "name": "Bite",
+        "entries": [
+          "{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) piercing damage."
+        ]
+      },
+      {
+        "name": "Claws",
+        "entries": [
+          "{@atk mw} {@hit 4} to hit, reach 5 ft., one target. {@h}5 ({@damage 1d6 + 2}) slashing damage."
+        ]
+      }
+    ],
+    "page": 140,
+    "environment": [
+      "underdark",
+      "urban"
+    ],
+    "soundClip": "https://media-waterdeep.cursecdn.com/file-attachments/0/180/gargoyle.mp3",
+    "traitTags": [
+      "False Appearance"
+    ],
+    "actionTags": [
+      "Multiattack"
+    ],
+    "languageTags": [
+      "T"
+    ],
+    "senseTags": [
+      "D"
+    ]
   }
 ]
