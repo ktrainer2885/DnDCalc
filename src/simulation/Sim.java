@@ -64,6 +64,11 @@ public class Sim {
         }*/
     }
 
+    /*
+            Separate LevelUp from Creature
+            Player player = new Fighter();
+     */
+
     // Populating Party Group
     private void newParty(int[] fighterArray, int[] rogueArray, int[] clericArray, int[] wizardArray){
         //System.out.println("Party Initiatives");
@@ -71,28 +76,28 @@ public class Sim {
             combatArrayList.add(new Fighter());
             combatArrayList.get(combatArrayList.size()-1).setLevel(fighterArray[i]);
             if (combatArrayList.get(combatArrayList.size()-1).getLevel() > 1) {
-                combatArrayList.get(combatArrayList.size()-1).levelUp();
+                ((Player)combatArrayList.get(combatArrayList.size()-1)).levelUp();
             }
         }
         for (int i = 0; i < rogueArray.length; i++){
             combatArrayList.add(new Rogue());
             combatArrayList.get(combatArrayList.size()-1).setLevel(rogueArray[i]);
             if (combatArrayList.get(combatArrayList.size()-1).getLevel() > 1) {
-                combatArrayList.get(combatArrayList.size()-1).levelUp();
+                ((Player)combatArrayList.get(combatArrayList.size()-1)).levelUp();
             }
         }
         for (int i = 0; i < clericArray.length; i++){
             combatArrayList.add(new Cleric());
             combatArrayList.get(combatArrayList.size()-1).setLevel(clericArray[i]);
             if (combatArrayList.get(combatArrayList.size()-1).getLevel() > 1) {
-                combatArrayList.get(combatArrayList.size()-1).levelUp();
+                ((Player)combatArrayList.get(combatArrayList.size()-1)).levelUp();
             }
         }
         for (int i = 0; i < wizardArray.length; i++){
             combatArrayList.add(new Wizard());
             combatArrayList.get(combatArrayList.size()-1).setLevel(wizardArray[i]);
             if (combatArrayList.get(combatArrayList.size()-1).getLevel() > 1) {
-                combatArrayList.get(combatArrayList.size()-1).levelUp();
+                ((Player)combatArrayList.get(combatArrayList.size()-1)).levelUp();
             }
         }
     }
