@@ -27,7 +27,7 @@ public class Main {
             int orcSize;
             int bugbearSize;
             int simIterations = 10000;
-            ArrayList<Monster> monstersArray = new ArrayList<>();
+            ArrayList<Monster> monstersArrayList = new ArrayList<>();
             int monsterNumber;
 
             ObjectMapper mapper = new ObjectMapper()
@@ -58,11 +58,11 @@ public class Main {
                 monsterNumber = reader.nextInt();
 
                 for (int j = 0; j < monsterNumber; j++) {
-                    monstersArray.add(monsters[i]);
+                    monstersArrayList.add(monsters[i]);
                 }
             }
 
-            Sim sim = new Sim(fighters, rogues, clerics, wizards, monstersArray, simIterations);
+            Sim sim = new Sim(fighters, rogues, clerics, wizards, monstersArrayList, simIterations);
             sim.simulation();
 
         } catch (

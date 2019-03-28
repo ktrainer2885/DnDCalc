@@ -87,7 +87,7 @@ public class MonsterDeserializer extends StdDeserializer<Monster> {
                 profStrings[j] = profStrings[j].trim();
 
                 // adds in proficiency
-                if (profStrings[j].matches("-?\\d+(\\.\\d+)?")){
+                if (profStrings[j].matches("-?\\d+")){
                     prof = Integer.parseInt(profStrings[j]);
                 }
 
