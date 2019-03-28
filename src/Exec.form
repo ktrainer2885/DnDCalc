@@ -11,26 +11,6 @@
       <font name="Sylfaen" size="36" style="1"/>
       <title-color color="-4505783"/>
     </border>
-    <children>
-      <component id="6b583" class="javax.swing.JButton" binding="fightButton" default-binding="true">
-        <constraints border-constraint="South"/>
-        <properties>
-          <background color="-6191816"/>
-          <font size="20" style="1"/>
-          <foreground color="-1"/>
-          <text value="Fight!"/>
-        </properties>
-      </component>
-      <component id="e5229" class="javax.swing.JLabel">
-        <constraints border-constraint="North"/>
-        <properties>
-          <enabled value="true"/>
-          <horizontalAlignment value="0"/>
-          <horizontalTextPosition value="0"/>
-          <maximumSize width="28" height="16"/>
-          <text value="Label"/>
-        </properties>
-      </component>
-    </children>
+    <children/>
   </grid>
 </form>
