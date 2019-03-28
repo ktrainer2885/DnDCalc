@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2E0854; -fx-border-color: #CFB53B; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <Pane layoutY="112.0" prefHeight="288.0" prefWidth="600.0">
+         <children>
+            <Button layoutX="309.0" layoutY="226.0" mnemonicParsing="false" onAction="#loginButtonClicked" text="Fight" />
+            <TextField fx:id="player1Num" alignment="CENTER" layoutX="210.0" layoutY="81.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="player2Num" alignment="CENTER" layoutX="210.0" layoutY="117.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="playerNum" alignment="CENTER" layoutX="210.0" layoutY="44.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="player3Num" alignment="CENTER" layoutX="210.0" layoutY="154.0" prefHeight="10.0" prefWidth="30.0" />
+            <Label layoutX="119.0" layoutY="8.0" prefHeight="26.0" prefWidth="45.0" text="Party" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="playerLvl" alignment="CENTER" layoutX="249.0" layoutY="44.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="player1Lvl" alignment="CENTER" layoutX="249.0" layoutY="81.0" prefHeight="10.0" prefWidth="30.0" />
+            <ChoiceBox fx:id="playerBox" layoutX="81.0" layoutY="43.0" prefHeight="25.0" prefWidth="122.0" />
+            <ChoiceBox fx:id="player1Box" layoutX="81.0" layoutY="80.0" prefHeight="25.0" prefWidth="122.0" />
+            <ChoiceBox fx:id="player2Box" layoutX="81.0" layoutY="117.0" prefHeight="25.0" prefWidth="122.0" />
+            <ChoiceBox fx:id="player3Box" layoutX="81.0" layoutY="154.0" prefHeight="25.0" prefWidth="122.0" />
+            <Label layoutX="218.0" layoutY="9.0" prefHeight="26.0" prefWidth="14.0" text="#" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="253.0" layoutY="9.0" prefHeight="26.0" prefWidth="21.0" text="lvl" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="player2Lvl" alignment="CENTER" layoutX="249.0" layoutY="117.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="player3Lvl" alignment="CENTER" layoutX="249.0" layoutY="154.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="monster1Num" alignment="CENTER" layoutX="430.0" layoutY="81.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="monster2Num" alignment="CENTER" layoutX="430.0" layoutY="117.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="monsterNum" alignment="CENTER" layoutX="430.0" layoutY="44.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="monster3Num" alignment="CENTER" layoutX="430.0" layoutY="154.0" prefHeight="10.0" prefWidth="30.0" />
+            <Label layoutX="330.0" layoutY="9.0" prefHeight="26.0" prefWidth="77.0" text="Monsters" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="monsterLvl" alignment="CENTER" layoutX="469.0" layoutY="44.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="monster1Lvl" alignment="CENTER" layoutX="469.0" layoutY="81.0" prefHeight="10.0" prefWidth="30.0" />
+            <ChoiceBox fx:id="monsterBox" layoutX="301.0" layoutY="44.0" prefHeight="25.0" prefWidth="122.0" />
+            <ChoiceBox fx:id="monster1Box" layoutX="301.0" layoutY="81.0" prefHeight="25.0" prefWidth="122.0" />
+            <ChoiceBox fx:id="monster2Box" layoutX="301.0" layoutY="117.0" prefHeight="25.0" prefWidth="122.0" />
+            <ChoiceBox fx:id="monster3Box" layoutX="301.0" layoutY="154.0" prefHeight="25.0" prefWidth="122.0" />
+            <Label layoutX="438.0" layoutY="9.0" prefHeight="26.0" prefWidth="14.0" text="#" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="473.0" layoutY="9.0" prefHeight="26.0" prefWidth="21.0" text="lvl" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+            <TextField fx:id="monster2Lvl" alignment="CENTER" layoutX="469.0" layoutY="117.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="monster3Lvl" alignment="CENTER" layoutX="469.0" layoutY="154.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="numSims" alignment="CENTER" layoutX="259.0" layoutY="226.0" prefHeight="25.0" prefWidth="45.0" />
+            <Label layoutX="210.0" layoutY="226.0" prefHeight="26.0" prefWidth="45.0" text="Sim #" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="17.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <ImageView fitHeight="206.0" fitWidth="459.0" layoutX="116.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="117.45196533203125">
+         <image>
+            <Image url="@tumblr_n2jpz786du1tt01b5o1_r1_500.gif" />
+         </image>
+      </ImageView>
+      <Label layoutX="90.0" layoutY="14.0" text="Dungeons &amp; Dragons" textAlignment="CENTER">
+         <font>
+            <Font name="System Italic" size="45.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.7247619083949498" radius="0.5">
+               <stops>
+                  <Stop color="#db8b09" />
+                  <Stop color="#b30a0a" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
+      <Label layoutX="183.0" layoutY="70.0" text="A 5th Edition Simulator">
+         <font>
+            <Font size="23.0" />
+         </font>
+         <textFill>
+            <RadialGradient centerX="0.5" centerY="0.7247619083949498" radius="0.5">
+               <stops>
+                  <Stop color="#db8b09" />
+                  <Stop color="#b30a0a" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </textFill>
+      </Label>
+   </children>
+</AnchorPane>
