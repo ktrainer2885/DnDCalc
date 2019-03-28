@@ -1,5 +1,7 @@
 package sample;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -7,12 +9,23 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
+import monster.Monster;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 
 
 public class Controller {
 
+
+    private Monster[] monsters;
+    private ObjectMapper mapper;
+
+
     ObservableList<String> playerList = FXCollections.observableArrayList("Fighter", "Rogue", "Wizard", "Cleric");
-    ObservableList<String> monsterList = FXCollections.observableArrayList("Goblin", "Orc", "Bugbear", "Lich");
+    ArrayList<Monster> monsterArrayList = new ArrayList<>();
+    ObservableList<Monster> monsterList =  FXCollections.observableArrayList(monsterArrayList);
 
     @FXML
     private TextField numSims;
@@ -75,6 +88,9 @@ public class Controller {
 
     @FXML
     private void initialize(){
+        getMonsterList();
+
+
         playerBox.setItems(playerList);
         player1Box.setItems(playerList);
         player2Box.setItems(playerList);
@@ -109,6 +125,27 @@ public class Controller {
     }
 
     public void removeFromPlayerList(){
+
+    }
+
+    public void getMonsterList(){
+        try{
+            mapper = new ObjectMapper()
+                    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+
+            File files = new File("D:\\Workspace\\Java\\DnDCalc\\out\\production\\DnDCalc\\files\\monsters\\jsonBigTest.json");
+            System.out.println(files.getCanonicalPath());
+            monsters = mapper.readValue(files, Monster[].class);
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+
+        for (Monster m: monsters
+             ) {
+            monsterArrayList.add(m);
+        }
+        monsterList =  FXCollections.observableArrayList(monsterArrayList);
 
     }
 

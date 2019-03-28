@@ -15,9 +15,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-//        JsonTest test = new JsonTest();
+        JsonTest test = new JsonTest();
 
-        try {
+/*        try {
             int size;
             // Array size is the amount of class specific characters within the party
             // Array data contains the level number
@@ -71,6 +71,7 @@ public class Main {
                 IOException e) {
             e.printStackTrace();
         }
+*/
 
     }
 

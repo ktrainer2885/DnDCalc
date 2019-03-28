@@ -42,6 +42,10 @@ public class Monster extends Creature {
 
     @Override
     public void chooseAction(ArrayList<Creature> combatList) {
+    }
 
+    @Override public String toString() {
+        return name;
     }
 }
+
