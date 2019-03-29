@@ -25,6 +25,12 @@ public class Sim {
 
     private ArrayList<Monster> monstersArray;
 
+    public Sim(int simIterations, ArrayList<Creature> combatArrayList){
+        this.combatArrayList = combatArrayList;
+        this.simIterations = simIterations;
+        this.winNum = 0;
+    }
+
     public Sim(int[] fighterArray, int[] rogueArray, int[] clericArray, int[] wizardArray,
                ArrayList<Monster> monstersArray, int simIterations){
         this.combatArrayList = new ArrayList<>();
@@ -41,7 +47,17 @@ public class Sim {
 
         this.monstersArray = monstersArray;
     }
-    
+
+    private void newSimulation(){
+
+        for (Creature c: combatArrayList
+             ) {
+            c.setHp(c.getMaxHp());
+        }
+    }
+
+
+
     // Populating Encounter Group
     private void newEncounter(){
 
@@ -261,4 +277,21 @@ public class Sim {
         System.out.println("\nWin Rate: " + String.format("%.2f", winRate) +"%");
 
     }
+
+    public double simulationWinRate(){
+        for (int i = 0; i < simIterations; i++) {
+
+            newSimulation();
+
+            setCombat();
+            whoWon();
+
+        }
+
+        calcWinRate(winNum, simIterations);
+
+        return winRate;
+
+    }
+
 }

@@ -10,6 +10,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import monster.Monster;
 import player.*;
+import simulation.Sim;
 
 import java.io.File;
 import java.io.IOException;
@@ -29,6 +30,8 @@ public class Controller {
     ArrayList<Wizard> wizards;
     Integer numberPlayers;
     Integer numberLevels;
+    Integer numberMonsters;
+    Integer numberSimulations;
 
     ArrayList<Creature> combatArrayList = new ArrayList<>();
 
@@ -112,20 +115,30 @@ public class Controller {
     }
 
     private void showAlertWithoutHeaderText() {
+
+        Sim sim = new Sim(numberSimulations,combatArrayList);
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Simulation");
 
         // Header Text: null
         alert.setHeaderText(null);
         //alert.setContentText(playerBox.getValue().toString());
-        alert.setContentText(combatArrayList.toString());
+        alert.setContentText("Win Rate: " + sim.simulationWinRate());
 
-        combatArrayList.clear();
         alert.showAndWait();
     }
 
     public void loginButtonClicked(){
-        addPlayers();
+        numberSimulations = Integer.parseInt(numSims.getText());
+        combatArrayList.clear();
+        addPlayer0();
+        addPlayer1();
+        addPlayer2();
+        addPlayer3();
+        addMonster0();
+        addMonster1();
+        addMonster2();
+        addMonster3();
         //System.out.println("Dance Monkeys!");
         //System.out.println(playerNum.getText());
         //System.out.println(playerBox.getValue());
@@ -161,7 +174,7 @@ public class Controller {
 
     }
 
-    public void addPlayers(){
+    public void addPlayer0(){
         String type = playerBox.getValue().toString();
         numberPlayers = Integer.parseInt(playerNum.getText());
         numberLevels = Integer.parseInt(playerLvl.getText());
@@ -180,11 +193,104 @@ public class Controller {
         if (type.equalsIgnoreCase("cleric")){
             addPlayerToCombatList(type, numberPlayers, numberLevels);
         }
-
-
     }
 
+    public void addPlayer1(){
+        String type = player1Box.getValue().toString();
+        numberPlayers = Integer.parseInt(player1Num.getText());
+        numberLevels = Integer.parseInt(player1Lvl.getText());
 
+
+        if (type.equalsIgnoreCase("fighter")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+
+        if (type.equalsIgnoreCase("rogue")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+        if (type.equalsIgnoreCase("wizard")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+        if (type.equalsIgnoreCase("cleric")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+    }
+
+    public void addPlayer2(){
+        String type = player2Box.getValue().toString();
+        numberPlayers = Integer.parseInt(player2Num.getText());
+        numberLevels = Integer.parseInt(player2Lvl.getText());
+
+
+        if (type.equalsIgnoreCase("fighter")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+
+        if (type.equalsIgnoreCase("rogue")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+        if (type.equalsIgnoreCase("wizard")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+        if (type.equalsIgnoreCase("cleric")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+    }
+
+    public void addPlayer3(){
+        String type = player3Box.getValue().toString();
+        numberPlayers = Integer.parseInt(player3Num.getText());
+        numberLevels = Integer.parseInt(player3Lvl.getText());
+
+
+        if (type.equalsIgnoreCase("fighter")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+
+        if (type.equalsIgnoreCase("rogue")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+        if (type.equalsIgnoreCase("wizard")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+        if (type.equalsIgnoreCase("cleric")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+    }
+
+    public void addMonster0(){
+        Monster monster = (Monster) monsterBox.getValue();
+        numberMonsters = Integer.parseInt(monsterNum.getText());
+
+        for (int i = 0; i < numberMonsters; i++) {
+            combatArrayList.add(monster);
+        }
+    }
+
+    public void addMonster1(){
+        Monster monster = (Monster) monster1Box.getValue();
+        numberMonsters = Integer.parseInt(monster1Num.getText());
+
+        for (int i = 0; i < numberMonsters; i++) {
+            combatArrayList.add(monster);
+        }
+    }
+    public void addMonster2(){
+        Monster monster = (Monster) monster2Box.getValue();
+        numberMonsters = Integer.parseInt(monster2Num.getText());
+
+        for (int i = 0; i < numberMonsters; i++) {
+            combatArrayList.add(monster);
+        }
+    }
+    public void addMonster3(){
+        Monster monster = (Monster) monster3Box.getValue();
+        numberMonsters = Integer.parseInt(monster3Num.getText());
+
+        for (int i = 0; i < numberMonsters; i++) {
+            combatArrayList.add(monster);
+        }
+    }
     public void addPlayerToCombatList(String type, Integer numberPlayers, Integer numberLevels){
         Player player = new Fighter();
 
@@ -209,6 +315,7 @@ public class Controller {
             combatArrayList.add(player);
         }
     }
+
     static public int[] selectClass(String c) {
         int[] classArray;
         int size;
