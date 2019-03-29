@@ -6,9 +6,6 @@ import static common.Commands.genAttribute;
 
 public abstract class Player extends Creature {
 
-    protected int level;            // Class level
-
-
 
     public void genAttributes() {
         setStr(genAttribute());

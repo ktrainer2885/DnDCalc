@@ -29,6 +29,7 @@ public class Fighter extends Player {
         this.alive = true;
         this.damConst = getStrMod();
         this.secondWindUses = 1;
+        this.level = 1;
     }
         
     // Modifier for AC if Fighter Style is Defense
@@ -49,17 +50,22 @@ public class Fighter extends Player {
 
     */
     public void levelUp() {
-        int level = this.getLevel();
-        int hp = this.getHp();
+        Integer level = this.getLevel();
+        Integer hp = this.getHp();
 
-        // Hit Points
+        // Ricardo's Version Does not level up. It checks level.
+/*        // Hit Points
         if (level > 1) {
             // Start From Level 2
             for (int x = 2; x <= level; x++) {
                 // Dice type different for other classes
                 this.setHp(hp + rollHP(1,10,this.getConMod()));
-
             }
+            */
+
+        if (level >= 1 && level < 20) {
+            this.setHp(hp + rollHP(1,10,this.getConMod()));
+            this.setMaxHp(this.getHp());
         }
 
         // Proficiency
