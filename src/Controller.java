@@ -40,8 +40,6 @@ public class Controller {
     ArrayList<Monster> monsterArrayList = new ArrayList<>();
     ObservableList<Monster> monsterList =  FXCollections.observableArrayList(monsterArrayList);
 
-    @FXML
-    private TextField numSims;
 
     @FXML
     private ChoiceBox playerBox;
@@ -75,29 +73,21 @@ public class Controller {
     private ChoiceBox monsterBox;
     @FXML
     private TextField monsterNum;
-    @FXML
-    private TextField monsterLvl;
 
     @FXML
     private ChoiceBox monster1Box;
     @FXML
     private TextField monster1Num;
-    @FXML
-    private TextField monster1Lvl;
 
     @FXML
     private ChoiceBox monster2Box;
     @FXML
     private TextField monster2Num;
-    @FXML
-    private TextField monster2Lvl;
 
     @FXML
     private ChoiceBox monster3Box;
     @FXML
     private TextField monster3Num;
-    @FXML
-    private TextField monster3Lvl;
 
     @FXML
     private void initialize(){
@@ -148,13 +138,6 @@ public class Controller {
         showAlertWithoutHeaderText();
     }
 
-    public void removeFromMonsterList(){
-
-    }
-
-    public void removeFromPlayerList(){
-
-    }
 
     public void getMonsterList(){
         try{
