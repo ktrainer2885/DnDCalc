@@ -15,9 +15,22 @@ public class Monster extends Creature {
 
     public Monster(){}
 
+    public Monster(Monster copy){
+        this.name = copy.name;
+        setAttributes(copy.str,copy.dex,copy.con,copy.intel,copy.wis,copy.cha);
+        this.hp = copy.hp;
+        this.setMaxHp(this.hp);
+        this.ac = copy.ac;
+        this.prof = copy.prof;
+        this.weap = copy.weap;
+        setDamageDice();
+        this.alive = true;
+        this.damConst = copy.damConst;
+    }
+
     public Monster(String name, Integer ac, Integer hpDiceNum, Integer hpDiceType, Integer hpConstant, Integer prof,
                    Integer str, Integer dex, Integer con, Integer intel, Integer wis, Integer cha,
-                   String weapon, Integer damCont){
+                   String weapon, Integer damConst){
 
         this.name = name;
         setAttributes(str,dex,con,intel,wis,cha);
@@ -28,8 +41,7 @@ public class Monster extends Creature {
         this.weap = weapon;
         setDamageDice();
         this.alive = true;
-        this.damConst = damCont;
-
+        this.damConst = damConst;
     }
 
     public String getName() {

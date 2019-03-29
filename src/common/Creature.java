@@ -119,7 +119,7 @@ public abstract class Creature implements Comparable<Creature> {
         return alive;
     }
 
-    private void setAlive(boolean alive) { this.alive = alive; }
+    public void setAlive(boolean alive) { this.alive = alive; }
 
     public Integer getInit() {
         return init;

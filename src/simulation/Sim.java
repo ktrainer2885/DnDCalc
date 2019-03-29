@@ -53,6 +53,7 @@ public class Sim {
         for (Creature c: combatArrayList
              ) {
             c.setHp(c.getMaxHp());
+            c.setAlive(true);
         }
     }
 

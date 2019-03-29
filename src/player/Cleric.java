@@ -39,9 +39,9 @@ public class Cleric extends Player {
 
     */
     public void levelUp() {
-        Integer level = this.getLevel();
-        Integer hp = this.getHp();
+        setLevel(getLevel() +1);
 
+/*
         // Hit Points
         if (level > 1) {
             // Start From Level 2
@@ -50,6 +50,11 @@ public class Cleric extends Player {
                 this.setHp(hp + rollHP(1,8,this.getConMod()));
 
             }
+*/
+
+        if (level > 1 && level < 20) {
+            this.setHp(this.getHp() + rollHP(1,8,this.getConMod()));
+            this.setMaxHp(this.getHp());
         }
 
         // Proficiency

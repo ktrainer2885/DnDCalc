@@ -50,8 +50,7 @@ public class Fighter extends Player {
 
     */
     public void levelUp() {
-        Integer level = this.getLevel();
-        Integer hp = this.getHp();
+         setLevel(getLevel() +1);
 
         // Ricardo's Version Does not level up. It checks level.
 /*        // Hit Points
@@ -63,8 +62,8 @@ public class Fighter extends Player {
             }
             */
 
-        if (level >= 1 && level < 20) {
-            this.setHp(hp + rollHP(1,10,this.getConMod()));
+        if (level > 1 && level < 20) {
+            this.setHp(this.getHp() + rollHP(1,10,this.getConMod()));
             this.setMaxHp(this.getHp());
         }
 

@@ -124,8 +124,8 @@ public class Controller {
         // Header Text: null
         alert.setHeaderText(null);
  //       alert.setContentText(playerBox.getValue().toString());
-        //alert.setContentText("Win Rate: " + sim.simulationWinRate());
-        alert.setContentText(combatArrayList.toString());
+        alert.setContentText("\nWin Rate: " + String.format("%.2f", sim.simulationWinRate()) +"%");
+ //       alert.setContentText(combatArrayList.toString());
 
         alert.showAndWait();
     }
@@ -139,9 +139,9 @@ public class Controller {
         addPlayer(player2Box,player2Num,player2Lvl);
         addPlayer(player3Box,player3Num,player3Lvl);
         addMonster(monsterBox, monsterNum);
-/*        addMonster1();
-        addMonster2();
-        addMonster3();*/
+        addMonster(monster1Box, monster1Num);
+        addMonster(monster2Box, monster2Num);
+        addMonster(monster3Box, monster3Num);
         //System.out.println("Dance Monkeys!");
         //System.out.println(playerNum.getText());
         //System.out.println(playerBox.getValue());
@@ -223,34 +223,10 @@ public class Controller {
         numberMonsters = Integer.parseInt(monsterNum.getText());
 
         for (int i = 0; i < numberMonsters; i++) {
-            combatArrayList.add(monster);
+            combatArrayList.add(new Monster(monster));
         }
     }
 
-    public void addMonster1(){
-        Monster monster = (Monster) monster1Box.getValue();
-        numberMonsters = Integer.parseInt(monster1Num.getText());
-
-        for (int i = 0; i < numberMonsters; i++) {
-            combatArrayList.add(monster);
-        }
-    }
-    public void addMonster2(){
-        Monster monster = (Monster) monster2Box.getValue();
-        numberMonsters = Integer.parseInt(monster2Num.getText());
-
-        for (int i = 0; i < numberMonsters; i++) {
-            combatArrayList.add(monster);
-        }
-    }
-    public void addMonster3(){
-        Monster monster = (Monster) monster3Box.getValue();
-        numberMonsters = Integer.parseInt(monster3Num.getText());
-
-        for (int i = 0; i < numberMonsters; i++) {
-            combatArrayList.add(monster);
-        }
-    }
 
     public boolean checkMonsterBoxValid(ChoiceBox monsterBox, TextField monsterNum){
         if (monsterBox.getValue() == null){
@@ -281,7 +257,7 @@ public class Controller {
                 player = new Wizard();
             }
 
-            for (int j = 0; j < numberLevels; j++) {
+            for (int j = 1; j < numberLevels; j++) { // int j = 1 because chars start at level 1
                 player.levelUp();
             }
             combatArrayList.add(player);
