@@ -25,7 +25,7 @@ public class JsonTest {
             System.out.println(monster.getProf());
             System.out.println(monster.attackDamage());
 
-            File files = new File("files/monsters/jsonBigTest.json");
+            File files = new File("files/monsters/BiggerJsonTest2.json");
             System.out.println(files.getCanonicalPath());
             monsters = mapper.readValue(files, Monster[].class);
 
