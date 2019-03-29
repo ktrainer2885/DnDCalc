@@ -161,7 +161,7 @@ public class Controller {
             mapper = new ObjectMapper()
                     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-            File files = new File("files\\monsters\\jsonBigTest.json");
+            File files = new File("files\\monsters\\BiggerJsonTest2.json");
             System.out.println(files.getCanonicalPath());
             monsters = mapper.readValue(files, Monster[].class);
         } catch (
