@@ -1,5 +1,6 @@
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import common.Commands;
 import common.Creature;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -31,7 +32,7 @@ public class Controller {
     Integer numberPlayers;
     Integer numberLevels;
     Integer numberMonsters;
-    Integer numberSimulations;
+    Integer numberSimulations = 99999;
 
     ArrayList<Creature> combatArrayList = new ArrayList<>();
 
@@ -122,23 +123,25 @@ public class Controller {
 
         // Header Text: null
         alert.setHeaderText(null);
-        //alert.setContentText(playerBox.getValue().toString());
-        alert.setContentText("Win Rate: " + sim.simulationWinRate());
+ //       alert.setContentText(playerBox.getValue().toString());
+        //alert.setContentText("Win Rate: " + sim.simulationWinRate());
+        alert.setContentText(combatArrayList.toString());
 
         alert.showAndWait();
     }
 
     public void loginButtonClicked(){
-        numberSimulations = Integer.parseInt(numSims.getText());
+
+//        numberSimulations = Integer.parseInt(numSims.getText());
         combatArrayList.clear();
-        addPlayer0();
-        addPlayer1();
-        addPlayer2();
-        addPlayer3();
-        addMonster0();
-        addMonster1();
+        addPlayer(playerBox,playerNum,playerLvl);
+        addPlayer(player1Box,player1Num,player1Lvl);
+        addPlayer(player2Box,player2Num,player2Lvl);
+        addPlayer(player3Box,player3Num,player3Lvl);
+        addMonster(monsterBox, monsterNum);
+/*        addMonster1();
         addMonster2();
-        addMonster3();
+        addMonster3();*/
         //System.out.println("Dance Monkeys!");
         //System.out.println(playerNum.getText());
         //System.out.println(playerBox.getValue());
@@ -174,16 +177,18 @@ public class Controller {
 
     }
 
-    public void addPlayer0(){
+    public void addPlayer(ChoiceBox playerBox, TextField playerNum, TextField playerLvl){
+
+        if (!checkPlayerBoxValid(playerBox, playerNum, playerLvl)) {
+            return;
+        }
         String type = playerBox.getValue().toString();
         numberPlayers = Integer.parseInt(playerNum.getText());
         numberLevels = Integer.parseInt(playerLvl.getText());
 
-
         if (type.equalsIgnoreCase("fighter")){
             addPlayerToCombatList(type, numberPlayers, numberLevels);
         }
-
         if (type.equalsIgnoreCase("rogue")){
             addPlayerToCombatList(type, numberPlayers, numberLevels);
         }
@@ -194,71 +199,26 @@ public class Controller {
             addPlayerToCombatList(type, numberPlayers, numberLevels);
         }
     }
-
-    public void addPlayer1(){
-        String type = player1Box.getValue().toString();
-        numberPlayers = Integer.parseInt(player1Num.getText());
-        numberLevels = Integer.parseInt(player1Lvl.getText());
-
-
-        if (type.equalsIgnoreCase("fighter")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+    public boolean checkPlayerBoxValid(ChoiceBox playerBox, TextField playerNum, TextField playerLvl){
+        if (playerBox.getValue() == null){
+            return false;
         }
-
-        if (type.equalsIgnoreCase("rogue")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        if (playerNum.getText() == null || !Commands.isNumeric(playerNum.getText())){
+            return false;
         }
-        if (type.equalsIgnoreCase("wizard")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        if (playerLvl.getText() == null || !Commands.isNumeric(playerLvl.getText())){
+            return false;
         }
-        if (type.equalsIgnoreCase("cleric")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        else {
+            return true;
         }
     }
 
-    public void addPlayer2(){
-        String type = player2Box.getValue().toString();
-        numberPlayers = Integer.parseInt(player2Num.getText());
-        numberLevels = Integer.parseInt(player2Lvl.getText());
-
-
-        if (type.equalsIgnoreCase("fighter")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+    public void addMonster(ChoiceBox monsterBox, TextField monsterNum){
+        if (!checkMonsterBoxValid(monsterBox, monsterNum)) {
+            return;
         }
 
-        if (type.equalsIgnoreCase("rogue")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
-        }
-        if (type.equalsIgnoreCase("wizard")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
-        }
-        if (type.equalsIgnoreCase("cleric")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
-        }
-    }
-
-    public void addPlayer3(){
-        String type = player3Box.getValue().toString();
-        numberPlayers = Integer.parseInt(player3Num.getText());
-        numberLevels = Integer.parseInt(player3Lvl.getText());
-
-
-        if (type.equalsIgnoreCase("fighter")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
-        }
-
-        if (type.equalsIgnoreCase("rogue")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
-        }
-        if (type.equalsIgnoreCase("wizard")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
-        }
-        if (type.equalsIgnoreCase("cleric")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
-        }
-    }
-
-    public void addMonster0(){
         Monster monster = (Monster) monsterBox.getValue();
         numberMonsters = Integer.parseInt(monsterNum.getText());
 
@@ -289,6 +249,18 @@ public class Controller {
 
         for (int i = 0; i < numberMonsters; i++) {
             combatArrayList.add(monster);
+        }
+    }
+
+    public boolean checkMonsterBoxValid(ChoiceBox monsterBox, TextField monsterNum){
+        if (monsterBox.getValue() == null){
+            return false;
+        }
+        if (monsterNum.getText() == null || !Commands.isNumeric(monsterNum.getText())){
+            return false;
+        }
+        else {
+            return true;
         }
     }
     public void addPlayerToCombatList(String type, Integer numberPlayers, Integer numberLevels){
