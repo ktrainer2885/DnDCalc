@@ -120,6 +120,7 @@ public class Controller {
         //alert.setContentText(playerBox.getValue().toString());
         alert.setContentText(combatArrayList.toString());
 
+        combatArrayList.clear();
         alert.showAndWait();
     }
 
@@ -161,28 +162,53 @@ public class Controller {
     }
 
     public void addPlayers(){
-        Player player;
+        String type = playerBox.getValue().toString();
         numberPlayers = Integer.parseInt(playerNum.getText());
         numberLevels = Integer.parseInt(playerLvl.getText());
 
 
-        if (playerBox.getValue().toString().equalsIgnoreCase("fighter")){
-
-            for (int i = 0; i < numberPlayers; i++){
-
-                player = new Fighter();
-
-                for (int j = 0; j < numberLevels; j++) {
-                    player.levelUp();
-                }
-                combatArrayList.add(player);
-            }
+        if (type.equalsIgnoreCase("fighter")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
         }
 
+        if (type.equalsIgnoreCase("rogue")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+        if (type.equalsIgnoreCase("wizard")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
+        if (type.equalsIgnoreCase("cleric")){
+            addPlayerToCombatList(type, numberPlayers, numberLevels);
+        }
 
 
     }
 
+
+    public void addPlayerToCombatList(String type, Integer numberPlayers, Integer numberLevels){
+        Player player = new Fighter();
+
+        for (int i = 0; i < numberPlayers; i++){
+
+            if(type.equalsIgnoreCase("fighter")){
+                player = new Fighter();
+            }
+            if(type.equalsIgnoreCase("rogue")){
+                player = new Rogue();
+            }
+            if(type.equalsIgnoreCase("cleric")){
+                player = new Cleric();
+            }
+            if(type.equalsIgnoreCase("wizard")){
+                player = new Wizard();
+            }
+
+            for (int j = 0; j < numberLevels; j++) {
+                player.levelUp();
+            }
+            combatArrayList.add(player);
+        }
+    }
     static public int[] selectClass(String c) {
         int[] classArray;
         int size;

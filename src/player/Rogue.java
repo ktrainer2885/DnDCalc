@@ -26,6 +26,7 @@ public class Rogue extends Player {
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
+        this.level = 1;
     }
 
     @Override
@@ -36,8 +37,8 @@ public class Rogue extends Player {
 
     */
     public void levelUp() {
-        int level = this.getLevel();
-        int hp = this.getHp();
+        Integer level = this.getLevel();
+        Integer hp = this.getHp();
 
         // Hit Points
         if (level > 1) {

@@ -17,6 +17,7 @@ public class Wizard extends Player {
 
         //genAttributes();
         genPriorityAttributes();
+        this.level = 1;
         this.hp = 6 + getConMod(); // starting HP
         this.maxHp = hp;
         this.prof = 2; // Starting Bonus Proficiency
@@ -30,8 +31,8 @@ public class Wizard extends Player {
 
     @Override
     public void levelUp() {
-        int level = this.getLevel();
-        int hp = this.getHp();
+        Integer level = this.getLevel();
+        Integer hp = this.getHp();
 
         // Hit Points
         if (level > 1) {
