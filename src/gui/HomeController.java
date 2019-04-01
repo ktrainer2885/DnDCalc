@@ -1,3 +1,11 @@
+package gui;
+
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.text.FontSmoothingType;
+import javafx.stage.Stage;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import common.Commands;
@@ -12,15 +20,18 @@ import javafx.scene.control.TextField;
 import monster.Monster;
 import player.*;
 import simulation.Sim;
-
+import javafx.scene.image.Image;
+import javafx.scene.ImageCursor;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+public class HomeController {
 
-public class Controller {
-
+    public static Scene ISController;
+    public static Stage stage;
+    public static Integer item;
 
     private Monster[] monsters;
     private ObjectMapper mapper;
@@ -47,6 +58,10 @@ public class Controller {
     private TextField playerNum;
     @FXML
     private TextField playerLvl;
+    public static String playerItemA;
+    public static String playerItemB;
+    public static String playerTextA;
+    public static String playerTextB;
 
     @FXML
     private ChoiceBox player1Box;
@@ -54,6 +69,10 @@ public class Controller {
     private TextField player1Num;
     @FXML
     private TextField player1Lvl;
+    public static String player1ItemA;
+    public static String player1ItemB;
+    public static String player1TextA;
+    public static String player1TextB;
 
     @FXML
     private ChoiceBox player2Box;
@@ -61,6 +80,10 @@ public class Controller {
     private TextField player2Num;
     @FXML
     private TextField player2Lvl;
+    public static String player2ItemA;
+    public static String player2ItemB;
+    public static String player2TextA;
+    public static String player2TextB;
 
     @FXML
     private ChoiceBox player3Box;
@@ -68,6 +91,10 @@ public class Controller {
     private TextField player3Num;
     @FXML
     private TextField player3Lvl;
+    public static String player3ItemA;
+    public static String player3ItemB;
+    public static String player3TextA;
+    public static String player3TextB;
 
     @FXML
     private ChoiceBox monsterBox;
@@ -91,8 +118,8 @@ public class Controller {
 
     @FXML
     private void initialize(){
-        getMonsterList();
 
+        getMonsterList();
 
         playerBox.setItems(playerList);
         player1Box.setItems(playerList);
@@ -120,7 +147,7 @@ public class Controller {
         alert.showAndWait();
     }
 
-    public void loginButtonClicked(){
+    public void fightButtonClicked(){
 
 //        numberSimulations = Integer.parseInt(numSims.getText());
         combatArrayList.clear();
@@ -136,6 +163,149 @@ public class Controller {
         //System.out.println(playerNum.getText());
         //System.out.println(playerBox.getValue());
         showAlertWithoutHeaderText();
+    }
+
+    public void itemButtonClicked() {
+        try {
+            item = 0;
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemSelect.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+
+            ISController = new Scene(root1, 245, 249);
+            Image image = new Image("file:///../img/sword.png");
+            ISController.setCursor(new ImageCursor(image));
+
+            stage = new Stage();
+            stage.setTitle("Items");
+            stage.setScene(ISController);
+            stage.show();
+
+        }catch (Exception e){
+            System.out.println("Can't load new window!");
+        }
+    }
+    public void itemButton1Clicked(){
+        try {
+            item = 1;
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemSelect.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+
+            ISController = new Scene(root1, 245, 249);
+            Image image = new Image("file:///../img/sword.png");
+            ISController.setCursor(new ImageCursor(image));
+
+            stage = new Stage();
+            stage.setTitle("Items");
+            stage.setScene(ISController);
+            stage.show();
+
+        }catch (Exception e){
+            System.out.println("Can't load new window!");
+        }
+    }
+
+    public void itemButton2Clicked(){
+        try {
+            item = 2;
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemSelect.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+
+            ISController = new Scene(root1, 245, 249);
+            Image image = new Image("file:///../img/sword.png");
+            ISController.setCursor(new ImageCursor(image));
+
+            stage = new Stage();
+            stage.setTitle("Items");
+            stage.setScene(ISController);
+            stage.show();
+
+        }catch (Exception e){
+            System.out.println("Can't load new window!");
+        }
+    }
+
+    public void itemButton3Clicked(){
+        try {
+            item = 3;
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemSelect.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+
+            ISController = new Scene(root1, 245, 249);
+            Image image = new Image("file:///../img/sword.png");
+            ISController.setCursor(new ImageCursor(image));
+
+            stage = new Stage();
+            stage.setTitle("Items");
+            stage.setScene(ISController);
+            stage.show();
+
+        }catch (Exception e){
+            System.out.println("Can't load new window!");
+        }
+    }
+
+    public void setItemA(String itemA){
+        playerItemA = itemA;
+    }
+
+    public void setItemB(String itemB){
+        playerItemB = itemB;
+    }
+
+    public void setTextA(String textA){
+        playerTextA = textA;
+    }
+
+    public void setTextB(String textB){
+        playerTextB = textB;
+    }
+
+    public void setItem1A(String itemA){
+        player1ItemA = itemA;
+    }
+
+    public void setItem1B(String itemB){
+        player1ItemB = itemB;
+    }
+
+    public void setText1A(String textA){
+        player1TextA = textA;
+    }
+
+    public void setText1B(String textB){
+        player1TextB = textB;
+    }
+
+    public void setItem2A(String itemA){
+        player2ItemA = itemA;
+    }
+
+    public void setItem2B(String itemB){
+        player2ItemB = itemB;
+    }
+
+    public void setText2A(String textA){
+        player2TextA = textA;
+    }
+
+    public void setText2B(String textB){
+        player2TextB = textB;
+    }
+
+    public void setItem3A(String itemA){
+        player3ItemA = itemA;
+    }
+
+    public void setItem3B(String itemB){
+        player3ItemB = itemB;
+    }
+
+    public void setText3A(String textA){
+        player3TextA = textA;
+    }
+
+    public void setText3B(String textB){
+        player3TextB = textB;
     }
 
 

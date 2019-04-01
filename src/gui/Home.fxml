@@ -12,11 +12,16 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2E0854; -fx-border-color: #CFB53B; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #2E0854; -fx-border-color: #CFB53B; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HomeController">
    <children>
       <Pane layoutY="112.0" prefHeight="288.0" prefWidth="600.0">
          <children>
-            <Button layoutX="268.0" layoutY="224.0" mnemonicParsing="false" onAction="#loginButtonClicked" text="Fight" />
+            <ImageView fitHeight="261.0" fitWidth="432.0" layoutX="72.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../img/castle.png" />
+               </image>
+            </ImageView>
+            <Button layoutX="268.0" layoutY="224.0" mnemonicParsing="false" onAction="#fightButtonClicked" text="Fight" />
             <TextField fx:id="player1Num" alignment="CENTER" layoutX="220.0" layoutY="81.0" prefHeight="10.0" prefWidth="30.0" />
             <TextField fx:id="player2Num" alignment="CENTER" layoutX="220.0" layoutY="117.0" prefHeight="10.0" prefWidth="30.0" />
             <TextField fx:id="playerNum" alignment="CENTER" layoutX="220.0" layoutY="44.0" prefHeight="10.0" prefWidth="30.0" />
@@ -26,8 +31,8 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="playerLvl" alignment="CENTER" layoutX="259.0" layoutY="44.0" prefHeight="10.0" prefWidth="30.0" />
-            <TextField fx:id="player1Lvl" alignment="CENTER" layoutX="259.0" layoutY="81.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="playerLvl" alignment="CENTER" layoutX="257.0" layoutY="44.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="player1Lvl" alignment="CENTER" layoutX="257.0" layoutY="81.0" prefHeight="10.0" prefWidth="30.0" />
             <ChoiceBox fx:id="playerBox" layoutX="91.0" layoutY="43.0" prefHeight="25.0" prefWidth="122.0" />
             <ChoiceBox fx:id="player1Box" layoutX="91.0" layoutY="80.0" prefHeight="25.0" prefWidth="122.0" />
             <ChoiceBox fx:id="player2Box" layoutX="91.0" layoutY="117.0" prefHeight="25.0" prefWidth="122.0" />
@@ -42,8 +47,8 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <TextField fx:id="player2Lvl" alignment="CENTER" layoutX="259.0" layoutY="117.0" prefHeight="10.0" prefWidth="30.0" />
-            <TextField fx:id="player3Lvl" alignment="CENTER" layoutX="259.0" layoutY="154.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="player2Lvl" alignment="CENTER" layoutX="257.0" layoutY="117.0" prefHeight="10.0" prefWidth="30.0" />
+            <TextField fx:id="player3Lvl" alignment="CENTER" layoutX="257.0" layoutY="154.0" prefHeight="10.0" prefWidth="30.0" />
             <TextField fx:id="monster1Num" alignment="CENTER" layoutX="473.0" layoutY="81.0" prefHeight="10.0" prefWidth="30.0" />
             <TextField fx:id="monster2Num" alignment="CENTER" layoutX="473.0" layoutY="117.0" prefHeight="10.0" prefWidth="30.0" />
             <TextField fx:id="monsterNum" alignment="CENTER" layoutX="473.0" layoutY="44.0" prefHeight="10.0" prefWidth="30.0" />
@@ -62,11 +67,15 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
+            <Button layoutX="292.0" layoutY="44.0" mnemonicParsing="false" onAction="#itemButtonClicked" prefHeight="25.0" prefWidth="45.0" text="Items" />
+            <Button layoutX="293.0" layoutY="80.0" mnemonicParsing="false" onAction="#itemButton1Clicked" prefHeight="25.0" prefWidth="45.0" text="Items" />
+            <Button layoutX="293.0" layoutY="117.0" mnemonicParsing="false" onAction="#itemButton2Clicked" prefHeight="25.0" prefWidth="45.0" text="Items" />
+            <Button layoutX="293.0" layoutY="154.0" mnemonicParsing="false" onAction="#itemButton3Clicked" prefHeight="25.0" prefWidth="45.0" text="Items" />
          </children>
       </Pane>
       <ImageView fitHeight="206.0" fitWidth="459.0" layoutX="116.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="117.45196533203125">
          <image>
-            <Image url="@tumblr_n2jpz786du1tt01b5o1_r1_500.gif" />
+            <Image url="@../img/dragon.gif" />
          </image>
       </ImageView>
       <Label layoutX="90.0" layoutY="14.0" text="Dungeons &amp; Dragons" textAlignment="CENTER">
