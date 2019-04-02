@@ -23,7 +23,6 @@ public class WeaponDeserializer extends StdDeserializer<Item> {
         String name;
         String type;
         String rarity;
-        String value;
         String weight;
         String technology;
         Boolean weapon;
@@ -37,13 +36,13 @@ public class WeaponDeserializer extends StdDeserializer<Item> {
 
         JsonNode jsonNode = jsonParser.getCodec().readTree(jsonParser);
         name = (String) jsonNode.get("name").asText();
+        System.out.println(name);
         type = (String) jsonNode.get("type").asText();
         technology = (String) jsonNode.get("technology").asText();
         weapon = (Boolean) jsonNode.get("weapon").asBoolean();
         weaponCategory = (String) jsonNode.get("weaponCategory").asText();
         age = (String) jsonNode.get("age").asText();
         rarity = (String) jsonNode.get("rarity").asText();
-        value = (String) jsonNode.get("value").asText();
         weight = (String) jsonNode.get("weight").asText();
         //dmg1 = (String) jsonNode.get("dmg1").asText();
         dmgType = (String) jsonNode.get("dmgType").asText();
@@ -51,7 +50,7 @@ public class WeaponDeserializer extends StdDeserializer<Item> {
         range = (String) jsonNode.get("range").asText();
         reload = (String) jsonNode.get("reload").asText();
 
-        weaponObject = new Weapon(name, type, rarity, value, weight, technology, weapon, weaponCategory, age, /*dmg1,*/ dmgType, range, reload);
+        weaponObject = new Weapon(name, type, rarity, weight, technology, weapon, weaponCategory, age, /*dmg1,*/ dmgType, range, reload);
         return weaponObject;
     }
 }

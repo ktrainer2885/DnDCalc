@@ -7,6 +7,7 @@ import common.ArmorDeserializer;
 @JsonDeserialize(using = ArmorDeserializer.class)
 public class Armor extends Item {
 
+    String value;
     Boolean armor;
     Integer ac;
 

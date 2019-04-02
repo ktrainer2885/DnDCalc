@@ -28,6 +28,7 @@ public class AmmunitionDeserializer extends StdDeserializer<Item> {
 
         JsonNode jsonNode = jsonParser.getCodec().readTree(jsonParser);
         name = (String) jsonNode.get("name").asText();
+        System.out.println(name);
         type = (String) jsonNode.get("type").asText();
         rarity = (String) jsonNode.get("rarity").asText();
         value = (String) jsonNode.get("value").asText();

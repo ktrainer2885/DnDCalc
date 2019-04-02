@@ -29,6 +29,7 @@ public class ArmorDeserializer extends StdDeserializer<Item> {
 
         JsonNode jsonNode = jsonParser.getCodec().readTree(jsonParser);
         name = (String) jsonNode.get("name").asText();
+        System.out.println(name);
         type = (String) jsonNode.get("type").asText();
         armor = (Boolean) jsonNode.get("armor").asBoolean();
         rarity = (String) jsonNode.get("rarity").asText();

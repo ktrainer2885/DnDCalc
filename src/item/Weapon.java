@@ -24,7 +24,6 @@ public class Weapon extends Item {
         this.name = copy.name;
         this.type = copy.type;
         this.rarity = copy.rarity;
-        this.value = copy.value;
         this.weight = copy.weight;
 
         this.technology = copy.technology;
@@ -38,13 +37,12 @@ public class Weapon extends Item {
         this.reload = copy.reload;
     }
 
-    public Weapon(String name, String type, String rarity, String value, String weight, String technology,
+    public Weapon(String name, String type, String rarity, String weight, String technology,
                   Boolean weapon, String weaponCategory, String age, /*String dmg1,*/
                   String dmgType, /*String[] property,*/ String range, String reload) {
         this.name = name;
         this.type = type;
         this.rarity = rarity;
-        this.value = value;
         this.weight = weight;
 
         this.technology = technology;

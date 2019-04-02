@@ -7,7 +7,8 @@ import common.AmmunitionDeserializer;
 @JsonDeserialize(using = AmmunitionDeserializer.class)
 public class Ammunition extends Item {
     // Private Data Types
-    boolean ammunition;
+    String value;
+    Boolean ammunition;
 
     public Ammunition() {}
 
