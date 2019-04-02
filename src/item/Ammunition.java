@@ -20,7 +20,7 @@ public class Ammunition extends Item {
         this.weight = copy.weight;
     }
 
-    public Ammunition(String name, String type, String rarity, String value, String weight, boolean ammunition) {
+    public Ammunition(String name, String type, String rarity, String value, String weight, Boolean ammunition) {
         this.name = name;
         this.type = type;
         this.rarity = rarity;

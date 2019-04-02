@@ -21,20 +21,20 @@ public class ArmorDeserializer extends StdDeserializer<Item> {
         Armor armorObject;
         String name;
         String type;
-        boolean armor;
+        Boolean armor;
         String rarity;
         String value;
         String weight;
-        int ac;
+        Integer ac;
 
         JsonNode jsonNode = jsonParser.getCodec().readTree(jsonParser);
         name = (String) jsonNode.get("name").asText();
         type = (String) jsonNode.get("type").asText();
-        armor = (boolean) jsonNode.get("armor").asBoolean();
+        armor = (Boolean) jsonNode.get("armor").asBoolean();
         rarity = (String) jsonNode.get("rarity").asText();
         value = (String) jsonNode.get("value").asText();
         weight = (String) jsonNode.get("weight").asText();
-        ac = (int) jsonNode.get("ac").asInt();
+        ac = (Integer) jsonNode.get("ac").asInt();
 
         armorObject = new Armor(name, type, rarity, value, weight, armor, ac);
         return armorObject;

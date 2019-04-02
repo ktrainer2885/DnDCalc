@@ -7,8 +7,8 @@ import common.ArmorDeserializer;
 @JsonDeserialize(using = ArmorDeserializer.class)
 public class Armor extends Item {
 
-    boolean armor;
-    int ac;
+    Boolean armor;
+    Integer ac;
 
     public Armor() {}
 
@@ -23,7 +23,7 @@ public class Armor extends Item {
         this.ac = copy.ac;
     }
 
-    public Armor(String name, String type, String rarity, String value, String weight, boolean armor, int ac) {
+    public Armor(String name, String type, String rarity, String value, String weight, Boolean armor, Integer ac) {
         this.name = name;
         this.type = type;
         this.rarity = rarity;

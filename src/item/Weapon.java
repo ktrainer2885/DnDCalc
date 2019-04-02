@@ -9,7 +9,7 @@ import common.WeaponDeserializer;
 public class Weapon extends Item {
 
     private String technology;
-    private boolean weapon;
+    private Boolean weapon;
     private String weaponCategory;
     private String age;
     //private String dmg1;
@@ -39,7 +39,7 @@ public class Weapon extends Item {
     }
 
     public Weapon(String name, String type, String rarity, String value, String weight, String technology,
-                  boolean weapon, String weaponCategory, String age, /*String dmg1,*/
+                  Boolean weapon, String weaponCategory, String age, /*String dmg1,*/
                   String dmgType, /*String[] property,*/ String range, String reload) {
         this.name = name;
         this.type = type;

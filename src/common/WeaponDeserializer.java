@@ -26,7 +26,7 @@ public class WeaponDeserializer extends StdDeserializer<Item> {
         String value;
         String weight;
         String technology;
-        boolean weapon;
+        Boolean weapon;
         String weaponCategory;
         String age;
         //String dmg1;      Will need to allow more than one of these
@@ -39,7 +39,7 @@ public class WeaponDeserializer extends StdDeserializer<Item> {
         name = (String) jsonNode.get("name").asText();
         type = (String) jsonNode.get("type").asText();
         technology = (String) jsonNode.get("technology").asText();
-        weapon = (boolean) jsonNode.get("weapon").asBoolean();
+        weapon = (Boolean) jsonNode.get("weapon").asBoolean();
         weaponCategory = (String) jsonNode.get("weaponCategory").asText();
         age = (String) jsonNode.get("age").asText();
         rarity = (String) jsonNode.get("rarity").asText();

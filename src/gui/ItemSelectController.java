@@ -1,6 +1,11 @@
 package gui;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import item.Ammunition;
+import item.Armor;
+import item.Weapon;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -11,22 +16,44 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.Parent;
 import javafx.scene.layout.Region;
+import java.io.File;
+import java.io.IOException;
+
+import java.util.ArrayList;
 
 public class ItemSelectController {
 
+    private Ammunition[] ammunitions;
+    private Armor[] armors;
+    private Weapon[] weapons;
+    private ObjectMapper mapper;
+
+    ArrayList<Ammunition> ammunitionArrayList = new ArrayList<>();
+    ArrayList<Armor> armorArrayList = new ArrayList<>();
+    ArrayList<Weapon> weaponArrayList = new ArrayList<>();
+
+    ObservableList<Ammunition> ammunitionList = FXCollections.observableArrayList(ammunitionArrayList);
+    ObservableList<Armor> armorList = FXCollections.observableArrayList(armorArrayList);
+    ObservableList<Weapon> weaponList = FXCollections.observableArrayList(weaponArrayList);
+
     //Array for weapon ChoiceBox is initialized
-    ObservableList<String> weaponList = FXCollections.observableArrayList("Sword", "Mace", "Lance", "Bow");
+    ObservableList<String> weaponStringList = FXCollections.observableArrayList("Sword", "Mace", "Lance", "Bow");
     //Array for armor ChoiceBox is initialized
-    ObservableList<String> armorList = FXCollections.observableArrayList("Cloth", "Leather", "Chain Mail", "Scale Mail");
+    ObservableList<String> armorStringList = FXCollections.observableArrayList("Cloth", "Leather", "Chain Mail", "Scale Mail");
     //Array for ammo ChoiceBox is initialized
-    ObservableList<String> ammoList = FXCollections.observableArrayList("Arrows", "Bolts", "Bullets", "Rocks");
+    ObservableList<String> ammoStringList = FXCollections.observableArrayList("Arrows", "Bolts", "Bullets", "Rocks");
 
     // Initializes the items into the respective choiceBox
     @FXML
     private void initialize(){
+
+        getAmmunitionList();
+        getArmorList();
+        getWeaponList();
+
         weaponBox.setItems(weaponList);
         armorBox.setItems(armorList);
-        ammoBox.setItems(ammoList);
+        ammoBox.setItems(ammunitionList);
     }
 
     @FXML
@@ -165,5 +192,80 @@ public class ItemSelectController {
         } catch (Exception e){
             e.printStackTrace();
         }
+    }
+
+        public void getAmmunitionList() {
+        try{
+            mapper = new ObjectMapper()
+                    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            String os = System.getProperty("os.name");
+            File files;
+            if (os.equals("Linux")) {
+                files = new File("files/items/basicitems.json");
+            }
+            else {
+                files = new File("files\\items\\basicitems.json");
+            }
+            System.out.println(files.getCanonicalPath());
+            ammunitions = mapper.readValue(files, Ammunition[].class);
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+
+        for (Ammunition a: ammunitions) {
+            ammunitionArrayList.add(a);
+        }
+        ammunitionList =  FXCollections.observableArrayList(ammunitionArrayList);
+    }
+
+    public void getArmorList() {
+        try{
+            mapper = new ObjectMapper()
+                    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            String os = System.getProperty("os.name");
+            File files;
+            if (os.equals("Linux")) {
+                files = new File("files/items/basicitems.json");
+            }
+            else {
+                files = new File("files\\items\\basicitems.json");
+            }
+            System.out.println(files.getCanonicalPath());
+            armors = mapper.readValue(files, Armor[].class);
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+
+        for (Armor a: armors) {
+            armorArrayList.add(a);
+        }
+        armorList =  FXCollections.observableArrayList(armorArrayList);
+    }
+
+    public void getWeaponList() {
+        try{
+            mapper = new ObjectMapper()
+                    .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            String os = System.getProperty("os.name");
+            File files;
+            if (os.equals("Linux")) {
+                files = new File("files/items/basicitems.json");
+            }
+            else {
+                files = new File("files\\items\\basicitems.json");
+            }
+            System.out.println(files.getCanonicalPath());
+            weapons = mapper.readValue(files, Weapon[].class);
+        } catch (
+                IOException e) {
+            e.printStackTrace();
+        }
+
+        for (Weapon w: weapons) {
+            weaponArrayList.add(w);
+        }
+        weaponList =  FXCollections.observableArrayList(weaponArrayList);
     }
 }

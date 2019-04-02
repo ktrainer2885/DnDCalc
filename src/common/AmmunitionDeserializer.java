@@ -24,7 +24,7 @@ public class AmmunitionDeserializer extends StdDeserializer<Item> {
         String rarity;
         String value;
         String weight;
-        boolean ammunition;
+        Boolean ammunition;
 
         JsonNode jsonNode = jsonParser.getCodec().readTree(jsonParser);
         name = (String) jsonNode.get("name").asText();
@@ -32,7 +32,7 @@ public class AmmunitionDeserializer extends StdDeserializer<Item> {
         rarity = (String) jsonNode.get("rarity").asText();
         value = (String) jsonNode.get("value").asText();
         weight = (String) jsonNode.get("weight").asText();
-        ammunition = (boolean) jsonNode.get("ammunition").asBoolean();
+        ammunition = (Boolean) jsonNode.get("ammunition").asBoolean();
 
         ammunitionObject = new Ammunition(name, type, rarity, value, weight, ammunition);
         return ammunitionObject;
