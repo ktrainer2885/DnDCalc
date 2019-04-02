@@ -360,8 +360,14 @@ public class HomeController {
         try{
             mapper = new ObjectMapper()
                     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-            File files = new File("files\\monsters\\jsonBigTest.json");
+            String os = System.getProperty("os.name");
+            File files;
+            if (os.equals("Linux")) {
+                files = new File("files/monsters/jsonBigTest.json");
+            }
+            else {
+                files = new File("files\\monsters\\jsonBigTest.json");
+            }
             System.out.println(files.getCanonicalPath());
             monsters = mapper.readValue(files, Monster[].class);
         } catch (
