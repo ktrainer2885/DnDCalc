@@ -51,50 +51,61 @@ public class HomeController {
     ArrayList<Monster> monsterArrayList = new ArrayList<>();
     ObservableList<Monster> monsterList =  FXCollections.observableArrayList(monsterArrayList);
 
-
+    //Attributes associated with Player
     @FXML
     private ChoiceBox playerBox;
     @FXML
     private TextField playerNum;
     @FXML
     private TextField playerLvl;
-    public static String playerItemA;
-    public static String playerItemB;
-    public static String playerTextA;
-    public static String playerTextB;
+    public static String playerWeap; //Weapon
+    public static String playerWeapMagMod; //Magic Modifier Associated with Weapon
+    public static String playerArm; //Armor
+    public static String playerArmMagMod; //Magic Modifier Associated with Armor
+    public static String playerAmmo; //Ammunition
+    public static String playerAmmoCount; //Ammunition Qty
 
+    //Attributes associated with Player 1
     @FXML
     private ChoiceBox player1Box;
     @FXML
     private TextField player1Num;
     @FXML
     private TextField player1Lvl;
-    public static String player1ItemA;
-    public static String player1ItemB;
-    public static String player1TextA;
-    public static String player1TextB;
+    public static String player1Weap;
+    public static String player1WeapMagMod;
+    public static String player1Arm;
+    public static String player1ArmMagMod;
+    public static String player1Ammo; //Ammunition
+    public static String player1AmmoCount; //Ammunition Qty
 
+    //Attributes associated with Player 2
     @FXML
     private ChoiceBox player2Box;
     @FXML
     private TextField player2Num;
     @FXML
     private TextField player2Lvl;
-    public static String player2ItemA;
-    public static String player2ItemB;
-    public static String player2TextA;
-    public static String player2TextB;
+    public static String player2Weap;
+    public static String player2WeapMagMod;
+    public static String player2Arm;
+    public static String player2ArmMagMod;
+    public static String player2Ammo; //Ammunition
+    public static String player2AmmoCount; //Ammunition Qty
 
+    //Attributes associated with Player 3
     @FXML
     private ChoiceBox player3Box;
     @FXML
     private TextField player3Num;
     @FXML
     private TextField player3Lvl;
-    public static String player3ItemA;
-    public static String player3ItemB;
-    public static String player3TextA;
-    public static String player3TextB;
+    public static String player3Weap;
+    public static String player3WeapMagMod;
+    public static String player3Arm;
+    public static String player3ArmMagMod;
+    public static String player3Ammo; //Ammunition
+    public static String player3AmmoCount; //Ammunition Qty
 
     @FXML
     private ChoiceBox monsterBox;
@@ -171,7 +182,7 @@ public class HomeController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemSelect.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
 
-            ISController = new Scene(root1, 245, 249);
+            ISController = new Scene(root1, 245, 302);
             Image image = new Image("file:///../img/sword.png");
             ISController.setCursor(new ImageCursor(image));
 
@@ -190,7 +201,7 @@ public class HomeController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemSelect.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
 
-            ISController = new Scene(root1, 245, 249);
+            ISController = new Scene(root1, 245, 302);
             Image image = new Image("file:///../img/sword.png");
             ISController.setCursor(new ImageCursor(image));
 
@@ -210,7 +221,7 @@ public class HomeController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemSelect.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
 
-            ISController = new Scene(root1, 245, 249);
+            ISController = new Scene(root1, 245, 302);
             Image image = new Image("file:///../img/sword.png");
             ISController.setCursor(new ImageCursor(image));
 
@@ -230,7 +241,7 @@ public class HomeController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemSelect.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
 
-            ISController = new Scene(root1, 245, 249);
+            ISController = new Scene(root1, 245, 302);
             Image image = new Image("file:///../img/sword.png");
             ISController.setCursor(new ImageCursor(image));
 
@@ -244,68 +255,104 @@ public class HomeController {
         }
     }
 
+    //set functions for player take from ItemSelectController
     public void setItemA(String itemA){
-        playerItemA = itemA;
+        playerWeap = itemA;
     }
 
     public void setItemB(String itemB){
-        playerItemB = itemB;
+        playerArm = itemB;
+    }
+
+    public void setItemC(String textA){
+        playerAmmo = textA;
     }
 
     public void setTextA(String textA){
-        playerTextA = textA;
+        playerWeapMagMod = textA;
     }
 
     public void setTextB(String textB){
-        playerTextB = textB;
+        playerArmMagMod = textB;
     }
 
+    public void setTextC(String textB){
+        playerAmmoCount = textB;
+    }
+
+    //set functions for player 1 take from ItemSelectController
     public void setItem1A(String itemA){
-        player1ItemA = itemA;
+        player1Weap = itemA;
     }
 
     public void setItem1B(String itemB){
-        player1ItemB = itemB;
+        player1Arm = itemB;
+    }
+
+    public void setItem1C(String textA){
+        player1Ammo = textA;
     }
 
     public void setText1A(String textA){
-        player1TextA = textA;
+        player1WeapMagMod = textA;
     }
 
     public void setText1B(String textB){
-        player1TextB = textB;
+        player1ArmMagMod = textB;
     }
 
+    public void setText1C(String textB){
+        player1AmmoCount = textB;
+    }
+
+    //set functions for player 2 take from ItemSelectController
     public void setItem2A(String itemA){
-        player2ItemA = itemA;
+        player2Weap = itemA;
     }
 
     public void setItem2B(String itemB){
-        player2ItemB = itemB;
+        player2Arm = itemB;
+    }
+
+    public void setItem2C(String textA){
+        player2Ammo = textA;
     }
 
     public void setText2A(String textA){
-        player2TextA = textA;
+        player2WeapMagMod = textA;
     }
 
     public void setText2B(String textB){
-        player2TextB = textB;
+        player2ArmMagMod = textB;
     }
 
+    public void setText2C(String textB){
+        player2AmmoCount = textB;
+    }
+
+    //set functions for player 3 take from ItemSelectController
     public void setItem3A(String itemA){
-        player3ItemA = itemA;
+        player3Weap = itemA;
     }
 
     public void setItem3B(String itemB){
-        player3ItemB = itemB;
+        player3Arm = itemB;
+    }
+
+    public void setItem3C(String textA){
+        player3Ammo = textA;
     }
 
     public void setText3A(String textA){
-        player3TextA = textA;
+        player3WeapMagMod = textA;
     }
 
     public void setText3B(String textB){
-        player3TextB = textB;
+        player3ArmMagMod = textB;
+    }
+
+    public void setText3C(String textB){
+        player3AmmoCount = textB;
     }
 
 
