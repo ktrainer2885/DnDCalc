@@ -6,18 +6,31 @@ import common.ArmorDeserializer;
 
 @JsonDeserialize(using = ArmorDeserializer.class)
 public class Armor extends Item {
-    // Private Data Types
+
     boolean armor;
+    int ac;
 
     public Armor() {}
 
     public Armor(Armor copy) {
-        // Set data types
+        this.name = copy.name;
+        this.type = copy.type;
+        this.rarity = copy.rarity;
+        this.value = copy.value;
+        this.weight = copy.weight;
+
         this.armor = copy.armor;
+        this.ac = copy.ac;
     }
 
-    public Armor(boolean armor /* Data Types in parameter*/) {
-        // Set Private data types with parameter data types
+    public Armor(String name, String type, String rarity, String value, String weight, boolean armor, int ac) {
+        this.name = name;
+        this.type = type;
+        this.rarity = rarity;
+        this.value = value;
+        this.weight = weight;
+
         this.armor = armor;
+        this.ac = ac;
     }
 }

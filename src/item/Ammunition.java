@@ -12,12 +12,21 @@ public class Ammunition extends Item {
     public Ammunition() {}
 
     public Ammunition(Ammunition copy) {
-        // Set data types
+        this.name = copy.name;
+        this.type = copy.type;
         this.ammunition = copy.ammunition;
+        this.rarity = copy.rarity;
+        this.value = copy.value;
+        this.weight = copy.weight;
     }
 
-    public Ammunition(boolean ammunition /* Data Types in parameter*/) {
-        // Set Private data types with parameter data types
+    public Ammunition(String name, String type, String rarity, String value, String weight, boolean ammunition) {
+        this.name = name;
+        this.type = type;
+        this.rarity = rarity;
+        this.value = value;
+        this.weight = weight;
+
         this.ammunition = ammunition;
     }
 }

@@ -19,10 +19,22 @@ public class AmmunitionDeserializer extends StdDeserializer<Item> {
     @Override
     public Ammunition deserialize (JsonParser jsonParser, DeserializationContext deserializationContext) throws IOException, JsonProcessingException {
         Ammunition ammunitionObject;
+        String name;
+        String type;
+        String rarity;
+        String value;
+        String weight;
+        boolean ammunition;
 
         JsonNode jsonNode = jsonParser.getCodec().readTree(jsonParser);
+        name = (String) jsonNode.get("name").asText();
+        type = (String) jsonNode.get("type").asText();
+        rarity = (String) jsonNode.get("rarity").asText();
+        value = (String) jsonNode.get("value").asText();
+        weight = (String) jsonNode.get("weight").asText();
+        ammunition = (boolean) jsonNode.get("ammunition").asBoolean();
 
-        ammunitionObject = new Ammunition();
+        ammunitionObject = new Ammunition(name, type, rarity, value, weight, ammunition);
         return ammunitionObject;
     }
 }
