@@ -6,7 +6,7 @@ import common.AmmunitionDeserializer;
 
 @JsonDeserialize(using = AmmunitionDeserializer.class)
 public class Ammunition extends Item {
-    // Private Data Types
+
     String value;
     Boolean ammunition;
 
@@ -17,17 +17,21 @@ public class Ammunition extends Item {
         this.type = copy.type;
         this.ammunition = copy.ammunition;
         this.rarity = copy.rarity;
-        this.value = copy.value;
+        //this.value = copy.value;
         this.weight = copy.weight;
     }
 
-    public Ammunition(String name, String type, String rarity, String value, String weight, Boolean ammunition) {
+    public Ammunition(String name, String type, String rarity, /*String value,*/ String weight, Boolean ammunition) {
         this.name = name;
         this.type = type;
         this.rarity = rarity;
-        this.value = value;
+        //this.value = value;
         this.weight = weight;
 
         this.ammunition = ammunition;
+    }
+
+    @Override public String toString() {
+        return name;
     }
 }

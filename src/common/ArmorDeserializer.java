@@ -23,21 +23,26 @@ public class ArmorDeserializer extends StdDeserializer<Item> {
         String type;
         Boolean armor;
         String rarity;
-        String value;
+        //String value;
         String weight;
         Integer ac;
 
         JsonNode jsonNode = jsonParser.getCodec().readTree(jsonParser);
+
+        // Rest assured, only armor items will be allowed here
+        if (!jsonNode.has("armor")) {
+            return null;    // null objects in array will not be added to array list
+        }
+
         name = (String) jsonNode.get("name").asText();
-        System.out.println(name);
         type = (String) jsonNode.get("type").asText();
         armor = (Boolean) jsonNode.get("armor").asBoolean();
         rarity = (String) jsonNode.get("rarity").asText();
-        value = (String) jsonNode.get("value").asText();
+        //value = (String) jsonNode.get("value").asText();
         weight = (String) jsonNode.get("weight").asText();
         ac = (Integer) jsonNode.get("ac").asInt();
 
-        armorObject = new Armor(name, type, rarity, value, weight, armor, ac);
+        armorObject = new Armor(name, type, rarity, /*value,*/ weight, armor, ac);
         return armorObject;
     }
 

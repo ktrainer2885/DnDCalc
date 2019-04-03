@@ -20,6 +20,8 @@ import java.io.File;
 import java.io.IOException;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 
 public class ItemSelectController {
 
@@ -47,6 +49,7 @@ public class ItemSelectController {
     @FXML
     private void initialize(){
 
+        // Will want to move this to home controller as to not access the json file multiple times
         getAmmunitionList();
         getArmorList();
         getWeaponList();
@@ -194,7 +197,7 @@ public class ItemSelectController {
         }
     }
 
-        public void getAmmunitionList() {
+    public void getAmmunitionList() {
         try{
             mapper = new ObjectMapper()
                     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
@@ -214,7 +217,10 @@ public class ItemSelectController {
         }
 
         for (Ammunition a: ammunitions) {
-            ammunitionArrayList.add(a);
+            // Adding only non-null objects to the array list
+            if (!(a == null)) {
+                ammunitionArrayList.add(a);
+            }
         }
         ammunitionList =  FXCollections.observableArrayList(ammunitionArrayList);
     }
@@ -239,7 +245,10 @@ public class ItemSelectController {
         }
 
         for (Armor a: armors) {
-            armorArrayList.add(a);
+            // Adding only non-null objects to the array list
+            if (!(a == null)) {
+                armorArrayList.add(a);
+            }
         }
         armorList =  FXCollections.observableArrayList(armorArrayList);
     }
@@ -264,7 +273,10 @@ public class ItemSelectController {
         }
 
         for (Weapon w: weapons) {
-            weaponArrayList.add(w);
+            // Adding only non-null objects to the array list
+            if (!(w == null)) {
+                weaponArrayList.add(w);
+            }
         }
         weaponList =  FXCollections.observableArrayList(weaponArrayList);
     }
