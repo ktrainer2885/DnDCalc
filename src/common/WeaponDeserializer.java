@@ -28,7 +28,7 @@ public class WeaponDeserializer extends StdDeserializer<Item> {
         Boolean weapon;
         String weaponCategory;
         //String age;
-        //String dmg1;      Will need to allow more than one of these
+        String dmg1;      // Will need to allow more than one of these
         String dmgType;
         //String[] property;
         String range;
@@ -58,8 +58,13 @@ public class WeaponDeserializer extends StdDeserializer<Item> {
             weight = "None";
         }
 
-
-        //dmg1 = (String) jsonNode.get("dmg1").asText();
+        // Setting dmg1
+        if (jsonNode.has("dmg1")) {
+            dmg1 = (String) jsonNode.get("dmg1").asText();
+        }
+        else {
+            dmg1 = "1d0";
+        }
 
         // Some weapons do not have a dmgType (Ex: Net)
         if (jsonNode.has("dmgType")) {
@@ -95,7 +100,7 @@ public class WeaponDeserializer extends StdDeserializer<Item> {
         }
 
 
-        weaponObject = new Weapon(name, type, rarity, weight, /*technology,*/ weapon, weaponCategory, /*age,*/ /*dmg1,*/ dmgType, range, reload);
+        weaponObject = new Weapon(name, type, rarity, weight, /*technology,*/ weapon, weaponCategory, /*age,*/ dmg1, dmgType, range, reload);
         return weaponObject;
     }
 }

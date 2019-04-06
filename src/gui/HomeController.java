@@ -163,10 +163,10 @@ public class HomeController {
 
 //        numberSimulations = Integer.parseInt(numSims.getText());
         combatArrayList.clear();
-        addPlayer(playerBox,playerNum,playerLvl);
-        addPlayer(player1Box,player1Num,player1Lvl);
-        addPlayer(player2Box,player2Num,player2Lvl);
-        addPlayer(player3Box,player3Num,player3Lvl);
+        addPlayer(playerBox,playerNum,playerLvl, 0);
+        addPlayer(player1Box,player1Num,player1Lvl, 1);
+        addPlayer(player2Box,player2Num,player2Lvl, 2);
+        addPlayer(player3Box,player3Num,player3Lvl, 3);
         addMonster(monsterBox, monsterNum);
         addMonster(monster1Box, monster1Num);
         addMonster(monster2Box, monster2Num);
@@ -384,7 +384,7 @@ public class HomeController {
 
     }
 
-    public void addPlayer(ChoiceBox playerBox, TextField playerNum, TextField playerLvl){
+    public void addPlayer(ChoiceBox playerBox, TextField playerNum, TextField playerLvl, Integer playerIndex){
 
         if (!checkPlayerBoxValid(playerBox, playerNum, playerLvl)) {
             return;
@@ -394,16 +394,16 @@ public class HomeController {
         numberLevels = Integer.parseInt(playerLvl.getText());
 
         if (type.equalsIgnoreCase("fighter")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+            addPlayerToCombatList(type, numberPlayers, numberLevels, playerIndex);
         }
         if (type.equalsIgnoreCase("rogue")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+            addPlayerToCombatList(type, numberPlayers, numberLevels, playerIndex);
         }
         if (type.equalsIgnoreCase("wizard")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+            addPlayerToCombatList(type, numberPlayers, numberLevels, playerIndex);
         }
         if (type.equalsIgnoreCase("cleric")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+            addPlayerToCombatList(type, numberPlayers, numberLevels, playerIndex);
         }
     }
     public boolean checkPlayerBoxValid(ChoiceBox playerBox, TextField playerNum, TextField playerLvl){
@@ -446,22 +446,26 @@ public class HomeController {
             return true;
         }
     }
-    public void addPlayerToCombatList(String type, Integer numberPlayers, Integer numberLevels){
+    public void addPlayerToCombatList(String type, Integer numberPlayers, Integer numberLevels, Integer playerSet){
         Player player = new Fighter();
 
         for (int i = 0; i < numberPlayers; i++){
 
             if(type.equalsIgnoreCase("fighter")){
                 player = new Fighter();
+                player = setPlayerItems(player, playerSet);
             }
             if(type.equalsIgnoreCase("rogue")){
                 player = new Rogue();
+                player = setPlayerItems(player, playerSet);
             }
             if(type.equalsIgnoreCase("cleric")){
                 player = new Cleric();
+                player = setPlayerItems(player, playerSet);
             }
             if(type.equalsIgnoreCase("wizard")){
                 player = new Wizard();
+                player = setPlayerItems(player, playerSet);
             }
 
             for (int j = 1; j < numberLevels; j++) { // int j = 1 because chars start at level 1
@@ -469,6 +473,56 @@ public class HomeController {
             }
             combatArrayList.add(player);
         }
+    }
+
+    public Player setPlayerItems(Player player, Integer playerSet) {
+
+        if (playerSet == 0) {
+            if (playerWeap != null) {
+                player.setWeapon(playerWeap);
+            }
+            if (playerArm != null) {
+                player.setArmor(playerArm);
+            }
+            if (playerAmmo != null) {
+                player.setAmmunition(playerAmmo);
+            }
+        }
+        else if (playerSet == 1) {
+            if (player1Weap != null) {
+                player.setWeapon(player1Weap);
+            }
+            if (player1Arm != null) {
+                player.setArmor(player1Arm);
+            }
+            if (player1Ammo != null) {
+                player.setAmmunition(player1Ammo);
+            }
+        }
+        else if (playerSet == 2) {
+            if (player2Weap != null) {
+                player.setWeapon(player2Weap);
+            }
+            if (player2Arm != null) {
+                player.setArmor(player2Arm);
+            }
+            if (player2Ammo != null) {
+                player.setAmmunition(player2Ammo);
+            }
+        }
+        else if (playerSet == 3) {
+            if (player3Weap != null) {
+                player.setWeapon(player3Weap);
+            }
+            if (player3Arm != null) {
+                player.setArmor(player3Arm);
+            }
+            if (player3Ammo != null) {
+                player.setAmmunition(player3Ammo);
+            }
+        }
+
+        return player;
     }
 
     static public int[] selectClass(String c) {
@@ -499,5 +553,4 @@ public class HomeController {
         // Return array
         return classArray;
     }
-
 }

@@ -35,6 +35,10 @@ public class Armor extends Item {
         this.ac = ac;
     }
 
+    public Integer getArmorClass() {
+        return this.ac;
+    }
+
     @Override public String toString() {
         return name;
     }

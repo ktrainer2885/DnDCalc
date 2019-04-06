@@ -22,13 +22,33 @@ public class Cleric extends Player {
         this.hp = 8 + getConMod(); // starting HP
         this.maxHp = hp;
         this.prof = 2; // Starting Bonus Proficiency
-        this.weap = "1d6";  // Mace bludgeoning
-        this.ac = 18;  // Scale mail and shield
+        setWeaponRoll();
+        setArmorClass();
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
         this.levelOneSpell = 2;
 
+    }
+
+    @Override
+    public void setArmorClass() {
+        if (this.getArmor() == null) {
+            this.ac = 18;       // Scale mail and shield
+        }
+        else {
+            this.ac = this.getArmor().getArmorClass();
+        }
+    }
+
+    @Override
+    public void setWeaponRoll() {
+        if (this.getWeapon() == null) {
+            this.weap = "1d6";  // Mace bludgeoning
+        }
+        else {
+            this.weap = this.getWeapon().getWeaponRoll();
+        }
     }
 
     @Override

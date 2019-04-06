@@ -23,8 +23,8 @@ public class Fighter extends Player {
         this.hp = 10 + getConMod(); // starting HP
         this.maxHp = hp;
         this.prof = 2; // Starting Bonus Profeciency
-        this.weap = "1d8"; //Longsword damage
-        this.ac = 18 + defense(); // chain mail and shield
+        setWeaponRoll();
+        setArmorClass();
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
@@ -39,6 +39,26 @@ public class Fighter extends Player {
         }
         else {
             return 0;
+        }
+    }
+
+    @Override
+    public void setArmorClass() {
+        if (this.getArmor() == null) {
+            this.ac = 18 + defense(); // chain mail and shield
+        }
+        else {
+            this.ac = this.getArmor().getArmorClass() + defense();
+        }
+    }
+
+    @Override
+    public void setWeaponRoll() {
+        if (this.getWeapon() == null) {
+            this.weap = "1d8"; //Longsword damage
+        }
+        else {
+            this.weap = this.getWeapon().getWeaponRoll();
         }
     }
 

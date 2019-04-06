@@ -12,7 +12,7 @@ public class Weapon extends Item {
     private Boolean weapon;
     private String weaponCategory;
     //private String age;
-    //private String dmg1;
+    private String dmg1;
     private String dmgType;
     private String[] property;
     private String range;
@@ -30,7 +30,7 @@ public class Weapon extends Item {
         this.weapon = copy.weapon;
         this.weaponCategory = copy.weaponCategory;
         //this.age = copy.age;
-        //this.dmg1 = copy.dmg1;
+        this.dmg1 = copy.dmg1;
         this.dmgType = copy.dmgType;
         //this.property = copy.property;
         this.range = copy.range;
@@ -38,7 +38,7 @@ public class Weapon extends Item {
     }
 
     public Weapon(String name, String type, String rarity, String weight, /*String technology,*/
-                  Boolean weapon, String weaponCategory, /*String age,*/ /*String dmg1,*/
+                  Boolean weapon, String weaponCategory, /*String age,*/ String dmg1,
                   String dmgType, /*String[] property,*/ String range, String reload) {
         this.name = name;
         this.type = type;
@@ -54,6 +54,10 @@ public class Weapon extends Item {
         //this.property = property;
         this.range = range;
         this.reload = reload;
+    }
+
+    public String getWeaponRoll() {
+        return this.dmg1;
     }
 
     @Override public String toString() {
