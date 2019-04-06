@@ -10,4 +10,6 @@ public abstract class Item {
     protected String rarity;
     protected String weight;
 
+    public String getName() { return name; }
+
 }
