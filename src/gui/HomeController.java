@@ -1,10 +1,8 @@
 package gui;
 
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.text.FontSmoothingType;
 import javafx.stage.Stage;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -360,9 +358,10 @@ public class HomeController {
         try{
             mapper = new ObjectMapper()
                     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+            String relativePath =  System.getProperty("user.dir");
+            String fullPath = relativePath + "\\files\\monsters\\jsonBigTest.json";
 
-            File files = new File("files\\monsters\\jsonBigTest.json");
-            System.out.println(files.getCanonicalPath());
+            File files = new File(fullPath);
             monsters = mapper.readValue(files, Monster[].class);
         } catch (
                 IOException e) {
