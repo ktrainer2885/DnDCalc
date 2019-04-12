@@ -278,12 +278,16 @@ public class ItemSelectController {
             mapper = new ObjectMapper()
                     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             String os = System.getProperty("os.name");
+            String relativePath = System.getProperty("user.dir");
+            String fullPath;
             File files;
             if (os.equals("Linux")) {
-                files = new File("files/items/basicitems.json");
+                fullPath = relativePath + "/files/items/basicitems.json";
+                files = new File(fullPath);
             }
             else {
-                files = new File("files\\items\\basicitems.json");
+                fullPath = relativePath + "\\files\\items\\basicitems.json";
+                files = new File(fullPath);
             }
             System.out.println(files.getCanonicalPath());
             ammunitions = mapper.readValue(files, Ammunition[].class);

@@ -362,12 +362,17 @@ public class HomeController {
             mapper = new ObjectMapper()
                     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             String os = System.getProperty("os.name");
+            String relativePath = System.getProperty("user.dir");
+            String fullPath;
             File files;
+
             if (os.equals("Linux")) {
-                files = new File("files/monsters/jsonBigTest.json");
+                fullPath = relativePath + "/files/monsters/jsonBigTest.json";
+                files = new File(fullPath);
             }
             else {
-                files = new File("files\\monsters\\jsonBigTest.json");
+                fullPath = relativePath + "\\files\\monsters\\jsonBigTest.json";
+                files = new File(fullPath);
             }
             System.out.println(files.getCanonicalPath());
             monsters = mapper.readValue(files, Monster[].class);
