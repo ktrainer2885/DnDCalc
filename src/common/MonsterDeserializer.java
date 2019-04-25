@@ -40,6 +40,7 @@ public class MonsterDeserializer extends StdDeserializer<Monster> {
         String weapon = "0d0";
         String[] damDice;
         Integer damCont = 0;
+        String challengeRating;
 
         String hpFormula;
         String[] hpInfo; // 0  - num dice , 1 - dice type, 2 - hp constant
@@ -120,8 +121,15 @@ public class MonsterDeserializer extends StdDeserializer<Monster> {
 
 
         //prof = Integer.parseInt(profStrings[1]);
+
+        // Add in challenge Rating
+
+        challengeRating = (String) jsonNode.get("cr").asText();
+        if(challengeRating.isEmpty()){
+            challengeRating = (String) jsonNode.get("cr").get("cr").asText();;
+        }
         monster = new Monster(name,ac,hpDiceNum,hpDiceType,hpConstant,prof,
-                str,dex,con,intel,wis,cha,weapon,damCont);
+                str,dex,con,intel,wis,cha,weapon,damCont, challengeRating);
         return monster;
     }
 

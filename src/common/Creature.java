@@ -28,8 +28,9 @@ public abstract class Creature implements Comparable<Creature> {
     protected Integer wis;              // wisdom
     protected Integer cha;              // charisma
 
-    protected Integer roll=0;             // saves roll for ciritical hit check
+    protected Integer roll=0;             // saves roll for critical hit check
     protected boolean sneakAttack=false;
+    protected String challengeRating;       //Monster Challenge rating
 
 
 

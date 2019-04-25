@@ -43,6 +43,7 @@ public class JsonTest {
                 System.out.println("INT: " + m.getIntel());
                 System.out.println("WIS: " + m.getWis());
                 System.out.println("CHA: " + m.getCha());
+
             }
 
 

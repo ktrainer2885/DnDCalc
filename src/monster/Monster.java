@@ -30,7 +30,7 @@ public class Monster extends Creature {
 
     public Monster(String name, Integer ac, Integer hpDiceNum, Integer hpDiceType, Integer hpConstant, Integer prof,
                    Integer str, Integer dex, Integer con, Integer intel, Integer wis, Integer cha,
-                   String weapon, Integer damConst){
+                   String weapon, Integer damConst, String challengeRating){
 
         this.name = name;
         setAttributes(str,dex,con,intel,wis,cha);
@@ -42,6 +42,7 @@ public class Monster extends Creature {
         setDamageDice();
         this.alive = true;
         this.damConst = damConst;
+        this.challengeRating = challengeRating;
     }
 
     public String getName() {
@@ -57,7 +58,7 @@ public class Monster extends Creature {
     }
 
     @Override public String toString() {
-        return name;
+        return name + " " + "CR: " + challengeRating;
     }
 }
 
