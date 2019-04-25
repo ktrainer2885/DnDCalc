@@ -21,12 +21,32 @@ public class Wizard extends Player {
         this.hp = 6 + getConMod(); // starting HP
         this.maxHp = hp;
         this.prof = 2; // Starting Bonus Proficiency
-        this.weap = "1d6";  // Quarterstaff bludgeoning
-        this.ac = 10 + this.getDexMod();  // No armor: Base AC
+        setWeaponRoll();
+        setArmorClass();
         setDamageDice();
         this.alive = true;
         this.damConst = getIntelMod();
         this.spellLevelOne = 2;
+    }
+
+    @Override
+    public void setArmorClass() {
+        if (this.getArmor() == null) {
+            this.ac = 10 + this.getDexMod();  // No armor: Base AC
+        }
+        else {
+            this.ac = this.getArmor().getArmorClass();
+        }
+    }
+
+    @Override
+    public void setWeaponRoll() {
+        if (this.getWeapon() == null) {
+            this.weap = "1d6";  // Quarterstaff bludgeoning
+        }
+        else {
+            this.weap = this.getWeapon().getWeaponRoll();
+        }
     }
 
     @Override

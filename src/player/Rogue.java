@@ -21,12 +21,32 @@ public class Rogue extends Player {
         this.hp = 6 + getConMod();     // Starting Hp
         this.maxHp = hp;
         this.prof = 2;                 // Starting Prof
-        this.weap = "1d8";             // Rapiers Finesse Type
-        this.ac = 11 + getDexMod();    // Light Armor: Leather and dex mod
+        setArmorClass();
+        setWeaponRoll();
         setDamageDice();
         this.alive = true;
         this.damConst = getStrMod();
         this.level = 1;
+    }
+
+    @Override
+    public void setArmorClass() {
+        if (this.getArmor() == null) {
+            this.ac = 11 + getDexMod();    // Light Armor: Leather and dex mod
+        }
+        else {
+            this.ac = this.getArmor().getArmorClass();
+        }
+    }
+
+    @Override
+    public void setWeaponRoll() {
+        if (this.getWeapon() == null) {
+            this.weap = "1d8";             // Rapiers Finesse Type
+        }
+        else {
+            this.weap = this.getWeapon().getWeaponRoll();
+        }
     }
 
     @Override

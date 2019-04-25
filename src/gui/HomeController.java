@@ -1,5 +1,7 @@
 package gui;
 
+import item.*;
+import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -56,11 +58,11 @@ public class HomeController {
     private TextField playerNum;
     @FXML
     private TextField playerLvl;
-    public static String playerWeap; //Weapon
+    public static Weapon playerWeap; //Weapon
     public static String playerWeapMagMod; //Magic Modifier Associated with Weapon
-    public static String playerArm; //Armor
+    public static Armor playerArm; //Armor
     public static String playerArmMagMod; //Magic Modifier Associated with Armor
-    public static String playerAmmo; //Ammunition
+    public static Ammunition playerAmmo; //Ammunition
     public static String playerAmmoCount; //Ammunition Qty
 
     //Attributes associated with Player 1
@@ -70,11 +72,11 @@ public class HomeController {
     private TextField player1Num;
     @FXML
     private TextField player1Lvl;
-    public static String player1Weap;
+    public static Weapon player1Weap;
     public static String player1WeapMagMod;
-    public static String player1Arm;
+    public static Armor player1Arm;
     public static String player1ArmMagMod;
-    public static String player1Ammo; //Ammunition
+    public static Ammunition player1Ammo; //Ammunition
     public static String player1AmmoCount; //Ammunition Qty
 
     //Attributes associated with Player 2
@@ -84,11 +86,11 @@ public class HomeController {
     private TextField player2Num;
     @FXML
     private TextField player2Lvl;
-    public static String player2Weap;
+    public static Weapon player2Weap;
     public static String player2WeapMagMod;
-    public static String player2Arm;
+    public static Armor player2Arm;
     public static String player2ArmMagMod;
-    public static String player2Ammo; //Ammunition
+    public static Ammunition player2Ammo; //Ammunition
     public static String player2AmmoCount; //Ammunition Qty
 
     //Attributes associated with Player 3
@@ -98,11 +100,11 @@ public class HomeController {
     private TextField player3Num;
     @FXML
     private TextField player3Lvl;
-    public static String player3Weap;
+    public static Weapon player3Weap;
     public static String player3WeapMagMod;
-    public static String player3Arm;
+    public static Armor player3Arm;
     public static String player3ArmMagMod;
-    public static String player3Ammo; //Ammunition
+    public static Ammunition player3Ammo; //Ammunition
     public static String player3AmmoCount; //Ammunition Qty
 
     @FXML
@@ -160,10 +162,10 @@ public class HomeController {
 
 //        numberSimulations = Integer.parseInt(numSims.getText());
         combatArrayList.clear();
-        addPlayer(playerBox,playerNum,playerLvl);
-        addPlayer(player1Box,player1Num,player1Lvl);
-        addPlayer(player2Box,player2Num,player2Lvl);
-        addPlayer(player3Box,player3Num,player3Lvl);
+        addPlayer(playerBox,playerNum,playerLvl, 0);
+        addPlayer(player1Box,player1Num,player1Lvl, 1);
+        addPlayer(player2Box,player2Num,player2Lvl, 2);
+        addPlayer(player3Box,player3Num,player3Lvl, 3);
         addMonster(monsterBox, monsterNum);
         addMonster(monster1Box, monster1Num);
         addMonster(monster2Box, monster2Num);
@@ -254,102 +256,102 @@ public class HomeController {
     }
 
     //set functions for player take from ItemSelectController
-    public void setItemA(String itemA){
-        playerWeap = itemA;
+    public void setWeapon(Weapon weapon){
+        playerWeap = weapon;
     }
 
-    public void setItemB(String itemB){
-        playerArm = itemB;
+    public void setArmor(Armor armor){
+        playerArm = armor;
     }
 
-    public void setItemC(String textA){
-        playerAmmo = textA;
+    public void setAmmunition(Ammunition ammunition){
+        playerAmmo = ammunition;
     }
 
-    public void setTextA(String textA){
+    public void setWeaponMod(String textA){
         playerWeapMagMod = textA;
     }
 
-    public void setTextB(String textB){
+    public void setArmorMod(String textB){
         playerArmMagMod = textB;
     }
 
-    public void setTextC(String textB){
+    public void setAmmunitionCount(String textB){
         playerAmmoCount = textB;
     }
 
     //set functions for player 1 take from ItemSelectController
-    public void setItem1A(String itemA){
-        player1Weap = itemA;
+    public void setWeapon1(Weapon weapon){
+        player1Weap = weapon;
     }
 
-    public void setItem1B(String itemB){
-        player1Arm = itemB;
+    public void setArmor1(Armor armor){
+        player1Arm = armor;
     }
 
-    public void setItem1C(String textA){
-        player1Ammo = textA;
+    public void setAmmunition1(Ammunition ammunition){
+        player1Ammo = ammunition;
     }
 
-    public void setText1A(String textA){
+    public void setWeaponMod1(String textA){
         player1WeapMagMod = textA;
     }
 
-    public void setText1B(String textB){
+    public void setArmorMod1(String textB){
         player1ArmMagMod = textB;
     }
 
-    public void setText1C(String textB){
+    public void setAmmunitionCount1(String textB){
         player1AmmoCount = textB;
     }
 
     //set functions for player 2 take from ItemSelectController
-    public void setItem2A(String itemA){
-        player2Weap = itemA;
+    public void setWeapon2(Weapon weapon){
+        player2Weap = weapon;
     }
 
-    public void setItem2B(String itemB){
-        player2Arm = itemB;
+    public void setArmor2(Armor armor){
+        player2Arm = armor;
     }
 
-    public void setItem2C(String textA){
-        player2Ammo = textA;
+    public void setAmmunition2(Ammunition ammunition){
+        player2Ammo = ammunition;
     }
 
-    public void setText2A(String textA){
+    public void setWeaponMod2(String textA){
         player2WeapMagMod = textA;
     }
 
-    public void setText2B(String textB){
+    public void setArmorMod2(String textB){
         player2ArmMagMod = textB;
     }
 
-    public void setText2C(String textB){
+    public void setAmmunitionCount2(String textB){
         player2AmmoCount = textB;
     }
 
     //set functions for player 3 take from ItemSelectController
-    public void setItem3A(String itemA){
-        player3Weap = itemA;
+    public void setWeapon3(Weapon weapon){
+        player3Weap = weapon;
     }
 
-    public void setItem3B(String itemB){
-        player3Arm = itemB;
+    public void setArmor3(Armor armor){
+        player3Arm = armor;
     }
 
-    public void setItem3C(String textA){
-        player3Ammo = textA;
+    public void setAmmunition3(Ammunition ammunition){
+        player3Ammo = ammunition;
     }
 
-    public void setText3A(String textA){
+    public void setWeaponMod3(String textA){
         player3WeapMagMod = textA;
     }
 
-    public void setText3B(String textB){
+    public void setArmorMod3(String textB){
         player3ArmMagMod = textB;
     }
 
-    public void setText3C(String textB){
+    public void setAmmunitionCount3(String textB){
         player3AmmoCount = textB;
     }
 
@@ -358,10 +360,20 @@ public class HomeController {
         try{
             mapper = new ObjectMapper()
                     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-            String relativePath =  System.getProperty("user.dir");
-            String fullPath = relativePath + "\\files\\monsters\\jsonBigTest.json";
+            String os = System.getProperty("os.name");
+            String relativePath = System.getProperty("user.dir");
+            String fullPath;
+            File files;
 
-            File files = new File(fullPath);
+            if (os.equals("Linux")) {
+                fullPath = relativePath + "/files/monsters/jsonBigTest.json";
+                files = new File(fullPath);
+            }
+            else {
+                fullPath = relativePath + "\\files\\monsters\\jsonBigTest.json";
+                files = new File(fullPath);
+            }
+            System.out.println(files.getCanonicalPath());
             monsters = mapper.readValue(files, Monster[].class);
         } catch (
                 IOException e) {
@@ -376,7 +388,7 @@ public class HomeController {
 
     }
 
-    public void addPlayer(ChoiceBox playerBox, TextField playerNum, TextField playerLvl){
+    public void addPlayer(ChoiceBox playerBox, TextField playerNum, TextField playerLvl, Integer playerIndex){
 
         if (!checkPlayerBoxValid(playerBox, playerNum, playerLvl)) {
             return;
@@ -386,16 +398,16 @@ public class HomeController {
         numberLevels = Integer.parseInt(playerLvl.getText());
 
         if (type.equalsIgnoreCase("fighter")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+            addPlayerToCombatList(type, numberPlayers, numberLevels, playerIndex);
         }
         if (type.equalsIgnoreCase("rogue")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+            addPlayerToCombatList(type, numberPlayers, numberLevels, playerIndex);
         }
         if (type.equalsIgnoreCase("wizard")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+            addPlayerToCombatList(type, numberPlayers, numberLevels, playerIndex);
         }
         if (type.equalsIgnoreCase("cleric")){
-            addPlayerToCombatList(type, numberPlayers, numberLevels);
+            addPlayerToCombatList(type, numberPlayers, numberLevels, playerIndex);
         }
     }
     public boolean checkPlayerBoxValid(ChoiceBox playerBox, TextField playerNum, TextField playerLvl){
@@ -438,22 +450,26 @@ public class HomeController {
             return true;
         }
     }
-    public void addPlayerToCombatList(String type, Integer numberPlayers, Integer numberLevels){
+    public void addPlayerToCombatList(String type, Integer numberPlayers, Integer numberLevels, Integer playerSet){
         Player player = new Fighter();
 
         for (int i = 0; i < numberPlayers; i++){
 
             if(type.equalsIgnoreCase("fighter")){
                 player = new Fighter();
+                player = setPlayerItems(player, playerSet);
             }
             if(type.equalsIgnoreCase("rogue")){
                 player = new Rogue();
+                player = setPlayerItems(player, playerSet);
             }
             if(type.equalsIgnoreCase("cleric")){
                 player = new Cleric();
+                player = setPlayerItems(player, playerSet);
             }
             if(type.equalsIgnoreCase("wizard")){
                 player = new Wizard();
+                player = setPlayerItems(player, playerSet);
             }
 
             for (int j = 1; j < numberLevels; j++) { // int j = 1 because chars start at level 1
@@ -461,6 +477,56 @@ public class HomeController {
             }
             combatArrayList.add(player);
         }
+    }
+
+    public Player setPlayerItems(Player player, Integer playerSet) {
+
+        if (playerSet == 0) {
+            if (playerWeap != null) {
+                player.setWeapon(playerWeap);
+            }
+            if (playerArm != null) {
+                player.setArmor(playerArm);
+            }
+            if (playerAmmo != null) {
+                player.setAmmunition(playerAmmo);
+            }
+        }
+        else if (playerSet == 1) {
+            if (player1Weap != null) {
+                player.setWeapon(player1Weap);
+            }
+            if (player1Arm != null) {
+                player.setArmor(player1Arm);
+            }
+            if (player1Ammo != null) {
+                player.setAmmunition(player1Ammo);
+            }
+        }
+        else if (playerSet == 2) {
+            if (player2Weap != null) {
+                player.setWeapon(player2Weap);
+            }
+            if (player2Arm != null) {
+                player.setArmor(player2Arm);
+            }
+            if (player2Ammo != null) {
+                player.setAmmunition(player2Ammo);
+            }
+        }
+        else if (playerSet == 3) {
+            if (player3Weap != null) {
+                player.setWeapon(player3Weap);
+            }
+            if (player3Arm != null) {
+                player.setArmor(player3Arm);
+            }
+            if (player3Ammo != null) {
+                player.setAmmunition(player3Ammo);
+            }
+        }
+
+        return player;
     }
 
     static public int[] selectClass(String c) {
