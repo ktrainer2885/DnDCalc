@@ -30,7 +30,7 @@ public class WeaponDeserializer extends StdDeserializer<Item> {
         //String age;
         String dmg1;      // Will need to allow more than one of these
         String dmgType;
-        //String[] property;
+        String property = "1H";
         String range;
         String reload;
 
@@ -74,6 +74,17 @@ public class WeaponDeserializer extends StdDeserializer<Item> {
             dmgType = "None";
         }
 
+        // property tag | Checks if weapon is 2 handed
+        if (jsonNode.has("property")) {
+            int size = jsonNode.get("property").size();
+            for (int i = 0; i < jsonNode.get("property").size(); i++) {
+                property = (String) jsonNode.get("property").get(i).asText();
+                if (property.equals("2H")) {
+                    break;
+                }
+            }
+        }
+
         // property tag
 
         // Ranged weapons have a range tag, Melee weapons do not
@@ -100,7 +111,7 @@ public class WeaponDeserializer extends StdDeserializer<Item> {
         }
 
 
-        weaponObject = new Weapon(name, type, rarity, weight, /*technology,*/ weapon, weaponCategory, /*age,*/ dmg1, dmgType, range, reload);
+        weaponObject = new Weapon(name, type, rarity, weight, /*technology,*/ weapon, weaponCategory, property, /*age,*/ dmg1, dmgType, range, reload);
         return weaponObject;
     }
 }

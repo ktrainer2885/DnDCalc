@@ -31,10 +31,40 @@ public class Fighter extends Player {
         this.secondWindUses = 1;
         this.level = 1;
     }
+
+    // Modifier for Attack Rolls if Fighter Style is Archery and is equipped with a Ranged weapon
+    public int archery() {
+        if (this.style == 1 && this.getWeapon().getWeaponType().equals("R")) {
+            return 2;
+        }
+        else {
+            return 0;
+        }
+    }
         
     // Modifier for AC if Fighter Style is Defense
     public int defense() {
         if (this.style == 2) {
+            return 1;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    // Modifier for Attack Rolls if Fighter is Dueling and is equipped with a single handed weapon
+    public int dueling() {
+        if (this.style == 3 && this.getWeapon().getWeaponType().equals("M") && this.getWeapon().getWeaponProperty().equals("1H")) {
+            System.out.println("Dueling");
+            return 2;
+        }
+        else {
+            return 0;
+        }
+    }
+
+    public int greatWeapon() {
+        if (this.style == 4 && this.getWeapon().getWeaponType().equals("M") && this.getWeapon().getWeaponProperty().equals("2H")) {
             return 1;
         }
         else {

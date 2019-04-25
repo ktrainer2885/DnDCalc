@@ -1,5 +1,7 @@
 package common;
 
+import player.Fighter;
+
 import java.util.ArrayList;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -176,6 +178,13 @@ public abstract class Creature implements Comparable<Creature> {
     public Integer attack() {
         // Roll 20 and save
         this.roll = roll20();
+
+        // If fighter has fighting style, great weapon, re-roll on 1s and 2s only once
+        if (this instanceof Fighter && ((Fighter) this).greatWeapon() == 1 && this.roll > 0 && this.roll < 3) {
+            System.out.println("reroll");
+            this.roll = roll20();
+        }
+
         return roll + prof /* + Any modifiers*/;
     }
 
@@ -219,6 +228,11 @@ public abstract class Creature implements Comparable<Creature> {
         }
         else {
             damage = 0;
+        }
+
+        // Adding Fighter Fighting Style Damage Modifiers
+        if (this instanceof Fighter) {
+            damage += ((Fighter) this).archery() + ((Fighter) this).dueling();
         }
 
         damage += generateDamage(diceNum);
