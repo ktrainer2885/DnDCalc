@@ -68,47 +68,56 @@ public class MonsterDeserializer extends StdDeserializer<Monster> {
             hpConstant = Integer.parseInt(hpInfo[2]);
         }
 
-        // sets proficiency
-        profString = (String) jsonNode.get("action").get(0).get("name").asText();
-        if (profString.equalsIgnoreCase("multiattack")){
-            profString = (String) jsonNode.get("action").get(1).get("entries").get(0).asText();
+        // sets proficiency and actions
+        if(jsonNode.hasNonNull("action")){
+            profString = (String) jsonNode.get("action").get(0).get("name").asText();
+            if (profString.equalsIgnoreCase("multiattack")){
+                profString = (String) jsonNode.get("action").get(1).get("entries").get(0).asText();
+            }
+            else {
+                profString = (String) jsonNode.get("action").get(0).get("entries").get(0).asText();
+            }
+
+            //System.out.println(profString);
+            profStrings = profString.split("@hit|@damage");
+
+            for (int j = 0; j < profStrings.length; j++) {
+                int i;
+                i = profStrings[j].indexOf("}");
+                if (i > -1){
+                    profStrings[j] = profStrings[j].substring(0,i);
+                    profStrings[j] = profStrings[j].trim();
+
+                    // adds in proficiency
+                    if (profStrings[j].matches("-?\\d+")){
+                        prof = Integer.parseInt(profStrings[j]);
+                    }
+
+                    // adds in damage dice
+
+                    if(profStrings[j].matches("-?\\d+d\\d+\\s*(\\+\\s*\\d+)?")){
+                        damDice = profStrings[j].split("\\+");
+                        for (int k = 0; k < damDice.length; k++){
+                            damDice[k] = damDice[k].trim();
+                        }
+
+                        weapon = damDice[0];
+                        if(damDice.length > 1 ){
+                            damCont = Integer.parseInt(damDice[1]);
+                        }
+                    }
+
+                }
+                //System.out.println(profStrings[j]);
+            }
+
         }
         else {
-            profString = (String) jsonNode.get("action").get(0).get("entries").get(0).asText();
+            prof = 0;
+            weapon = "0d0";
+            damCont = 0;
         }
 
-        //System.out.println(profString);
-        profStrings = profString.split("@hit|@damage");
-
-        for (int j = 0; j < profStrings.length; j++) {
-            int i;
-            i = profStrings[j].indexOf("}");
-            if (i > -1){
-                profStrings[j] = profStrings[j].substring(0,i);
-                profStrings[j] = profStrings[j].trim();
-
-                // adds in proficiency
-                if (profStrings[j].matches("-?\\d+")){
-                    prof = Integer.parseInt(profStrings[j]);
-                }
-
-                // adds in damage dice
-
-                if(profStrings[j].matches("-?\\d+d\\d+\\s*(\\+\\s*\\d+)?")){
-                    damDice = profStrings[j].split("\\+");
-                    for (int k = 0; k < damDice.length; k++){
-                        damDice[k] = damDice[k].trim();
-                    }
-
-                    weapon = damDice[0];
-                    if(damDice.length > 1 ){
-                        damCont = Integer.parseInt(damDice[1]);
-                    }
-                }
-
-            }
-            //System.out.println(profStrings[j]);
-        }
 
         // Add in attributes
 

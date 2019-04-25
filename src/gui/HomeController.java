@@ -366,11 +366,11 @@ public class HomeController {
             File files;
 
             if (os.equals("Linux")) {
-                fullPath = relativePath + "/files/monsters/jsonBigTest.json";
+                fullPath = relativePath + "/files/monsters/bestiary-mm.json";
                 files = new File(fullPath);
             }
             else {
-                fullPath = relativePath + "\\files\\monsters\\jsonBigTest.json";
+                fullPath = relativePath + "\\files\\monsters\\bestiary-mm.json";
                 files = new File(fullPath);
             }
             System.out.println(files.getCanonicalPath());
