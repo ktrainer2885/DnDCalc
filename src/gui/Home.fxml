@@ -14,11 +14,26 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="384.0" prefWidth="600.0" style="-fx-background-color: #2E0854; -fx-border-color: #CFB53B; -fx-border-width: 3;" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.HomeController">
    <children>
+      <ImageView fitHeight="196.0" fitWidth="634.0" layoutX="-3.0" layoutY="3.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../media/img/darkCloud.png" />
+         </image>
+      </ImageView>
       <Pane layoutY="112.0" prefHeight="288.0" prefWidth="600.0">
          <children>
+            <ImageView fitHeight="153.0" fitWidth="141.0" layoutX="104.0" layoutY="-32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/img/lightningRL.gif" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="214.0" fitWidth="182.0" layoutX="357.0" layoutY="-32.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../media/img/lightningLR.gif" />
+               </image>
+            </ImageView>
             <ImageView fitHeight="261.0" fitWidth="432.0" layoutX="72.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../img/castle.png" />
+                  <Image url="@../media/img/castle.png" />
                </image>
             </ImageView>
             <Button layoutX="268.0" layoutY="224.0" mnemonicParsing="false" onAction="#fightButtonClicked" text="Fight" />
@@ -67,15 +82,19 @@
                   <Font name="System Bold" size="17.0" />
                </font>
             </Label>
-            <Button layoutX="292.0" layoutY="44.0" mnemonicParsing="false" onAction="#itemButtonClicked" prefHeight="25.0" prefWidth="45.0" text="Items" />
-            <Button layoutX="293.0" layoutY="80.0" mnemonicParsing="false" onAction="#itemButton1Clicked" prefHeight="25.0" prefWidth="45.0" text="Items" />
-            <Button layoutX="293.0" layoutY="117.0" mnemonicParsing="false" onAction="#itemButton2Clicked" prefHeight="25.0" prefWidth="45.0" text="Items" />
-            <Button layoutX="293.0" layoutY="154.0" mnemonicParsing="false" onAction="#itemButton3Clicked" prefHeight="25.0" prefWidth="45.0" text="Items" />
+            <Button fx:id="playerItems" layoutX="292.0" layoutY="44.0" mnemonicParsing="false" onAction="#itemButtonClicked" prefHeight="25.0" prefWidth="45.0" text="Items" />
+            <Button fx:id="player1Items" layoutX="293.0" layoutY="80.0" mnemonicParsing="false" onAction="#itemButton1Clicked" prefHeight="25.0" prefWidth="45.0" text="Items" />
+            <Button fx:id="player2Items" layoutX="293.0" layoutY="117.0" mnemonicParsing="false" onAction="#itemButton2Clicked" prefHeight="25.0" prefWidth="45.0" text="Items" />
+            <Button fx:id="player3Items" layoutX="293.0" layoutY="154.0" mnemonicParsing="false" onAction="#itemButton3Clicked" prefHeight="25.0" prefWidth="45.0" text="Items" />
+            <Button fx:id="monsterStats" layoutX="512.0" layoutY="44.0" mnemonicParsing="false" onAction="#statsButtonClicked" text="Stats" />
+            <Button fx:id="monster1Stats" layoutX="512.0" layoutY="82.0" mnemonicParsing="false" onAction="#statsButton1Clicked" text="Stats" />
+            <Button fx:id="monster2Stats" layoutX="512.0" layoutY="117.0" mnemonicParsing="false" onAction="#statsButton2Clicked" text="Stats" />
+            <Button fx:id="monster3Stats" layoutX="512.0" layoutY="154.0" mnemonicParsing="false" onAction="#statsButton3Clicked" text="Stats" />
          </children>
       </Pane>
-      <ImageView fitHeight="206.0" fitWidth="459.0" layoutX="116.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true" AnchorPane.rightAnchor="117.45196533203125">
+      <ImageView fitHeight="206.0" fitWidth="459.0" layoutX="116.0" layoutY="-45.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../img/dragon.gif" />
+            <Image url="@../media/img/dragon.gif" />
          </image>
       </ImageView>
       <Label layoutX="90.0" layoutY="14.0" text="Dungeons &amp; Dragons" textAlignment="CENTER">
@@ -104,5 +123,6 @@
             </RadialGradient>
          </textFill>
       </Label>
+      <Button layoutX="183.0" layoutY="22.0" mnemonicParsing="false" onAction="#secretButtonClicked" opacity="0.0" prefHeight="95.0" prefWidth="226.0" text="Button" />
    </children>
 </AnchorPane>
