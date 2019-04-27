@@ -1,10 +1,10 @@
 package gui;
 
 import item.*;
-import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.media.AudioClip;
 import javafx.stage.Stage;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -26,12 +26,18 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
+import javafx.scene.control.Button;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+
+
 
 public class HomeController {
 
     public static Scene ISController;
     public static Stage stage;
     public static Integer item;
+    public static Integer monster;
 
     private Monster[] monsters;
     private ObjectMapper mapper;
@@ -51,6 +57,11 @@ public class HomeController {
     ArrayList<Monster> monsterArrayList = new ArrayList<>();
     ObservableList<Monster> monsterList =  FXCollections.observableArrayList(monsterArrayList);
 
+    //fullPath = relativePath + "\\files\\monsters\\jsonBigTest.json";
+    //Media sword = new Media("file:///../media.audio/sword.mp3");
+    //MediaPlayer mediaPlayer = new MediaPlayer(sword);
+
+
     //Attributes associated with Player
     @FXML
     private ChoiceBox playerBox;
@@ -58,6 +69,9 @@ public class HomeController {
     private TextField playerNum;
     @FXML
     private TextField playerLvl;
+    @FXML
+    private Button playerItems;
+
     public static Weapon playerWeap; //Weapon
     public static String playerWeapMagMod; //Magic Modifier Associated with Weapon
     public static Armor playerArm; //Armor
@@ -72,6 +86,9 @@ public class HomeController {
     private TextField player1Num;
     @FXML
     private TextField player1Lvl;
+    @FXML
+    private Button player1Items;
+
     public static Weapon player1Weap;
     public static String player1WeapMagMod;
     public static Armor player1Arm;
@@ -86,6 +103,9 @@ public class HomeController {
     private TextField player2Num;
     @FXML
     private TextField player2Lvl;
+    @FXML
+    private Button player2Items;
+
     public static Weapon player2Weap;
     public static String player2WeapMagMod;
     public static Armor player2Arm;
@@ -100,6 +120,9 @@ public class HomeController {
     private TextField player3Num;
     @FXML
     private TextField player3Lvl;
+    @FXML
+    private Button player3Items;
+
     public static Weapon player3Weap;
     public static String player3WeapMagMod;
     public static Armor player3Arm;
@@ -107,25 +130,37 @@ public class HomeController {
     public static Ammunition player3Ammo; //Ammunition
     public static String player3AmmoCount; //Ammunition Qty
 
+    //Attributes associated with Monster
     @FXML
     private ChoiceBox monsterBox;
     @FXML
     private TextField monsterNum;
+    @FXML
+    private Button monsterStats;
 
+    //Attributes associated with Monster 1
     @FXML
     private ChoiceBox monster1Box;
     @FXML
     private TextField monster1Num;
+    @FXML
+    private Button monster1Stats;
 
+    //Attributes associated with Monster 2
     @FXML
     private ChoiceBox monster2Box;
     @FXML
     private TextField monster2Num;
+    @FXML
+    private Button monster2Stats;
 
+    //Attributes associated with Monster 3
     @FXML
     private ChoiceBox monster3Box;
     @FXML
     private TextField monster3Num;
+    @FXML
+    private Button monster3Stats;
 
     @FXML
     private void initialize(){
@@ -144,7 +179,7 @@ public class HomeController {
     }
 
     private void showAlertWithoutHeaderText() {
-
+        playSound("cheer.wav");
         Sim sim = new Sim(numberSimulations,combatArrayList);
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("Simulation");
@@ -154,12 +189,15 @@ public class HomeController {
  //       alert.setContentText(playerBox.getValue().toString());
         alert.setContentText("\nWin Rate: " + String.format("%.2f", sim.simulationWinRate()) +"%");
  //       alert.setContentText(combatArrayList.toString());
-
+        //playSound("cheer.mp3", 2);
         alert.showAndWait();
     }
 
     public void fightButtonClicked(){
 
+        //playSound("sword.mp3", 1);
+        //playSound("cheer.mp3");
+        playSound("sword.wav");
 //        numberSimulations = Integer.parseInt(numSims.getText());
         combatArrayList.clear();
         addPlayer(playerBox,playerNum,playerLvl, 0);
@@ -177,80 +215,192 @@ public class HomeController {
     }
 
     public void itemButtonClicked() {
+
+        playerItems.setDisable(true);
+        playSound("items.wav");
         try {
             item = 0;
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemSelect.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
 
             ISController = new Scene(root1, 245, 302);
-            Image image = new Image("file:///../img/sword.png");
+            Image image = new Image("file:///../media.img/sword.png");
             ISController.setCursor(new ImageCursor(image));
 
             stage = new Stage();
             stage.setTitle("Items");
             stage.setScene(ISController);
             stage.show();
-
-        }catch (Exception e){
+            stage.setOnHiding(event -> {playerItems.setDisable(false);});
+        }
+        catch (Exception e){
             System.out.println("Can't load new window!");
         }
     }
     public void itemButton1Clicked(){
+
+        player1Items.setDisable(true);
+        playSound("items.wav");
         try {
             item = 1;
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemSelect.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
 
             ISController = new Scene(root1, 245, 302);
-            Image image = new Image("file:///../img/sword.png");
+            Image image = new Image("file:///../media.img/sword.png");
             ISController.setCursor(new ImageCursor(image));
 
             stage = new Stage();
             stage.setTitle("Items");
             stage.setScene(ISController);
             stage.show();
-
-        }catch (Exception e){
+            stage.setOnHiding(event -> {player1Items.setDisable(false);});
+        }
+        catch (Exception e){
             System.out.println("Can't load new window!");
         }
     }
 
     public void itemButton2Clicked(){
+
+        player2Items.setDisable(true);
+        playSound("items.wav");
         try {
             item = 2;
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemSelect.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
 
             ISController = new Scene(root1, 245, 302);
-            Image image = new Image("file:///../img/sword.png");
+            Image image = new Image("file:///../media.img/sword.png");
             ISController.setCursor(new ImageCursor(image));
 
             stage = new Stage();
             stage.setTitle("Items");
             stage.setScene(ISController);
             stage.show();
-
-        }catch (Exception e){
+            stage.setOnHiding(event -> {player2Items.setDisable(false);});
+        }
+        catch (Exception e){
             System.out.println("Can't load new window!");
         }
     }
 
     public void itemButton3Clicked(){
+
+        player3Items.setDisable(true);
+        playSound("items.wav");
         try {
             item = 3;
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("ItemSelect.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
 
             ISController = new Scene(root1, 245, 302);
-            Image image = new Image("file:///../img/sword.png");
+            Image image = new Image("file:///../media.img/sword.png");
             ISController.setCursor(new ImageCursor(image));
 
             stage = new Stage();
             stage.setTitle("Items");
             stage.setScene(ISController);
             stage.show();
+            stage.setOnHiding(event -> {player3Items.setDisable(false);});
+        }
+        catch (Exception e){
+            System.out.println("Can't load new window!");
+        }
+    }
 
-        }catch (Exception e){
+    public void statsButtonClicked(){
+
+        monsterStats.setDisable(true);
+        playSound("scroll.wav");
+        try {
+            monster = 0;
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MonsterStats.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+
+            ISController = new Scene(root1, 600, 400);
+            Image image = new Image("file:///../media.img/sword.png");
+            ISController.setCursor(new ImageCursor(image));
+
+            stage = new Stage();
+            stage.setTitle("Monster Manual");
+            stage.setScene(ISController);
+            stage.show();
+            stage.setOnHiding(event -> {monsterStats.setDisable(false);});
+        }
+        catch (Exception e){
+            System.out.println("Can't load new window!");
+        }
+    }
+
+    public void statsButton1Clicked(){
+
+        monster1Stats.setDisable(true);
+        playSound("scroll.wav");
+        try {
+            monster = 1;
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MonsterStats.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+
+            ISController = new Scene(root1, 600, 400);
+            Image image = new Image("file:///../media.img/sword.png");
+            ISController.setCursor(new ImageCursor(image));
+
+            stage = new Stage();
+            stage.setTitle("Monster Manual");
+            stage.setScene(ISController);
+            stage.show();
+            stage.setOnHiding(event -> {monster1Stats.setDisable(false);});
+        }
+        catch (Exception e){
+            System.out.println("Can't load new window!");
+        }
+    }
+
+    public void statsButton2Clicked(){
+
+        monster2Stats.setDisable(true);
+        playSound("scroll.wav");
+        try {
+            monster = 2;
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MonsterStats.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+
+            ISController = new Scene(root1, 600, 400);
+            Image image = new Image("file:///../media.img/sword.png");
+            ISController.setCursor(new ImageCursor(image));
+
+            stage = new Stage();
+            stage.setTitle("Monster Manual");
+            stage.setScene(ISController);
+            stage.show();
+            stage.setOnHiding(event -> {monster2Stats.setDisable(false);});
+        }
+        catch (Exception e){
+            System.out.println("Can't load new window!");
+        }
+    }
+
+    public void statsButton3Clicked(){
+
+        monster3Stats.setDisable(true);
+        playSound("scroll.wav");
+        try {
+            monster = 3;
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MonsterStats.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+
+            ISController = new Scene(root1, 600, 400);
+            Image image = new Image("file:///../media.img/sword.png");
+            ISController.setCursor(new ImageCursor(image));
+
+            stage = new Stage();
+            stage.setTitle("Monster Manual");
+            stage.setScene(ISController);
+            stage.show();
+            stage.setOnHiding(event -> {monster3Stats.setDisable(false);});
+        }
+        catch (Exception e){
             System.out.println("Can't load new window!");
         }
     }
@@ -450,6 +600,7 @@ public class HomeController {
             return true;
         }
     }
+
     public void addPlayerToCombatList(String type, Integer numberPlayers, Integer numberLevels, Integer playerSet){
         Player player = new Fighter();
 
@@ -558,4 +709,35 @@ public class HomeController {
         return classArray;
     }
 
+   /*public void playSound(String sound,int i){
+        String os = System.getProperty("os.name");
+        String relativeSoundPath = System.getProperty("user.dir");
+        String fullSoundPath;
+
+        if(os.equals("Linux")){
+            fullSoundPath = relativeSoundPath + "/media" + sound;
+        }
+        else {
+            fullSoundPath = relativeSoundPath + "\\media\\audio\\" + sound;
+        }
+
+        Media sword = new Media(new File(fullSoundPath).toURI().toString());
+        MediaPlayer mediaPlayer = new MediaPlayer(sword);
+        mediaPlayer.setCycleCount(i);
+        mediaPlayer.play();
+    }*/
+
+   public void playSound(String sound){
+       String relativeSoundPath = System.getProperty("user.dir");
+       String fullSoundPath;
+       fullSoundPath = relativeSoundPath + "\\media\\audio\\" + sound;
+       File soundPath = new File(fullSoundPath);
+       AudioClip clip = new AudioClip(soundPath.toURI().toString());
+       clip.play();
+   }
+
+   public void secretButtonClicked(){
+       playSound("dragonWings.wav");
+       playSound("roar.wav");
+   }
 }

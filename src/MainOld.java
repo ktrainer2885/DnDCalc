@@ -2,14 +2,11 @@ import monster.Monster;
 import simulation.Sim;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import simulation.JsonTest;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-import static common.Commands.selectClass;
 
 public class MainOld {
 
