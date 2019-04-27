@@ -375,37 +375,68 @@ public class ItemSelectController {
     }
 
     public void playSound(String sound){
+        File soundPath;
+        String os = System.getProperty("os.name");
         String relativeSoundPath = System.getProperty("user.dir");
         String fullSoundPath;
-        fullSoundPath = relativeSoundPath + "\\media\\audio\\" + sound;
-        File soundPath = new File(fullSoundPath);
+        if(os.equals("Linux")){
+            fullSoundPath = relativeSoundPath + "/media/audio/" + sound;
+        }
+        else {
+            fullSoundPath = relativeSoundPath + "\\media\\audio\\" + sound;
+        }
+        soundPath = new File(fullSoundPath);
         AudioClip clip = new AudioClip(soundPath.toURI().toString());
         clip.play();
     }
 
     public void playSwordSheath(){
         String relativeSoundPath = System.getProperty("user.dir");
+        File soundPath;
         String fullSoundPath;
-        fullSoundPath = relativeSoundPath + "\\media\\audio\\swordSheath.wav";
-        File soundPath = new File(fullSoundPath);
+        String os = System.getProperty("os.name");
+        if (os.equals("Linux")) {
+            fullSoundPath = relativeSoundPath + "/media/audio/swordSheath.wav";
+            soundPath = new File(fullSoundPath);
+        }
+        else {
+            fullSoundPath = relativeSoundPath + "\\media\\audio\\swordSheath.wav";
+            soundPath = new File(fullSoundPath);
+        }
         AudioClip clip = new AudioClip(soundPath.toURI().toString());
         clip.play();
     }
 
     public void playShieldEquip(){
         String relativeSoundPath = System.getProperty("user.dir");
+        File soundPath;
         String fullSoundPath;
-        fullSoundPath = relativeSoundPath + "\\media\\audio\\equip.wav";
-        File soundPath = new File(fullSoundPath);
+        String os = System.getProperty("os.name");
+        if (os.equals("Linux")) {
+            fullSoundPath = relativeSoundPath + "/media/audio/equip.wav";
+            soundPath = new File(fullSoundPath);
+        }
+        else {
+            fullSoundPath = relativeSoundPath + "\\media\\audio\\equip.wav";
+            soundPath = new File(fullSoundPath);
+        }
         AudioClip clip = new AudioClip(soundPath.toURI().toString());
         clip.play();
     }
 
     public void playArrowHit(){
         String relativeSoundPath = System.getProperty("user.dir");
+        File soundPath;
         String fullSoundPath;
-        fullSoundPath = relativeSoundPath + "\\media\\audio\\arrow.wav";
-        File soundPath = new File(fullSoundPath);
+        String os = System.getProperty("os.name");
+        if (os.equals("Linux")) {
+            fullSoundPath = relativeSoundPath + "/media/audio/arrow.wav";
+            soundPath = new File(fullSoundPath);
+        }
+        else {
+            fullSoundPath = relativeSoundPath + "\\media\\audio\\arrow.wav";
+            soundPath = new File(fullSoundPath);
+        }
         AudioClip clip = new AudioClip(soundPath.toURI().toString());
         clip.play();
     }

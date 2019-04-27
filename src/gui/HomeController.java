@@ -753,10 +753,17 @@ public class HomeController {
     }*/
 
    public void playSound(String sound){
+       File soundPath;
+       String os = System.getProperty("os.name");
        String relativeSoundPath = System.getProperty("user.dir");
        String fullSoundPath;
-       fullSoundPath = relativeSoundPath + "\\media\\audio\\" + sound;
-       File soundPath = new File(fullSoundPath);
+       if(os.equals("Linux")){
+           fullSoundPath = relativeSoundPath + "/media/audio/" + sound;
+       }
+       else {
+           fullSoundPath = relativeSoundPath + "\\media\\audio\\" + sound;
+       }
+       soundPath = new File(fullSoundPath);
        AudioClip clip = new AudioClip(soundPath.toURI().toString());
        clip.play();
    }

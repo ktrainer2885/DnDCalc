@@ -181,7 +181,6 @@ public abstract class Creature implements Comparable<Creature> {
 
         // If fighter has fighting style, great weapon, re-roll on 1s and 2s only once
         if (this instanceof Fighter && ((Fighter) this).greatWeapon() == 1 && this.roll > 0 && this.roll < 3) {
-            System.out.println("reroll");
             this.roll = roll20();
         }
 

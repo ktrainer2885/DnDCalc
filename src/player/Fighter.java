@@ -55,7 +55,6 @@ public class Fighter extends Player {
     // Modifier for Attack Rolls if Fighter is Dueling and is equipped with a single handed weapon
     public int dueling() {
         if (this.style == 3 && this.getWeapon().getWeaponType().equals("M") && this.getWeapon().getWeaponProperty().equals("1H")) {
-            System.out.println("Dueling");
             return 2;
         }
         else {

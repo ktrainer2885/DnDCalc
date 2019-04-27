@@ -28,10 +28,18 @@ public class Main extends Application {
     }
 
     public void playSound(String sound){
+        File soundPath;
         String relativeSoundPath = System.getProperty("user.dir");
         String fullSoundPath;
-        fullSoundPath = relativeSoundPath + "\\media\\audio\\" + sound;
-        File soundPath = new File(fullSoundPath);
+        String os = System.getProperty("os.name");
+        if (os.equals("Linux")) {
+            fullSoundPath = relativeSoundPath + "/media/audio/" + sound;
+            soundPath = new File(fullSoundPath);
+        }
+        else {
+            fullSoundPath = relativeSoundPath + "\\media\\audio\\" + sound;
+            soundPath = new File(fullSoundPath);
+        }
         AudioClip clip = new AudioClip(soundPath.toURI().toString());
         clip.setCycleCount(5);
         clip.play();
