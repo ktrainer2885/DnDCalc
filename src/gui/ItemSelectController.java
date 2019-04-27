@@ -14,6 +14,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.Parent;
 import javafx.scene.layout.Region;
+import javafx.scene.media.AudioClip;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -74,6 +76,8 @@ public class ItemSelectController {
 
     @FXML
     void submitButtonClicked(){
+
+        playSound("sword.wav");
         
         try{
             //methods to communicate with HomoController class
@@ -82,6 +86,7 @@ public class ItemSelectController {
             HomeController home = load.getController();
 
             if(home.item == 0) {
+
                 if (weaponBox.getValue() != null) {
                     //home.setItemA(weaponBox.getValue().toString());
 
@@ -367,5 +372,41 @@ public class ItemSelectController {
             }
         }
         weaponList =  FXCollections.observableArrayList(weaponArrayList);
+    }
+
+    public void playSound(String sound){
+        String relativeSoundPath = System.getProperty("user.dir");
+        String fullSoundPath;
+        fullSoundPath = relativeSoundPath + "\\media\\audio\\" + sound;
+        File soundPath = new File(fullSoundPath);
+        AudioClip clip = new AudioClip(soundPath.toURI().toString());
+        clip.play();
+    }
+
+    public void playSwordSheath(){
+        String relativeSoundPath = System.getProperty("user.dir");
+        String fullSoundPath;
+        fullSoundPath = relativeSoundPath + "\\media\\audio\\swordSheath.wav";
+        File soundPath = new File(fullSoundPath);
+        AudioClip clip = new AudioClip(soundPath.toURI().toString());
+        clip.play();
+    }
+
+    public void playShieldEquip(){
+        String relativeSoundPath = System.getProperty("user.dir");
+        String fullSoundPath;
+        fullSoundPath = relativeSoundPath + "\\media\\audio\\equip.wav";
+        File soundPath = new File(fullSoundPath);
+        AudioClip clip = new AudioClip(soundPath.toURI().toString());
+        clip.play();
+    }
+
+    public void playArrowHit(){
+        String relativeSoundPath = System.getProperty("user.dir");
+        String fullSoundPath;
+        fullSoundPath = relativeSoundPath + "\\media\\audio\\arrow.wav";
+        File soundPath = new File(fullSoundPath);
+        AudioClip clip = new AudioClip(soundPath.toURI().toString());
+        clip.play();
     }
 }
