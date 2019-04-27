@@ -53,6 +53,9 @@ public class Monster extends Creature {
         this.name = name;
     }
 
+    public int getDamConst(){return damConst;}
+    public String getCR(){return challengeRating;}
+
     @Override
     public void chooseAction(ArrayList<Creature> combatList) {
     }

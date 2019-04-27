@@ -314,9 +314,16 @@ public class HomeController {
         monsterStats.setDisable(true);
         playSound("scroll.wav");
         try {
+
+            MonsterStatsController monsterStatsController = new MonsterStatsController((Monster) monsterBox.getValue());
+
             monster = 0;
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MonsterStats.fxml"));
+            fxmlLoader.setController(monsterStatsController);
             Parent root1 = (Parent) fxmlLoader.load();
+
+//            MonsterStatsController mStatsCon =fxmlLoader.getController();
+//            mStatsCon.getStats((Monster) monsterBox.getValue());
 
             ISController = new Scene(root1, 600, 400);
             Image image = new Image("file:///../media.img/sword.png");
@@ -330,6 +337,9 @@ public class HomeController {
         }
         catch (Exception e){
             System.out.println("Can't load new window!");
+            System.out.println(e.toString());
+            e.printStackTrace();
+            monsterStats.setDisable(false);
         }
     }
 
@@ -338,8 +348,10 @@ public class HomeController {
         monster1Stats.setDisable(true);
         playSound("scroll.wav");
         try {
+            MonsterStatsController monsterStatsController = new MonsterStatsController((Monster) monster1Box.getValue());
             monster = 1;
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MonsterStats.fxml"));
+            fxmlLoader.setController(monsterStatsController);
             Parent root1 = (Parent) fxmlLoader.load();
 
             ISController = new Scene(root1, 600, 400);
@@ -354,6 +366,9 @@ public class HomeController {
         }
         catch (Exception e){
             System.out.println("Can't load new window!");
+            System.out.println(e.toString());
+            e.printStackTrace();
+            monsterStats.setDisable(false);
         }
     }
 
@@ -362,8 +377,10 @@ public class HomeController {
         monster2Stats.setDisable(true);
         playSound("scroll.wav");
         try {
+            MonsterStatsController monsterStatsController = new MonsterStatsController((Monster) monster2Box.getValue());
             monster = 2;
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MonsterStats.fxml"));
+            fxmlLoader.setController(monsterStatsController);
             Parent root1 = (Parent) fxmlLoader.load();
 
             ISController = new Scene(root1, 600, 400);
@@ -378,6 +395,9 @@ public class HomeController {
         }
         catch (Exception e){
             System.out.println("Can't load new window!");
+            System.out.println(e.toString());
+            e.printStackTrace();
+            monsterStats.setDisable(false);
         }
     }
 
@@ -386,8 +406,10 @@ public class HomeController {
         monster3Stats.setDisable(true);
         playSound("scroll.wav");
         try {
+            MonsterStatsController monsterStatsController = new MonsterStatsController((Monster) monster3Box.getValue());
             monster = 3;
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MonsterStats.fxml"));
+            fxmlLoader.setController(monsterStatsController);
             Parent root1 = (Parent) fxmlLoader.load();
 
             ISController = new Scene(root1, 600, 400);
@@ -402,6 +424,9 @@ public class HomeController {
         }
         catch (Exception e){
             System.out.println("Can't load new window!");
+            System.out.println(e.toString());
+            e.printStackTrace();
+            monsterStats.setDisable(false);
         }
     }
 

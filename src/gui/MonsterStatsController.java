@@ -2,6 +2,7 @@ package gui;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import monster.Monster;
 
 public class MonsterStatsController {
 
@@ -47,7 +48,7 @@ public class MonsterStatsController {
     public static int monDamConst;
     public static int monAC;
     public static int monInit;
-    public static int monCR;
+    public static String monCR;
     public static int monSTR;
     public static int monDEX;
     public static int monCON;
@@ -55,12 +56,32 @@ public class MonsterStatsController {
     public static int monWIS;
     public static int monCHA;
 
+    public MonsterStatsController(Monster monster){
+        setName(monster.getName());
+        setHp(monster.getHp());
+        setMaxHp(monster.getMaxHp());
+        setProf(monster.getProf());
+        setWeap("Claw");
+        setDice("2d6");
+        setDamConst(monster.getDamConst());
+        setAC(monster.getAc());
+//        setInit(monster.getInit());
+        setCR(monster.getCR());
+        setSTR(monster.getStr());
+        setDEX(monster.getDex());
+        setCON(monster.getCon());
+        setINT(monster.getIntel());
+        setWIS(monster.getWis());
+        setCHA(monster.getCha());
+    }
+
+
     @FXML
-    private void initialize(){
-        getStats();
+    public void initialize(){
+    //    getStats();
         String s;
         monsterName.setText(monName);
-        s = String.valueOf(monCR);
+        s = monCR;
         monsterCR.setText("CR: " + s);
         s = String.valueOf(monAC);
         monsterAC.setText("AC: " + s);
@@ -70,8 +91,8 @@ public class MonsterStatsController {
         monsterMaxHP.setText("Max HP: " + s);
         monsterDice.setText("Hit Die: " + monDice);
         s = toString().valueOf(monInit);
-        monsterInit.setText("Init: " + s);
-        s = toString().valueOf(monProf);
+//        monsterInit.setText("Init: " + s);
+ //       s = toString().valueOf(monProf);
         monsterProf.setText("Prof: " + s);
         s = toString().valueOf(monDamConst);
         monsterDamConst.setText("Dam Const: " + s);
@@ -126,7 +147,7 @@ public class MonsterStatsController {
         monInit = x;
     }
 
-    public void setCR(int x){
+    public void setCR(String x){
         monCR = x;
     }
 
@@ -154,22 +175,22 @@ public class MonsterStatsController {
         monCHA = x;
     }
 
-    public void getStats(){
-        setName("Red Dragon");
-        setHp(1234);
-        setMaxHp(2345);
-        setProf(3);
+    public void getStats(Monster monster){
+        setName(monster.getName());
+        setHp(monster.getHp());
+        setMaxHp(monster.getMaxHp());
+        setProf(monster.getProf());
         setWeap("Claw");
         setDice("2d6");
-        setDamConst(3);
-        setAC(16);
-        setInit(12);
-        setCR(15);
-        setSTR(16);
-        setDEX(12);
-        setCON(14);
-        setINT(16);
-        setWIS(16);
-        setCHA(7);
+        setDamConst(monster.getDamConst());
+        setAC(monster.getAc());
+//        setInit(monster.getInit());
+        setCR(monster.getCR());
+        setSTR(monster.getStr());
+        setDEX(monster.getDex());
+        setCON(monster.getCon());
+        setINT(monster.getIntel());
+        setWIS(monster.getWis());
+        setCHA(monster.getCha());
     }
 }
