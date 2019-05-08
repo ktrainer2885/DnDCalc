@@ -143,10 +143,6 @@ public class MonsterStatsController {
         monAC = x;
     }
 
-    public void setInit(int x){
-        monInit = x;
-    }
-
     public void setCR(String x){
         monCR = x;
     }

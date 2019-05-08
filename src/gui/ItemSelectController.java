@@ -315,12 +315,16 @@ public class ItemSelectController {
             mapper = new ObjectMapper()
                     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             String os = System.getProperty("os.name");
+            String relativePath = System.getProperty("user.dir");
+            String fullPath;
             File files;
             if (os.equals("Linux")) {
-                files = new File("files/items/basicitems.json");
+                fullPath = relativePath + "/files/items/basicitems.json";
+                files = new File(fullPath);
             }
             else {
-                files = new File("files\\items\\basicitems.json");
+                fullPath = relativePath + "\\files\\items\\basicitems.json";
+                files = new File(fullPath);
             }
             System.out.println(files.getCanonicalPath());
             armors = mapper.readValue(files, Armor[].class);
@@ -344,11 +348,15 @@ public class ItemSelectController {
                     .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
             String os = System.getProperty("os.name");
             File files;
+            String relativePath = System.getProperty("user.dir");
+            String fullPath;
             if (os.equals("Linux")) {
-                files = new File("files/items/basicitems.json");
+                fullPath = relativePath + "/files/items/basicitems.json";
+                files = new File(fullPath);
             }
             else {
-                files = new File("files\\items\\basicitems.json");
+                fullPath = relativePath + "\\files\\items\\basicitems.json";
+                files = new File(fullPath);
             }
             System.out.println(files.getCanonicalPath());
             weapons = mapper.readValue(files, Weapon[].class);

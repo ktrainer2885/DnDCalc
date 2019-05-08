@@ -310,37 +310,44 @@ public class HomeController {
     }
 
     public void statsButtonClicked(){
+        //if(monsterStats.getText().trim().isEmpty())
+            System.out.println(monsterStats.getText().trim().isEmpty());
+            monsterStats.setDisable(true);
+            playSound("scroll.wav");
+            try {
 
-        monsterStats.setDisable(true);
-        playSound("scroll.wav");
-        try {
+                MonsterStatsController monsterStatsController = new MonsterStatsController((Monster) monsterBox.getValue());
 
-            MonsterStatsController monsterStatsController = new MonsterStatsController((Monster) monsterBox.getValue());
-
-            monster = 0;
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MonsterStats.fxml"));
-            fxmlLoader.setController(monsterStatsController);
-            Parent root1 = (Parent) fxmlLoader.load();
+                monster = 0;
+                FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("MonsterStats.fxml"));
+                fxmlLoader.setController(monsterStatsController);
+                Parent root1 = (Parent) fxmlLoader.load();
 
 //            MonsterStatsController mStatsCon =fxmlLoader.getController();
 //            mStatsCon.getStats((Monster) monsterBox.getValue());
 
-            ISController = new Scene(root1, 600, 400);
-            Image image = new Image("file:///../media.img/sword.png");
-            ISController.setCursor(new ImageCursor(image));
+                ISController = new Scene(root1, 600, 400);
+                Image image = new Image("file:///../media.img/sword.png");
+                ISController.setCursor(new ImageCursor(image));
 
-            stage = new Stage();
-            stage.setTitle("Monster Manual");
-            stage.setScene(ISController);
-            stage.show();
-            stage.setOnHiding(event -> {monsterStats.setDisable(false);});
-        }
-        catch (Exception e){
-            System.out.println("Can't load new window!");
-            System.out.println(e.toString());
-            e.printStackTrace();
+                stage = new Stage();
+                stage.setTitle("Monster Manual");
+                stage.setScene(ISController);
+                stage.show();
+                stage.setOnHiding(event -> {
+                    monsterStats.setDisable(false);
+                });
+            } catch (Exception e) {
+                System.out.println("Can't load new window!");
+                System.out.println(e.toString());
+                e.printStackTrace();
+                monsterStats.setDisable(false);
+            }
+
+        /*else{
+            showAlertWithoutHeaderText("select a monster to view!");
             monsterStats.setDisable(false);
-        }
+        }*/
     }
 
     public void statsButton1Clicked(){
@@ -765,4 +772,12 @@ public class HomeController {
        playSound("dragonWings.wav");
        playSound("roar.wav");
    }
+
+    private void showAlertWithoutHeaderText(String msg) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Simulation");
+        alert.setHeaderText(null);
+        alert.setContentText("Please " + msg);
+        alert.showAndWait();
+    }
 }
