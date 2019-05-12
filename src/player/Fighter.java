@@ -34,6 +34,10 @@ public class Fighter extends Player {
 
     // Modifier for Attack Rolls if Fighter Style is Archery and is equipped with a Ranged weapon
     public int archery() {
+        // Default longsword is no
+        if (this.getWeapon() == null) {
+            return 0;
+        }
         if (this.style == 1 && this.getWeapon().getWeaponType().equals("R")) {
             return 2;
         }
@@ -55,7 +59,10 @@ public class Fighter extends Player {
     // Modifier for Attack Rolls if Fighter is Dueling and is equipped with a single handed weapon
     public int dueling() {
         // checks if weapon is null, default longsword: can be used as one handed
-        if (this.style == 3 && this.getWeapon().getWeaponType().equals("M") && this.getWeapon().getWeaponProperty().equals("1H") || this.getWeapon() == null) {
+        if (this.style == 3 && this.getWeapon() == null) {
+            return 2;
+        }
+        if (this.style == 3 && this.getWeapon().getWeaponType().equals("M") && this.getWeapon().getWeaponProperty().equals("1H")) {
             return 2;
         }
         else {
@@ -65,6 +72,9 @@ public class Fighter extends Player {
 
     public int greatWeapon() {
         // checks if weapon is null, default longsword: can be used as two handed
+        if (this.style == 4 && this.getWeapon() == null) {
+            return 1;
+        }
         if (this.style == 4 && this.getWeapon().getWeaponType().equals("M") && this.getWeapon().getWeaponProperty().equals("2H") || this.getWeapon() == null) {
             return 1;
         }
