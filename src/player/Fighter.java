@@ -54,7 +54,8 @@ public class Fighter extends Player {
 
     // Modifier for Attack Rolls if Fighter is Dueling and is equipped with a single handed weapon
     public int dueling() {
-        if (this.style == 3 && this.getWeapon().getWeaponType().equals("M") && this.getWeapon().getWeaponProperty().equals("1H")) {
+        // checks if weapon is null, default longsword: can be used as one handed
+        if (this.style == 3 && this.getWeapon().getWeaponType().equals("M") && this.getWeapon().getWeaponProperty().equals("1H") || this.getWeapon() == null) {
             return 2;
         }
         else {
@@ -63,7 +64,8 @@ public class Fighter extends Player {
     }
 
     public int greatWeapon() {
-        if (this.style == 4 && this.getWeapon().getWeaponType().equals("M") && this.getWeapon().getWeaponProperty().equals("2H")) {
+        // checks if weapon is null, default longsword: can be used as two handed
+        if (this.style == 4 && this.getWeapon().getWeaponType().equals("M") && this.getWeapon().getWeaponProperty().equals("2H") || this.getWeapon() == null) {
             return 1;
         }
         else {
