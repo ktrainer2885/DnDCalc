@@ -242,12 +242,51 @@ public abstract class Creature implements Comparable<Creature> {
         }
         // If Sneak Attack, roll extra die d6
         if (this.sneakAttack) {
-            damage += rollX(6);
+            damage += sneakAttack();
             this.sneakAttack = false;
         }
         // Else Normal Hit, no additional damage
 
         return damage;
+    }
+
+    // Returns Sneak Attack Damage
+    public int sneakAttack() {
+
+        int sneakDamage = 0;
+
+        if (this.getLevel() >= 1) {
+            sneakDamage += rollX(6);
+        }
+        if (this.getLevel() >= 3) {
+            sneakDamage += rollX(6);
+        }
+        if (this.getLevel() >= 5) {
+            sneakDamage += rollX(6);
+        }
+        if (this.getLevel() >= 7) {
+            sneakDamage += rollX(6);
+        }
+        if (this.getLevel() >= 9) {
+            sneakDamage += rollX(6);
+        }
+        if (this.getLevel() >= 11) {
+            sneakDamage += rollX(6);
+        }
+        if (this.getLevel() >= 13) {
+            sneakDamage += rollX(6);
+        }
+        if (this.getLevel() >= 15) {
+            sneakDamage += rollX(6);
+        }
+        if (this.getLevel() >= 17) {
+            sneakDamage += rollX(6);
+        }
+        if (this.getLevel() >= 19) {
+            sneakDamage += rollX(6);
+        }
+
+        return sneakDamage;
     }
 
     // Changes HP from damage and sets death
